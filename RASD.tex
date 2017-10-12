@@ -1,0 +1,129 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % to embed images
+\usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
+%\usepackage{pdflscape} %to allow single pages in landscape mode
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage{verbatim} % include raw text file (for Alloy)
+\usepackage[export]{adjustbox}
+
+\title{Requirement Analysis and Specification Document}
+\date{2017-10-26}
+\author{
+	Leonardo Bisica
+	\and
+	Alessandro Castellani
+	\and
+	Michele Cataldo
+}
+
+\begin{document}
+	%%% titlepage %%%
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\vfill
+		{\bfseries\Large
+			Travlendar+\\
+			Requirement Analysis and Specification Document
+			Version 0.1\\
+			\vskip4cm
+			Leonardo Bisica\\
+			Alessandro Castellani\\
+			Michele Cataldo\\
+		}
+		\vfill
+		\vfill
+	\end{titlepage}
+
+	%%% table of contents %%%
+	\tableofcontents
+	\newpage
+
+	%%% introduction %%%
+	\section{Introduction}
+		\subsection{Purpose}
+		The document that you are reading is the \textit{Requirement Analysis and Specification Document} (RASD) for information system \textit{Travelandar+}.
+		This start-up aims to help users in their everyday-life between appointment’s organization and transportation. No previous version about this application have been developed. 
+We will start from describe Stakeholders’ aims (\textit{Goals} Section), from which we obtain, subsequently, functional and nonfunctional requirements (\textit{Requirements} Section) useful to describe the system.
+		In addition we will need other 2 sections to have a complete overview of the model: \textit{Constraints} Section that describes constraints about the system and \textit{Domain Properties} Section that underlines limits of the software imposed by the world.
+		After spoke about this first chapter we could analyze some scenarios and use case of the application.
+			
+		\subsection{Actual system}
+			da fare
+		
+		\subsection{Scope}
+		The aim of this project is to develop \textit{Travlendar+}, a calendar based mobile application.
+Main functionality of the system is helping people in scheduling their meetings, by giving them useful information like traffic informations, public transportation and weather.
+	Meetings could be scheduled through the entire region of Lombardy (Italy), and the main Italian cities connected via railway system, and could be several type of work meetings and personal meetings.
+Furthermore the system can help the user by buying via mobile application public transportation tickets, or by reserving a car or a bike of a Sharing system, if it’s available in the current city.
+In case of bad weather the system should find alternative moving solutions in order to replace walking path.
+Naturally, the system must also allow the registration of new users; for the registration the system requests both personal and payment information. After registration, the user could immediately start scheduling his meetings.
+			
+		%TODO	
+		\subsection{Goals}
+		\input{Subsections/goals.tex}
+		%TODO	
+		\subsection{Domain properties}
+		\input{Subsections/domain_properties.tex}
+		%TODO	
+		\subsection{Glossary}
+		%\input{Subsections/glossary.tex}
+		%TODO	
+		\subsection{Assumptions}
+		\input{Subsections/assumptions.tex}
+
+		\subsection{Constrains}			
+		%\input{Subsections/constrains.tex}
+
+		\subsection{Identifying stakeholders}
+
+
+	\newpage
+	\section{Actors identifying}
+	%\input{Subsections/actors}
+	\newpage
+	\section{Requirements}
+	%\input{Subsections/requirements.tex}
+
+	\newpage
+	\section{Scenario identifying}
+	%\input{Subsections/scenarios.tex}
+		
+
+	\newpage
+	\section{UML models}
+	%\input{Subsections/uml.tex}
+
+	\newpage
+	\section{Alloy modeling}
+	%\input{Subsections/alloy.tex}
+
+	\newpage
+	%%% appendix %%%
+	\section{Appendix}
+		\listoffigures
+		\listoftables
+		
+		\subsection{Used tools}
+		For this assignment, we used the following tools:
+		
+		\begin{description}
+			\item [Alloy] We used the alloy tool to write the code and check the models for the specification.
+			\item [LaTeX] The group used LaTeX to structure the final document and to help with versioning.
+			\item [Github] We leaned on Github for versioning and coordinating synchronized work.
+			\item [Toggl] We used toggl to keep track of work hours.
+			
+		\end{description}
+		
+		\subsection{Hours of work}
+			\begin{description}
+				\item[Bisica, Leonardo] around xx hours of work;
+				\item[Castellani, Alessandro] around xx hours of work;
+				\item[Cataldo, Michele] around xx hours of work.
+			\end{description}
+			
+\end{document}
