@@ -41,66 +41,65 @@
 
 	%%% table of contents %%%
 	\tableofcontents
+	
 	\newpage
-
-	%%% introduction %%%
+%%% 1 - INTRODUCTION %%%
 	\section{Introduction}
 		\subsection{Purpose}
-		The document that you are reading is the \textit{Requirement Analysis and Specification Document} (RASD) for information system \textit{Travelandar+}.
-		This start-up aims to help users in their everyday-life between appointment’s organization and transportation. No previous version about this application have been developed. 
-We will start from describe Stakeholders’ aims (\textit{Goals} Section), from which we obtain, subsequently, functional and nonfunctional requirements (\textit{Requirements} Section) useful to describe the system.
-		In addition we will need other 2 sections to have a complete overview of the model: \textit{Constraints} Section that describes constraints about the system and \textit{Domain Properties} Section that underlines limits of the software imposed by the world.
-		After spoke about this first chapter we could analyze some scenarios and use case of the application.
-			
-		\subsection{Actual system}
-			da fare
+		
+		This document is the \textit{Requirement Analysis and Specification Document} (from now on RASD) for the information system \textit{Travelandar+}.
+		This application aims to help users in their everyday life by organizing their appointments and optimizing their travel means.
+		No previous versions of this application have been developed. 
+		We’ll start by describing Stakeholders’ aims (Goals), from which we obtain, subsequently, functional and nonfunctional requirements (\textit{Requirements} Section) useful to describe the system.
+		In addition we will need two other sections to have a complete overview of the model: \textit{Constraints} Section is going to describe constraints about the system, while \textit{Domain Properties} Section is going to underline the limits forced by the world on our software.
+		After having spoken about this first chapter we are going to analyze some scenarios and use cases of the application.
+		
+		%TODO	
+		\subsubsection{Goals}
+			\input{Subsections/goals.tex}
 		
 		\subsection{Scope}
-		The aim of this project is to develop \textit{Travlendar+}, a calendar based mobile application.
-Main functionality of the system is helping people in scheduling their meetings, by giving them useful information like traffic informations, public transportation and weather.
-	Meetings could be scheduled through the entire region of Lombardy (Italy), and the main Italian cities connected via railway system, and could be several type of work meetings and personal meetings.
-Furthermore the system can help the user by buying via mobile application public transportation tickets, or by reserving a car or a bike of a Sharing system, if it’s available in the current city.
-In case of bad weather the system should find alternative moving solutions in order to replace walking path.
-Naturally, the system must also allow the registration of new users; for the registration the system requests both personal and payment information. After registration, the user could immediately start scheduling his meetings.
-			
-		%TODO	
-		\subsection{Goals}
-		\input{Subsections/goals.tex}
-		%TODO	
-		\subsection{Domain properties}
-		\input{Subsections/domain_properties.tex}
-		%TODO	
-		\subsection{Glossary}
-		%\input{Subsections/glossary.tex}
-		%TODO	
-		\subsection{Assumptions}
-		\input{Subsections/assumptions.tex}
-
-		\subsection{Constrains}			
-		%\input{Subsections/constrains.tex}
-
-		\subsection{Identifying stakeholders}
-
-
-	\newpage
-	\section{Actors identifying}
-	%\input{Subsections/actors}
-	\newpage
-	\section{Requirements}
-	%\input{Subsections/requirements.tex}
-
-	\newpage
-	\section{Scenario identifying}
-	%\input{Subsections/scenarios.tex}
+		The aim of this project is to develop \textit{Travlendar+}, a calendar-based mobile application. 
+		The main functionality of the system is helping people in scheduling their appointments by taking into account useful, external information regarding traffic, public transportation, weather, and the like. 
+		Appointments could be scheduled through the entire region of Lombardy (Italy), and the main Italian cities connected via railway system. There could be several types of work meetings and personal appointments.
+		Furthermore the system can help the user by allowing the purchase of public transportation tickets via the mobile application itself, or by reserving a car or a bike of a sharing system (whenever this is possible). In case of bad weather the system should find alternative moving solutions in order to replace walking paths, same goes with strikes and other relevant kinds of information. 
+		Naturally, the system will also allow the registration of new users; as for the registration, the system requests both personal and payment information. After the registration succeeds, the user could immediately start scheduling his meetings.
 		
+		\subsection{Glossary}
+			\input{Subsections/glossary.tex}
+		
+		\subsection{Revision History}
+			No revision where done since first edition of this document.
+			
+		\subsection{Reference Document}
+			\begin{itemize}
+				\item Specification Document : Mandatory Project Assignments.pdf
+				\item -
+			\end{itemize}
+		
+		\subsection{Document Structure}	
 
+%%% 2 - OVERALL DESCRIPTION  %%%
+	\newpage
+	\section{Overall Description}
+		
+		\subsection{Product perspective}
+			%cose a caso
+			
+		\subsection{Product functions}
+			%Requirement
+			
+		\subsection{User characteristics}
+			%cose a caso 2	
+			
+		\subsection{Assumptions, dependencies and constraints}
+			%si spiega da sola
+		
 	\newpage
 	\section{UML models}
-	%\input{Subsections/uml.tex}
 
 	\newpage
 	\section{Alloy modeling}
-	%\input{Subsections/alloy.tex}
 
 	\newpage
 	%%% appendix %%%
@@ -115,7 +114,6 @@ Naturally, the system must also allow the registration of new users; for the reg
 			\item [Alloy] We used the alloy tool to write the code and check the models for the specification.
 			\item [LaTeX] The group used LaTeX to structure the final document and to help with versioning.
 			\item [Github] We leaned on Github for versioning and coordinating synchronized work.
-			\item [Toggl] We used toggl to keep track of work hours.
 			
 		\end{description}
 		
