@@ -10,6 +10,17 @@
 \usepackage{verbatim} % include raw text file (for Alloy)
 \usepackage[export]{adjustbox}
 
+\usepackage{titlesec} 
+\setcounter{secnumdepth}{4} %subsections enumerations arrives to 4
+
+%% paragraph behaves as a subsubsubsection %%
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex} 
+%% --- %%
+
+
 \title{Requirement Analysis and Specification Document}
 \date{2017-10-26}
 \author{
