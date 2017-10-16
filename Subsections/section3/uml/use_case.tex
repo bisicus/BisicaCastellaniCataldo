@@ -119,3 +119,54 @@
 			\hline
 			\hline
 		\end{tabular}
+
+%%%  RESERVE SHARING SERVICE %%%
+
+	\paragraph{Use Case 5: Reserve a \textit{Sharing Service} resource}
+	
+		\begin{tabular}{| l | p{0.8\textwidth} | }
+			\hline
+			\hline
+			Actor	&		User. \\
+			\hline
+			Input Condition		&		\begin{itemize}
+													\item[-] User is already logged in into \textit{Travlendar+}.
+													\item[-] A \textit{payment method} is already available.
+													\item[-] User is in the \textit{influence zone}
+												\end{itemize} \\
+			\hline
+			Event Flow		&		\begin{enumerate}
+												\item User click on "\textit{Reserving Service}".
+												\item System connects to available \textit{Sharing Service} resources.
+												\item System ranks per distance all the freasible recources and shows them on a map centered on User position.
+												\item User chooses one on the possible solutions.
+												\item	 System reconnects to selected \textit{Sharing Service}, and starts the reserving procedure.
+											\end{enumerate} \\
+			\hline
+			Output Condition		&		User is shown the correct reservation result and the time needed to reach the resource. \\
+			\hline		
+			Exception		&		Reservation procedure doesn't end well. \\
+			\hline
+			\hline
+		\end{tabular}
+		
+%%%  RESERVE SHARING SERVICE %%%
+
+	\paragraph{Use Case 6: Set Lunch Break Period}
+	
+		\begin{tabular}{| l | p{0.8\textwidth} | }
+			\hline
+			\hline
+			Actor	&		User. \\
+			\hline
+			Input Condition		&		User is already logged in into \textit{Travlendar+}. \\
+			\hline
+			Event Flow		&		\begin{enumerate}
+												\item User click on "\textit{Preferences/Lunch Time}".
+												\item User select an interval and a minimum lenght for his lunch break.
+											\end{enumerate} \\
+			\hline
+			Output Condition		&		System adds those hours as a special meeting every day in the calendar. \\
+			\hline
+			\hline
+		\end{tabular}
