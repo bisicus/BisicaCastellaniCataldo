@@ -1,6 +1,7 @@
 \documentclass[12pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
 \usepackage{graphicx} % to embed images
 \usepackage{hyperref} % to link the table of contents
 \usepackage{subcaption} %complex images
@@ -9,6 +10,15 @@
 \usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
 \usepackage{verbatim} % include raw text file (for Alloy)
 \usepackage[export]{adjustbox}
+
+%% include hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+}
+%%
 
 \usepackage{titlesec} 
 \setcounter{secnumdepth}{4} %subsections enumerations arrives to 4
@@ -90,6 +100,7 @@
 		
 		\subsection{Document Structure}	
 			\input{Subsections/section1/documentStructure.tex}
+		
 
 
 %%% 2 - OVERALL DESCRIPTION  %%%
