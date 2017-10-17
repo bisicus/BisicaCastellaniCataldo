@@ -26,13 +26,13 @@ We'll start numbering and exploring the goals we submitted.
                         \item [R.2.4] Application will implement a password retrieval mechanism
                   \end{itemize}
                   
-\item \textit{[G3]} Registered User can create meetings 
+\item \textit{[G3]} Registered User can create appointments 
 
  \begin{itemize}
                         \item [R.3.1] User has to be registered and logged in the system in order to create an
 appointment
                         \item [R.3.2] Appointments can be divided into work appointments (or meetings) and personal appointments
-                        \item [R.3.3] Appointments require a location and a date
+                        \item [R.3.3] Appointments require a location and a starting time and an end time
                         \item [R.3.4] Appointments location must be within the boundaries of the operative zone
                         \item [R.3.5] The chosen location can be within the boundaries of the influence zone
                         \item [R.3.5] There cannot be appointments with the same name, location and time
@@ -45,6 +45,11 @@ appointment
 
                   \begin{itemize}
                        \item  [R.4.1] A modified meeting must respect all the constraint imposed during the creation of a new meeting, as in [G3]
+                       \item [R.4.2] A meeting can be modified up until its end time
+                       \item [R.4.3] If the location of the meeting is modified it gets 
+                       \item [R.4.4] If the location of the meeting is modified system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing events
+                       \item [R.5.5] No limit actually exists on the amount of times an event can be modified
+                       \item [R.5.6] 
                      
 
 
@@ -64,7 +69,7 @@ appointment
                    \begin{itemize}
                         \item [R.6.1] User must be able to choose between ranked solutions
                         \item [R.6.2] The application arranges a navigable view of feasible solutions
-                       
+                        \item [R.6.3] 
                   \end{itemize}
                   
 \item \textit{[G7]} The application warns the user if locations are unreachable in the allotted time 
