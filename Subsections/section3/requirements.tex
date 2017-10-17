@@ -58,9 +58,9 @@ appointment
 
                   \begin{itemize}
                         \item [R.5.1] System verifies the travel mean is feasible for the submitted appointments
-                        \item [R.5.2] According to the type of appointment, the system submits the data to corresponding external services
+                        \item [R.5.2] Ac
                         \item [R.5.3] Based on meeting type and time of day system ranks all the solutions
-                        \item [R.5.4] Time is calculated by imposing a start position submitted by the user as specificied in [G12]
+                        \item [R.5.4] The distance gets calculated confronting the starting location (manually inserted or via geo-localization) with the appointment location
                   \end{itemize}
                   
 \item \textit{[G6]} User can choose a preferred solution among the best ones 
@@ -89,21 +89,20 @@ appointment
                         \item [R.12.5] To find or reserve a vehicle it's required that the user logins into the external corresponding service
                         \item [R.12.6] The external service can communicate with our mobile application. In case of reservation Travlendar+ checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to Travlendar+
                         \item [R.12.7] The location of all the vehicles are shown in the same view, merging data from different APIs
-                        \item [R.12.8] The renting happens 
-                        
-                        
-                    \end{itemize}
+                        \item [R.12.8] When an user decides to rent a car it gets redirected to the corresponding vehicle sharing service, until he's ultimated the rental and gets redirected back to Travlendar+
+                        \end{itemize}
 
-\item \textit{[G12]} The application can obtain the position of the device and consequently of its user
+\item \textit{[G12]} The application integrates a map system
                    
                   \begin{itemize}
-                        \item [R.12.1] User can manually insert a location
+                        \item [R.12.1] The map must be submitted by an external service (in our case we'll select Google APIs)
+                        \item [R.12.1] User can navigate through the map indipendently from its current location
+                        \item [R.12.3] User can search for a specific location
                         \item [R.12.2] The mobile device can track its current position through geo-localization
-                        \item [R.12.3] Position of out the operative zone won't be accepted by the system
+                        \item [R.12.3] Position of out the operative zone won't be accepted by the system and won't be displayed
                    \end{itemize}
 
 
-\item \textit{[G13]} EVENTUAL NAVIGATION
 
 
     
