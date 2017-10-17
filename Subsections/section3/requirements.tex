@@ -33,16 +33,21 @@ We'll start numbering and exploring the goals we submitted.
 appointment
                         \item [R.3.2] Appointments can be divided into work appointments (or meetings) and personal appointments
                         \item [R.3.3] Appointments require a location and a date
-                        \item [R.3.4] The chosen location must be found into the operative zone
+                        \item [R.3.4] Appointments location must be within the boundaries of the operative zone
+                        \item [R.3.5] The chosen location can be within the boundaries of the influence zone
                         \item [R.3.5] There cannot be appointments with the same name, location and time
                         \item [R.3.6] Based on already existing appointments, system checks suitability of created new entries
                         \item [R.3.7] Appointment date can't precede the date of insert
+                        
                   \end{itemize}
                   
 \item \textit{[G4]} Registered Users can edit meetings
 
                   \begin{itemize}
-                       
+                       \item  [R.4.1] A modified meeting must respect all the constraint imposed during the creation of a new meeting, as in [G3]
+                     
+
+
                   \end{itemize}
 
 \item \textit{[G5]} The application can automatically compute a personalized selection of travel times between appointments to choose from
@@ -51,6 +56,7 @@ appointment
                         \item [R.5.1] System verifies the travel mean is feasible for the submitted appointments
                         \item [R.5.2] According to the type of appointment, the system submits the data to corresponding external services
                         \item [R.5.3] Based on meeting type and time of day system ranks all the solutions
+                        \item [R.5.4] Time is calculated by imposing a start position submitted by the user as specificied in [G12]
                   \end{itemize}
                   
 \item \textit{[G6]} User can choose a preferred solution among the best ones 
@@ -71,7 +77,14 @@ appointment
 
 \item \textit{[G11]} The application allows the nearest shared vehicle to be found
 
-\item \textit{[G12]} The application can obtain a geolocalized position of the device it's running on
+\item \textit{[G12]} The application can obtain the position of the device and consequently of its user
+                   
+                  \begin{itemize}
+                        \item [R.12.1] User can manually insert a location
+                        \item [R.12.2] The mobile device can track its current position through geo-localization
+                        \item [R.12.3] Position of out the operative zone won't be accepted by the system
+                   \end{itemize}
+
 
 \item \textit{[G13]} EVENTUAL NAVIGATION
 
