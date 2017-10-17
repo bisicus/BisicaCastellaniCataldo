@@ -74,6 +74,33 @@ In addition to that, Travlendar+ also interacts with different service providers
 		\item[Public Transportation Service] Public Transportation information systems that show and sell tickets through Travlendar+
 	
 	\end{enumerate}
+
 		
 	\subsection{Assumptions, dependencies and constraints}
-		%si spiega da sola
+
+	We've already given a formal and methodical definition of our problem, yet there are still some ambiguities which still need to be addresed.
+
+
+		\begin{enumerate}
+		
+			\item Users do not create events outside the “operative zone”
+
+			\item The devices Travlendar+ is installed on possess a well-functioning GPS for geo-localization
+
+			\item If a registered User is willing to use the vehicle of a sharing network, we assume him to have downloaded the corresponding sharing-network app
+
+			\item There’s no kind of dependency among the users of our system
+
+			\item Any information coming from sharing services regarding position, rental, and payment won’t be double-checked by our system
+
+			\item Information coming from external payment sites won’t be double checked by our system
+
+			\item Buying public transportation tickets rely on the aforementioned external payment procedures
+
+			\item System assumes the season passes submitted by the user only aid for filtering results and are not checked nor have any legal value
+
+			\item System assumes that any car rental request is made by a person who’s allowed to make one. Only sharing services check the validity of documents; in addition to that we always assume the driver is the user who requests the rental
+
+			\item The application doesn't act as a navigator, and isn't capable of giving live informations about the travel besides the ones that can arrive through notifications
+			
+		\end{enumerate}
