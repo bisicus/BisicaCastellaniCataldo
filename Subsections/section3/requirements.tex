@@ -37,8 +37,7 @@ appointment
                         \item [R.3.5] The chosen location can be within the boundaries of the influence zone
                         \item [R.3.5] There cannot be appointments with the same name, location and time
                         \item [R.3.6] Based on already existing appointments, system checks suitability of created new entries
-                        \item [R.3.7] Appointment date can't precede the date of insert
-                        
+                        \item [R.3.7] Appointment start time can't precede the actual system time at the moment of inserting it                        
                   \end{itemize}
                   
 \item \textit{[G4]} Registered Users can edit meetings
@@ -80,7 +79,20 @@ appointment
 
 \item \textit{[G10]} The application allows to arrange the trips : tickets for public services
 
-\item \textit{[G11]} The application allows the nearest shared vehicle to be found
+\item \textit{[G11]} The application allows the nearest shared vehicle to be found and reserved
+
+                   \begin{itemize}
+                        \item [R.11.1] A shared vehicle belongs to a bike-sharing service or a car-sharing service
+                        \item [R.12.2] All services linked to shared vehicles are automatically disabled if the location of a meeting out of the boundaries of the influence zone
+                        \item [R.12.3] All sharing services have their own API and they must be referenced by our mobile application
+                        \item [R.12.4] To find or reserve a vehicle it is required by our system the access to the external API of the required service
+                        \item [R.12.5] To find or reserve a vehicle it's required that the user logins into the external corresponding service
+                        \item [R.12.6] The external service can communicate with our mobile application. In case of reservation Travlendar+ checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to Travlendar+
+                        \item [R.12.7] The location of all the vehicles are shown in the same view, merging data from different APIs
+                        \item [R.12.8] The renting happens 
+                        
+                        
+                    \end{itemize}
 
 \item \textit{[G12]} The application can obtain the position of the device and consequently of its user
                    
