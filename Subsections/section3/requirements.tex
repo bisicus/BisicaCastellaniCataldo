@@ -42,12 +42,12 @@ We'll start numbering and exploring the goals we submitted.
                         \item [R.4.1] User has to be registered and logged in the system in order to create an
 appointment
                         \item [R.4.2] Appointments can be divided into work appointments (or meetings) and personal appointments
-                        \item [R.4.3] Appointments require a location and a starting time and an end time
+                        \item [R.4.3] Appointments require a location, a starting time and an end time
                         \item [R.4.4] Appointments location must be within the boundaries of the operative zone
                         \item [R.4.5] The chosen location can be within the boundaries of the influence zone
                         \item [R.4.6] There cannot be appointments with the same name, location and time
                         \item [R.4.7] System must check suitability of created new entries based on already existing appointments
-                        \item [R.4.8] Appointment start time can't precede the actual system time at the moment of inserting it                                 														\item [R.4.9] User can select favourite travel means for each appointment
+                        \item [R.4.8] Appointment start time can't precede the actual system time at the moment of inserting it                                 														\item [R.4.9] User can select favourite travel means and priority for each appointment
                         \item [R.4.10] Each appointment must be associated to a level priority
                         \item [R.4.11] The creation of an appointment must be remotely saved on Travendlar+ server in order to be succesful and completed
                         
@@ -61,27 +61,34 @@ appointment
                        \item [R.5.3] If the location of the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
                        \item [R.5.4] No limit actually exists on the amount of times an event can be modified within the aforementioned constraints 
                        \item [R.5.5] A modification must be correctly saved on the remote Travlendar+ server in order to be succesful and completed              
-                       \item [R.5.6] Delete an appointments belongs to the set of modifications. A modified events cannot be restored in any way
+                       \item [R.5.6] Deleting an appointments belongs to the set of modifications. A modified events cannot be restored in any way
 
                  \end{itemize}
 
-\item \textit{[G5]} The application can automatically compute a personalized selection of travel times between appointments to choose from
+\item \textit{[G6]} The application can automatically compute a personalized selection of travel times between appointments to choose from
 
                   \begin{itemize}
-                        \item [R.5.1] The application must refer to Travel Logic for the expected travel time 
-                        \item [R.5.2] The application can suggest a combination of various means to reach the desired destination
-                        \item [R.5.3] The application must rank the suggestion according to their priority 
-                        \item [R.5.4] The registered user can choose to filter out specific travel means
-                        \item [R.5.5] Favourite travel means associated to an appointment must always show up
+                        \item [R.6.1] The application must refer to Travel Logic for the expected travel time 
+                        \item [R.6.2] The application can suggest a combination of various means to reach the desired destination
+                        \item [R.6.3] In case of mixed travel means, distances must be calculated splitting the distances and submitting them to Travel Logic. Same goes with public means stop and shared vehicles positions
+                        \item [R.6.3] The application must rank the suggestion according to their preference level, priority of an event and time required, and a cap on suggestions must be imposed
+                        \item [R.6.4] The registered user can choose to filter out specific travel means
+                        \item [R.6.5] Favourite travel means associated to an appointment must always show up
+                        \item [R.6.6] In case two or more appointments overlap, an appointment with higher priority is considered automatically chosen and all the remaining ones are arranged according to their priority. Warnings must follow as expected
+                        \item [R.6.7] The route can include intermediate destinations before the final, target one 
+                        \item [R.6.8] When a shared vehicle is suggested the parking zone nearest to the destination must be always inserted among the intermediate destinations 
+                        
                         
                   \end{itemize}
                   
-\item \textit{[G6]} User can choose a preferred solution among the best ones 
+\item \textit{[G7]} User can choose a solution among the scheduled ones 
 
                    \begin{itemize}
-                        \item [R.6.1] User must be able to choose between ranked solutions : a choice must hide alternatives and give more details
-                        \item [R.6.2] The application must arrange a navigable view of feasible solutions
-                        \item [R.6.3] 
+                        \item [R.7.1] Selecting a solution that is not a personal vehicle must show both intermediate and final destinations
+                        \item [R.7.2] The application must arrange a navigable view of feasible solutions
+                        \item [R.7.3] Choosing a solution that includes a public transportation mean must show the user the possibility to buy a ticket
+                        \item [R.7.4] Buying a ticket must reroute the user to the corresponding payment service
+                        \item [R.7.3] Choosing a solution that includes a shared vehicle must show the user the possibility to locate and rent such a vehicle
                   \end{itemize}
                   
 \item \textit{[G7]} The application warns the user if locations are unreachable in the allotted time
