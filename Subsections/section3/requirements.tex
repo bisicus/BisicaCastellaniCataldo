@@ -14,6 +14,8 @@ We'll start numbering and exploring the goals we submitted.
                         \item [R.1.6] User has to confirm by mail his registration
                         \item [R.1.7] User can save its credit card data and link the to its account
                         \item [R.1.8] New user registration is successful only after data is stored on Travlendar+ server and a confirmation is received by the system
+                        \item [R.1.9] User can link season passes to his account
+                        \item [R.1.10] Each modification made to a user account must be saved into Travlendar+ Server to be made effective
                   \end{itemize}
              
 \item \textit{[G2]} System Login
@@ -94,11 +96,10 @@ appointment
                         \item [R.7.1] Selecting a solution that is not a personal vehicle must show both intermediate and final destinations
                         \item [R.7.2] The application must arrange a navigable view of feasible solutions
                         \item [R.7.3] Choosing a solution that includes a public transportation mean must show the user the possibility to buy a ticket 
-                        \item [R.7.3] Buying a ticket must reroute the user to the corresponding payment service
-                        \item [R.7.4] Choosing a solution that includes a shared vehicle must show the user the possibility to locate and rent such a vehicle
-                        \item [R.7.5] Choosing a solution must not be definitive
-                        \item [R.7.6] Since an hour from the start of an event every 15 minutes system must notify user in case a new and faster travel solution has appeared in his current location or if his travel mean has delays that shift its speed rank by comparison to other solutions
-                        \item [R.7.7] System must recognize by itself through geolocalization that a user reached destination, or he can manually tell the program
+                        \item [R.7.3] Choosing a solution that includes a shared vehicle must show the user the possibility to locate and rent such a vehicle
+                        \item [R.7.4] Choosing a solution must not be definitive
+                        \item [R.7.5] Since an hour from the start of an event every 15 minutes system must notify user in case a new and faster travel solution has appeared in his current location or if his travel mean has delays that shift its speed rank by comparison to other solutions
+                        \item [R.7.6] System must recognize by itself through geolocalization that a user reached destination, or he can manually tell the program
                   \end{itemize}
                   
 \item \textit{[G8]} The application warns the user if locations are unreachable in the allotted time
@@ -129,11 +130,23 @@ appointment
 
 \item \textit{[G10]} The application features additional user’s privileged time spans 
 
-								
+											\begin{enumerate}
+														\item[R.10.1] Privileged time spans must filter out any travel solution they overlap 
+														\item[R.10.2] Privileged time spans can be periodic
+														\item[R.10.3] Privileged time spans can be customized depending on the day of the week and hour of the day
+														\item[R.10.4] Even periodic privileged time spans must be customizable with respect to the particular day of the week and hour of the day, increasing or decreasing their length
+														
+											\end{enumerate}
 
-\item \textit{[G10]} The application allows to arrange the trips : tickets for public services
+\item \textit{[G11]} The application allows to arrange the trips : tickets for public services
 
-\item \textit{[G11]} The application allows the nearest shared vehicle to be found and reserved
+													\begin{enumerate}
+														\item[R.11.1] Buying a ticket must reroute the user to the corresponding payment service
+														\item[R.11.2] 
+														\item[R.11.3] 
+													\end{enumerate}
+
+\item \textit{[G12]} The application allows the nearest shared vehicle to be found and reserved
 
                    \begin{itemize}
                         \item [R.11.1] A shared vehicle must necessarily belong to a bike-sharing service or a car-sharing service
@@ -146,7 +159,7 @@ appointment
                         \item [R.12.8] When an user decides to rent a car it must be redirected to the corresponding vehicle sharing service, until he's ultimated the rental and gets redirected back to Travlendar+
                         \end{itemize}
 
-\item \textit{[G12]} The application integrates a map system
+\item \textit{[G13]} The application integrates a map system
                    
                   \begin{itemize}
                         \item [R.12.1] The map must be submitted by an external service (in our case we'll select Google APIs)
