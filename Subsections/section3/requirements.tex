@@ -23,29 +23,45 @@ We'll start numbering and exploring the goals we submitted.
                         \item [R.2.4] Application will implement a password retrieval mechanism
                   \end{itemize}
                   
-\item \textit{[G3]} Registered User can create appointments 
+                  
+\item \textit{[G3]} The application integrates a calendar and a timetable
 
- \begin{itemize}
-                        \item [R.3.1] User has to be registered and logged in the system in order to create an
-appointment
-                        \item [R.3.2] Appointments can be divided into work appointments (or meetings) and personal appointments
-                        \item [R.3.3] Appointments require a location and a starting time and an end time
-                        \item [R.3.4] Appointments location must be within the boundaries of the operative zone
-                        \item [R.3.5] The chosen location can be within the boundaries of the influence zone
-                        \item [R.3.6] There cannot be appointments with the same name, location and time
-                        \item [R.3.7] System must checks suitability of created new entries based on already existing appointments
-                        \item [R.3.8] Appointment start time can't precede the actual system time at the moment of inserting it                                 \item [R.3.9] User can select favourite travel means for each appointment
-                        \item [R.3.10] Each appointment must be associated to a level priority
+                  \begin{itemize}
+                  
+                  \item [R.3.1] The calendar and the timetable must be two different views 
+                  \item [R.3.2] Calendar must encompass month by month views
+                  \item [R.3.3] Timetable must encompass day by day views, reserving hourly slots to events
+                  \item [R.3.4] Calendar and Timetable views can be modified only by the user inserting events. No other way is allowed to modify the information they contain
+                  \item [R.3.5] Calendar and Timetable for each user are remotely copied on Travlendar+ Server every time a user creates/modifies /deletes an event
                         
                   \end{itemize}
                   
-\item \textit{[G4]} Registered Users can edit meetings
+\item \textit{[G4]} Registered User can create appointments 
+
+ \begin{itemize}
+                        \item [R.4.1] User has to be registered and logged in the system in order to create an
+appointment
+                        \item [R.4.2] Appointments can be divided into work appointments (or meetings) and personal appointments
+                        \item [R.4.3] Appointments require a location and a starting time and an end time
+                        \item [R.4.4] Appointments location must be within the boundaries of the operative zone
+                        \item [R.4.5] The chosen location can be within the boundaries of the influence zone
+                        \item [R.4.6] There cannot be appointments with the same name, location and time
+                        \item [R.4.7] System must check suitability of created new entries based on already existing appointments
+                        \item [R.4.8] Appointment start time can't precede the actual system time at the moment of inserting it                                 														\item [R.4.9] User can select favourite travel means for each appointment
+                        \item [R.4.10] Each appointment must be associated to a level priority
+                        \item [R.4.11] The creation of an appointment must be remotely saved on Travendlar+ server in order to be succesful and completed
+                        
+                  \end{itemize}
+                  
+\item \textit{[G5]} Registered Users can edit appointments
 
                   \begin{itemize}
-                       \item  [R.4.1] A modified meeting must respect all the constraints imposed during the creation of a new meeting, as the requirements in [G3]
-                       \item [R.4.2] A meeting can be modified up until its end time
-                       \item [R.4.3] If the location of the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
-                       \item [R.4.4] No limit actually exists on the amount of times an event can be modified                     
+                       \item  [R.5.1] A modified meeting must respect all the constraints imposed during the creation of a new meeting, as the requirements in [G4]
+                       \item [R.5.2] A meeting can be modified up until its end time
+                       \item [R.5.3] If the location of the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
+                       \item [R.5.4] No limit actually exists on the amount of times an event can be modified within the aforementioned constraints 
+                       \item [R.5.5] A modification must be correctly saved on the remote Travlendar+ server in order to be succesful and completed              
+                       \item [R.5.6] Delete an appointments belongs to the set of modifications. A modified events cannot be restored in any way
 
                  \end{itemize}
 
@@ -108,10 +124,9 @@ appointment
 
             \end{itemize}
 
-\item \textit{[G13]} The application integrates a calendar and a timetable
 
-                  \begin{itemize}
-                        
-                  \end{itemize}
 
 \vfill
+© 2017 GitHub, Inc.
+Terms
+Privacy
