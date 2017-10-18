@@ -74,7 +74,7 @@ appointment
                         \item [R.6.2] The application can suggest a combination of various means to reach the desired destination
                         \item [R.6.3] In case of mixed travel means, distances must be calculated splitting the distances and submitting them to Travel Logic. Same goes with public means stop and shared vehicles positions
                         \item [R.6.4] Starting location for travel can be inserted manually, retrieved by the previous event or calculated through geo-localization
-                        \item [R.6.5] The application must rank the suggestion according to their preference level, priority of an event and time required, and a cap on suggestions must be imposed
+                        \item [R.6.5] The application must rank the suggestions according to their priority, presence of prefered travel means, time required
                         \item [R.6.6] The registered user can choose to filter out specific travel means
                         \item [R.6.7] Favourite travel means associated to an appointment must always show up
                         \item [R.6.8] In case two or more appointments overlap, an appointment with higher priority is considered automatically chosen and all the remaining ones are arranged according to their priority. Warnings must follow as expected
@@ -82,7 +82,8 @@ appointment
                         \item [R.6.10] When a shared vehicle is suggested the parking zone nearest to the destination must be always inserted among the intermediate destinations 
                         \item [R.6.11] The sytem must grant to know daily scheduled times for public transportation through its APIs
                         \item [R.6.	12] When an event is only one hour away the system must notify the user with an updated list of travel time so he can choose
-                       
+                        \item [R.6.13] According to real world data, each travel must have associated to itself the carbon footprints
+                       	\item [R.6.14] Travels that do not satisfy all User's contraint must be excluded
                         
                         
                   \end{itemize}
@@ -112,11 +113,23 @@ appointment
 
 \item \textit{[G9]} Allow users to put constraints on different travel means and limit carbon footprints
 
+											\begin{itemize}
+											
+														\item[R.9.1] User must be able to rule out vehicles from system scheduler
+														\item[R.9.2] When the option of limiting carbon footprints gets enabled the associated CO2 consumed by each travel must be taken into account in travels scheduling
+														\item[R.9.3] User must be able to forbid travel means within time spans, also periodical ones
+														\item[R.9.4] User must be able to put a constraint on the maximum amount of space and time he can give to each travel mean
+														\item[R.9.5] User must be able to put a constraint on the number of transporation of travel means adopted for a single travel
+														\item[R.9.6] User must allow at least a single travel mean 
+														\item[R.9.7] If no travel can be displayed according to user preferences, the system must suggest to show results that has been filtered out														
+																						
+											\end{itemize}
 
 
 
+\item \textit{[G10]} The application features additional user’s privileged time spans 
 
-\item \textit{[G9]} The application features additional user’s privileged time spans 
+								
 
 \item \textit{[G10]} The application allows to arrange the trips : tickets for public services
 
