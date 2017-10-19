@@ -22,7 +22,7 @@ sig Travel {
 
 
 //We implement both the guest and the registered user starting from an abstract sig
-sig abstract GeneralUser {}
+abstract sig GeneralUser {}
 
 //The Guest user of Travlendar+
 sig Guest extends GeneralUser{}
@@ -76,11 +76,44 @@ sig Bike extends TransportationMean{}
 
 //The trip made by a user
 sig Trip {
-	sourceAddress : Strings,
-	destinationAddress : Strings
+	sourceAddress : one Strings,
+	destinationAddress : one Strings,
+	adoptedTravelMeans : TransportationMean
+}
 
+
+//The appointment, or event, that users can create
+sig Appointment {
+	name : one Strings,
+	date : one DateTime,
+	address : one Strings,
+	favouredVehicle : one Strings,
+	type :  one Strings
 }
 	
+//Reserved time spans for the users
+sig break {
+
+	startTime : one DateTime,
+	endTime : one DateTime,
+	minimumDuration : one Strings
+}
+
+
+//The Scheduler
+sig scheduler {
+	weather : one WheatherForecaster,
+	sharingManager : one SharingManager,
+	publicServiceManager : one PublicServiceManager,
+	trafficManager : one TrafficManager
+}
+
+//The components of the scheduler
+sig WheatherForecaster {}
+sig SharingManager {}
+sig PublicServiceManager{}
+sig TrafficManager{}
+
 
 run showWorld{}
 
