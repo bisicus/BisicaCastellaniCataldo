@@ -1,12 +1,11 @@
-\subsubsection{Use case diagram}
-	A global picture of the system interaction with actors is provided here by means of use case diagrams. Following, an analysis of the most interesting use case situations derived from scenarios is presented.
+A global picture of the system interaction with actors is provided here by means of use case diagrams. Following, an analysis of the most interesting use case situations derived from scenarios is presented.
 
 	\includegraphics[width=\textwidth]{img/uml/useCase.png}
-	
+
 	\vfill
 	
 %%% CREATE A NEW EVENT %%%	
-	\paragraph{Use Case 1: Create a New Event}
+	\paragraph{Create a New Event}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -36,7 +35,7 @@
 
 %%% MODIFY EVENT %%%
 
-	\paragraph{Use Case 2: Modify Event}
+	\paragraph{Modify Event}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -69,7 +68,7 @@
 		
 %%% INSERT PAYMENT METHOD%%%
 
-	\paragraph{Use Case 3: Insert Payment Method}
+	\paragraph{Insert Payment Method}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -96,7 +95,7 @@
 
 %%% BUY TICKET %%%
 
-	\paragraph{Use Case 4: Buy Public Transportation Ticket}
+	\paragraph{Buy Public Transportation Ticket}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -104,27 +103,28 @@
 			Actor	&		User. \\
 			\hline
 			Input Condition		&		\begin{itemize}
-													\item[-] User is already logged in into \textit{Travlendar+}.
+													\item[-] User is already in \textit{Solutions} page.
 													\item[-] A \textit{payment method} is already available.
 												\end{itemize} \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "\textit{Buy Ticket}".
-												\item System shows available public trasportation services.
+												\item User clicks on desired solution.
+												\item User clicks on "\textit{Buy Ticket}".
+												\item System shows available public trasportation tickets.
 												\item User selects a ticket.
-												\item	 System starts perchause transaction.
+												\item	 System starts purchase transaction.
 											\end{enumerate} \\
 			\hline
 			Output Condition		&		Based on public transportation service, User receives a valid ticket. \\
 			\hline		
-			Exception		&		Transaction doesn't work. \\
+			Exception		&		\textit{External Transaction Service} hasn't worked as expected. \\
 			\hline
 			\hline
 		\end{tabular}
 
 %%%  RESERVE SHARING SERVICE %%%
 
-	\paragraph{Use Case 5: Reserve a \textit{Sharing Service} resource}
+	\paragraph{Reserve a \textit{Sharing Service} resource}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -155,7 +155,7 @@
 		
 %%%  SET TRIP PREFERENCES%%%
 
-	\paragraph{Use Case 6: Set Trip Preferences}
+	\paragraph{Set Trip Preferences}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -185,7 +185,7 @@
 		
 %%%  SET LUNCH BREAK %%%
 
-	\paragraph{Use Case 7: Set Lunch Break Period}
+	\paragraph{ Set Lunch Break Period}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
