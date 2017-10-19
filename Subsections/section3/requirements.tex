@@ -22,7 +22,7 @@ We'll start numbering and exploring the goals we submitted.
 
                   \begin{itemize}
                         \item [R.2.1] User must be already registered to perform correct login
-                        \item [R.2.2] User must remember username and password
+                        \item [R.2.2] User must remember username and password to login
                         \item [R.2.3] Only a correct combination of username and password will grant access
                         \item [R.2.4] Application will implement a password retrieval mechanism
                   \end{itemize}
@@ -48,12 +48,11 @@ appointment
                         \item [R.4.2] Appointments can be divided into work appointments (or meetings) and personal appointments
                         \item [R.4.3] Appointments require a location, a starting time and an end time
                         \item [R.4.4] Appointments location must be within the boundaries of the operative zone
-                        \item [R.4.5] The chosen location can be within the boundaries of the influence zone
-                        \item [R.4.6] There cannot be appointments with the same name, location and time
-                        \item [R.4.7] System must check suitability of created new entries based on already existing appointments
-                        \item [R.4.8] Appointment start time can't precede the actual system time at the moment of inserting it                                 														\item [R.4.9] User can select favourite travel means and priority for each appointment
-                        \item [R.4.10] Each appointment must be associated to a level priority
-                        \item [R.4.11] The creation of an appointment must be remotely saved on Travendlar+ server in order to be successful and completed
+                        \item [R.4.5] There cannot be appointments with the same name, location and time
+                        \item [R.4.6] System must check suitability of created new entries based on already existing appointments
+                        \item [R.4.7] Appointment start time can't precede the actual system time at the moment of inserting it                                 														\item [R.4.8] User can select favourite travel means and priority for each appointment
+                        \item [R.4.9] Each appointment must be associated to a level priority
+                        \item [R.4.10] The creation of an appointment must be remotely saved on Travendlar+ server in order to be successful and completed
                         
                   \end{itemize}
                   
@@ -65,7 +64,7 @@ appointment
                        \item [R.5.3] If the location of the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
                        \item [R.5.4] No limit actually exists on the amount of times an event can be modified within the aforementioned constraints 
                        \item [R.5.5] A modification must be correctly saved on the remote Travlendar+ server in order to be succesful and completed              
-                       \item [R.5.6] Deleting an appointments belongs to the set of modifications. A modified events cannot be restored in any way
+                       \item [R.5.6] Deleting an appointments belongs to the set of modifications
 
                  \end{itemize}
 
@@ -138,18 +137,17 @@ appointment
 														
 											\end{enumerate}
 
-\item \textit{[G11]} The application allows to arrange the trips : tickets for public services
+\item \textit{[G11]} The application allows to buy tickets for public services
 
 													\begin{enumerate}
 														\item[R.11.1] Buying a ticket must reroute the user to the corresponding payment service
-														\item[R.11.2] 
-														\item[R.11.3] 
+														\item[R.11.2] User must be able to choose among the different purchase options offered by the public transportation service provider
 													\end{enumerate}
 
 \item \textit{[G12]} The application allows the nearest shared vehicle to be found and reserved
 
                    \begin{itemize}
-                        \item [R.11.1] A shared vehicle must necessarily belong to a bike-sharing service or a car-sharing service
+                        \item [R.12.1] A shared vehicle must necessarily belong to a bike-sharing service or a car-sharing service
                         \item [R.12.2] All services linked to shared vehicles must be automatically disabled if the location of a meeting out of the boundaries of the influence zone
                         \item [R.12.3] All sharing services have their own API and they must be referenced by our mobile application
                         \item [R.12.4] To find or reserve a vehicle it is required by our system the access to the external API of the required service
@@ -162,11 +160,11 @@ appointment
 \item \textit{[G13]} The application integrates a map system
                    
                   \begin{itemize}
-                        \item [R.12.1] The map must be submitted by an external service (in our case we'll select Google APIs)
-                        \item [R.12.1] User can navigate through the map indipendently from its current location
-                        \item [R.12.3] User can search for a specific location
-                        \item [R.12.2] The mobile device can track its current position through geo-localization
-                        \item [R.12.3] Position of out the operative zone can't be accepted by the system and won't be displayed
+                        \item [R.13.1] The map must be submitted by an external service (in our case we'll select Google APIs)
+                        \item [R.13.2] User can navigate through the map indipendently from its current location
+                        \item [R.13.3] User can search for a specific location
+                        \item [R.13.4] The mobile device can track its current position through geo-localization
+                        \item [R.13.5] Position of out the operative zone can't be accepted by the system and won't be displayed
                    \end{itemize}
 
 
@@ -175,6 +173,8 @@ appointment
 
 
 \vfill
+
+\input{Subsections/section3/useCase.tex}
 © 2017 GitHub, Inc.
 Terms
 Privacy
