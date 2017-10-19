@@ -2,8 +2,6 @@ A global picture of the system interaction with actors is provided here by means
 
 	\includegraphics[width=\textwidth]{img/uml/useCase.png}
 
-	\vfill
-
 %%% REGISTER %%%	
 	\paragraph{Guest registers to \textit{Travlendar+}}
 	
@@ -18,7 +16,7 @@ A global picture of the system interaction with actors is provided here by means
 												\item Guest clicks on "\textit{Sign Up} button".
 												\item Guest fills in at least all mandatory fields.
 												\item Guest reads and accepts privacy policies and agreements from the company.
-												\item clicks on \textit{Confirm} button.
+												\item Guest clicks on \textit{Confirm} button.
 												\item System sends Guest a confirmation link to the provided e-mail.
 												\item Guest clicks on the confirmation link.
 												\item	 System saves the data in the DB.
@@ -37,6 +35,28 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 		\end{tabular}
 
+%%% LOGIN %%%	
+	\paragraph{Guest logins into \textit{Travlendar+}}
+	
+		\begin{tabular}{| l | p{0.8\textwidth} | }
+			\hline
+			\hline
+			Actor	&		Guest, User. \\
+			\hline
+			Input Condition		&		Guest is registered to  \textit{Travlendar+}. \\
+			\hline
+			Event Flow		&		\begin{enumerate}
+												\item Guest fill login mandatory fields.
+												\item Guest clicks on \textit{Log In} button.
+												\item System verifies login credentials.
+											\end{enumerate} \\
+			\hline
+			Output Condition		&		Guest is promoted to User and is shown is \textit{Calendar} home page. \\
+			\hline		
+			Exception		&		Login credentials are incorrect and Guest is shows again \textit{Login} page\\
+			\hline
+			\hline
+		\end{tabular}
 
 %%% CREATE A NEW EVENT %%%	
 	\paragraph{Create a New Event}
