@@ -109,7 +109,7 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 			Event Flow		&		\begin{enumerate}
 												\item User clicks on desired solution.
-												\item User clicks on "\textit{Buy Ticket}".
+												\item User clicks on "\textit{Buy Ticket} buttos".
 												\item System shows available public trasportation tickets.
 												\item User selects a ticket.
 												\item	 System starts purchase transaction.
@@ -117,7 +117,7 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 			Output Condition		&		Based on public transportation service, User receives a valid ticket. \\
 			\hline		
-			Exception		&		\textit{External Transaction Service} hasn't worked as expected. \\
+			Exception		&		\textit{External Transaction Service} doesn't worked as expected. \\
 			\hline
 			\hline
 		\end{tabular}
@@ -132,22 +132,23 @@ A global picture of the system interaction with actors is provided here by means
 			Actor	&		User. \\
 			\hline
 			Input Condition		&		\begin{itemize}
-													\item[-] User is already logged in into \textit{Travlendar+}.
+													\item[-] User is already in \textit{Solutions} page.
+													\item[-] A \textit{Sharing mean} is already available.
 													\item[-] A \textit{payment method} is already available.
 													\item[-] User is in the \textit{influence zone}
 												\end{itemize} \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "\textit{Reserving Service}".
 												\item System connects to available \textit{Sharing Service} resources.
 												\item System ranks per distance all the freasible recources and shows them on a map centered on User position.
-												\item User chooses one on the possible solutions.
+												\item User chooses one on the possible solutions.												
+												\item User clicks on "\textit{Reserve it} button".
 												\item	 System reconnects to selected \textit{Sharing Service}, and starts the reserving procedure.
 											\end{enumerate} \\
 			\hline
-			Output Condition		&		User is shown the correct reservation result and the time needed to reach the resource. \\
+			Output Condition		&		User redirected to the \textit{Reservation Service} app. \\
 			\hline		
-			Exception		&		Reservation procedure doesn't end well. \\
+			Exception		&		\textit{Reservation Service} doesn't worked as expected. \\
 			\hline
 			\hline
 		\end{tabular}
