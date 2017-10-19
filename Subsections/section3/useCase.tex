@@ -3,7 +3,41 @@ A global picture of the system interaction with actors is provided here by means
 	\includegraphics[width=\textwidth]{img/uml/useCase.png}
 
 	\vfill
+
+%%% REGISTER %%%	
+	\paragraph{Guest registers to \textit{Travlendar+}}
 	
+		\begin{tabular}{| l | p{0.8\textwidth} | }
+			\hline
+			\hline
+			Actor	&		Guest. \\
+			\hline
+			Input Condition		&		NULL. \\
+			\hline
+			Event Flow		&		\begin{enumerate}
+												\item Guest clicks on "\textit{Sign Up} button".
+												\item Guest fills in at least all mandatory fields.
+												\item Guest reads and accepts privacy policies and agreements from the company.
+												\item clicks on \textit{Confirm} button.
+												\item System sends Guest a confirmation link to the provided e-mail.
+												\item Guest clicks on the confirmation link.
+												\item	 System saves the data in the DB.
+											\end{enumerate} \\
+			\hline
+			Output Condition		&		Guest succesfully ends registration process and become a User. From now on he/she can log in to the application using his/her credential and start using \textit{Tralvendar+}. \\
+			\hline		
+			Exception		&		\begin{itemize}
+											\item[-] Guest is already a User.
+											\item[-] One or more mandatory fields are not valid.
+											\item[-] Choosen username is already in use.
+											\item[-] Email choosen is already associated to another user.
+										\end{itemize}
+										All exception are handle alerting the visitor of the problem and application goes back to point 2 of Event Flow \\
+			\hline
+			\hline
+		\end{tabular}
+
+
 %%% CREATE A NEW EVENT %%%	
 	\paragraph{Create a New Event}
 	
