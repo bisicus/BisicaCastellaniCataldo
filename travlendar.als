@@ -12,6 +12,10 @@ sig bool {}
 //Datatype representing dates
 sig DateTime{}
 
+//Datatype representing floats
+sig Floats{}
+
+
 //Datatype representing travels
 sig Travel {
 	location : one Strings,
@@ -27,16 +31,18 @@ abstract sig GeneralUser {}
 //The Guest user of Travlendar+
 sig Guest extends GeneralUser{}
 
+
 //The User of Travlendar+
-sig User  extends  GeneralUser{
+one sig User  extends  GeneralUser{
 	name : one Strings,
 	surname : one Strings,
 	username : one Strings,
 	password : one Strings,
-	creditcard : lone CreditCard,
-	seasonPass : lone SeasonPass,
-	preference : one Preference
+	creditcard : some CreditCard,
+	seasonPass : some SeasonPass,
+	preference : some Preference
 }
+
 
 //Credit Card linked to a user
 sig CreditCard {
@@ -49,6 +55,7 @@ sig CreditCard {
 sig SeasonPass {
 	companyName : one Strings,
 	validityTime : one Integer
+	
 }
 
 
@@ -101,21 +108,50 @@ sig break {
 
 
 //The Scheduler
-sig scheduler {
-	weather : one WheatherForecaster,
+sig Scheduler {
+	weather : one WeatherForecaster,
 	sharingManager : one SharingManager,
 	publicServiceManager : one PublicServiceManager,
 	trafficManager : one TrafficManager
 }
 
 //The components of the scheduler
-sig WheatherForecaster {}
+sig WeatherForecaster {}
 sig SharingManager {}
 sig PublicServiceManager{}
 sig TrafficManager{}
 
+//The logic of the notification system
+sig Notify {
+	id : one Strings,
+	message : one Strings,
+	travel : one Trip,
+	target : one User
+}
+
+
+//Reservation mechanism
+sig Reservation {
+	date : one Strings,
+	startTimte : one DateTime
+}
+
+//The purchase of tickets 
+sig TicketPurchase {
+	ticketCode : one Integer,
+	company : one Strings,
+	price : one Floats,
+	departure : one Strings,
+	arrival : one Strings
+}
+
+
+//The modules of a schedular are unique to that scheduler
+fact {
+	no disjoint s1,s2 : Scheduler | s1.weather = s2.weather or s1.sharingManager = s2.sharingManager 
+													or s1.publicServiceManager = s2.publicServiceManager or s1.trafficManager = s2.trafficManager
+
+}
+
 
 run showWorld{}
-
-
-	
