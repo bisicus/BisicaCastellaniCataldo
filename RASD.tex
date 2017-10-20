@@ -3,10 +3,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx} % to embed images
+\graphicspath{ {img/ }} % images are all in the same folder
 \usepackage{hyperref} % to link the table of contents
-\usepackage{subcaption} %complex images
+\usepackage{subcaption} % complex images
 \usepackage{placeins} %floating
-%\usepackage{pdflscape} %to allow single pages in landscape mode
+%\usepackage{pdflscape} % to allow single pages in landscape mode
 \usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
 \usepackage{verbatim} % include raw text file (for Alloy)
 \usepackage[export]{adjustbox}
@@ -46,7 +47,7 @@
 	%%% titlepage %%%
 	\begin{titlepage}
 		\centering
-		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\includegraphics[width=5cm]{img/polimi_logo}
 		\vfill
 		{\bfseries\Large
 			Travlendar+\\
@@ -61,11 +62,13 @@
 		\vfill
 	\end{titlepage}
 
-	%%% table of contents %%%
+%%% TABLE OF CONTENTS %%%
 	\tableofcontents
 	
-	\newpage
+	
+	
 %%% 1 - INTRODUCTION %%%
+	\newpage
 	\section{Introduction}
 		\subsection{Purpose}
 		
