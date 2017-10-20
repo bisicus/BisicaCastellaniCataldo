@@ -2,24 +2,28 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+
+% images %
 \usepackage{graphicx} % to embed images
 \graphicspath{ {img/ }} % images are all in the same folder
+\usepackage{subcaption} % for creating composite images
+\usepackage[export]{adjustbox}
+% -- %
+
 \usepackage{hyperref} % to link the table of contents
-\usepackage{subcaption} % complex images
 \usepackage{placeins} %floating
-%\usepackage{pdflscape} % to allow single pages in landscape mode
+\usepackage{pdflscape} % to allow single pages in landscape mode
 \usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
 \usepackage{verbatim} % include raw text file (for Alloy)
-\usepackage[export]{adjustbox}
 
-%% include hyperlinks
+% include hyperlinks %
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
     urlcolor=blue,
 }
-%%
+% -- %
 
 \usepackage{titlesec} 
 \setcounter{tocdepth}{4} %index depth arrives to 4
@@ -30,7 +34,8 @@
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex} 
-%% --- %%
+%% -- %%
+
 
 
 \title{Requirement Analysis and Specification Document}
