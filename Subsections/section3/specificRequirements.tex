@@ -1,52 +1,49 @@
 %%% A %%%
 \subsection{External Interface Requirements}
-				\begin{description}
-					\item[User Interfaces]
-						\input{Subsections/section3/userInterfaces.tex}
-						
-					\item[Hardware Interfaces] 
-						The system allows to interact with all the possible processors that are in the devices of the two companies Android and Apple. Among the most important processors there are: Qualcomm, ARM and Exynos.
 
-					\item[Software Interfaces]	
-					\hfill
-						\begin{enumerate}
-							\item Android
-								\begin{itemize}
-									\item[-] Name: Lollipop
-									\item[-] Version: 5.0+
-									\item[-] Source: \url{https://www.android.com/intl/it_it/versions/lollipop-5-0/}
-								\end{itemize}
+	\subsubsection{User Interfaces}				
+		\input{Subsections/section3/userInterfaces.tex}
+	
+	\subsubsection{Hardware Interfaces}
+		The system allows to interact with all the possible processors that are in the devices of the two companies Android and Apple. Among the most important processors there are: Qualcomm, ARM and Exynos.
+
+	\subsubsection{Software Interfaces}
+		\hfill		
+		\begin{enumerate}
+			\item Android
+				\begin{itemize}
+					\item[-] Name: Lollipop
+					\item[-] Version: 5.0+
+					\item[-] Source: \url{https://www.android.com/intl/it_it/versions/lollipop-5-0/}
+				\end{itemize}
 								
-							\item Apple
-								\begin{itemize}
-									\item[-] Name: iOS
-									\item[-] Version: 8.0+
-									\item[-] Source: \url{https://www.apple.com}
-								\end{itemize}
+			\item Apple
+				\begin{itemize}
+					\item[-] Name: iOS
+					\item[-] Version: 8.0+
+					\item[-] Source: \url{https://www.apple.com}
+				\end{itemize}
 								
-							\item Google Maps APIs
-								\begin{itemize}
-									\item[-] Name: Google Maps APIs
-									\item[-] Source: \url{https://developers.google.com/maps/}
-								\end{itemize}
-						\end{enumerate}
-						
-					\item[Communication Interfaces]
-						The system also interface with the applications for the use of sharing and payment services
-						\hfill
-					
-						\begin{tabular}{| c | c | c |}
-							\hline
-							Protocol	& Application	& Port \\
-							\hline
-							\hline
-							TCP		& HTTP		& 443 \\
-							\hline
-							TCP		& HTTP		& 80 \\
-							\hline
-						\end{tabular}
-				\end{description}
-	\vfill
+			\item Google Maps APIs
+				\begin{itemize}
+					\item[-] Name: Google Maps APIs
+					\item[-] Source: \url{https://developers.google.com/maps/}
+				\end{itemize}
+		\end{enumerate}
+			
+	\subsubsection{Communication Interfaces}
+		The system also interface with the applications for the use of sharing and payment services
+		\hfill
+		\begin{tabular}{| c | c | c |}
+			\hline
+			Protocol	& Application	& Port \\
+			\hline
+			\hline
+			TCP		& HTTP		& 443 \\
+			\hline
+			TCP		& HTTP		& 80 \\
+			\hline
+		\end{tabular}
 	
 %%% B %%%						
 \subsection{Functional Requirements}
