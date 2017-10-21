@@ -12,8 +12,10 @@ We'll start numbering and exploring the goals we submitted.
                         \item [R.1.4] Registering user can't be already registered
                         \item [R.1.5] An unregistered user is locked out the application and can only see registration page
                         \item [R.1.6] User has to confirm by mail his registration
-                        \item [R.1.8] New user registration is successful only after data is stored on Travlendar+ server and a confirmation is received by the system
-                        \item [R.1.10] Each modification made to a user account must be saved into Travlendar+ Server to be made effective
+                        \item [R.1.7] User can save its credit card data and link the to its account
+                        \item [R.1.8] New user registration is successful only after data is stored on \textit{Travlendar+} server and a confirmation is received by the system
+                        \item [R.1.9] User can link season passes to his account
+                        \item [R.1.10] Each modification made to a user account must be saved into \textit{Travlendar+} Server to be made effective
                   \end{itemize}
              
 \item \textit{[G2]} System Login
@@ -31,9 +33,10 @@ We'll start numbering and exploring the goals we submitted.
                   \begin{itemize}
                   
                   \item [R.3.1] The calendar and the timetable must be two different views 
-                  \item [R.3.2] Calendar must give to the user granularity regarding both months and days
-                  \item [R.3.3] Calendar and Timetable can be modified only by the user inserting events. No one else is allowed to either see or modify the information they contain
-                  \item [R.3.4] Calendar and Timetable for each user are remotely copied on Travlendar+ Server every time a user creates/modifies /deletes an event
+                  \item [R.3.2] Calendar must encompass month by month views
+                  \item [R.3.3] Timetable must encompass day by day views, reserving hourly slots to events
+                  \item [R.3.4] Calendar and Timetable views can be modified only by the user inserting events. No other way is allowed to modify the information they contain
+                  \item [R.3.5] Calendar and Timetable for each user are remotely copied on \textit{Travlendar+} Server every time a user creates/modifies /deletes an event
                         
                   \end{itemize}
                   
@@ -60,7 +63,7 @@ appointment
                        \item [R.5.2] A meeting can be modified up until its end time
                        \item [R.5.3] If the location of the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
                        \item [R.5.4] No limit actually exists on the amount of times an event can be modified within the aforementioned constraints 
-                       \item [R.5.5] A modification must be correctly saved on the remote Travlendar+ server in order to be succesful and completed              
+                       \item [R.5.5] A modification must be correctly saved on the remote \textit{Travlendar+} server in order to be succesful and completed              
                        \item [R.5.6] Deleting an appointments belongs to the set of modifications
 
                  \end{itemize}
@@ -81,7 +84,7 @@ appointment
                         \item [R.6.11] The sytem must grant to know daily scheduled times for public transportation through its APIs
                         \item [R.6.	12] When an event is only one hour away the system must notify the user with an updated list of travel time so he can choose
                         \item [R.6.13] According to real world data, each travel must have associated to itself the carbon footprints
-                       	\item [R.6.14] Travels that do not satisfy aTll User's contraint must be excluded
+                       	\item [R.6.14] Travels that do not satisfy all User's contraint must be excluded
                         
                         
                   \end{itemize}
@@ -112,12 +115,13 @@ appointment
 
 											\begin{itemize}
 											
-														\item[R.9.1] User must be able to rule out vehicles from search result returned by the system scheduler
+														\item[R.9.1] User must be able to rule out vehicles from system scheduler
 														\item[R.9.2] When the option of limiting carbon footprints gets enabled the associated CO2 consumed by each travel must be taken into account in travels scheduling
-														\item[R.9.3] User must be able to put a constraint on the number of transporation of travel means adopted for a single travel
-														\item[R.9.4] User must allow at least a single travel mean 
-														\item[R.9.5] If no travel can be displayed according to user preferences, the system must suggest to show results that has been filtered out
-			
+														\item[R.9.3] User must be able to forbid travel means within time spans, also periodical ones
+														\item[R.9.4] User must be able to put a constraint on the maximum amount of space and time he can give to each travel mean
+														\item[R.9.5] User must be able to put a constraint on the number of transporation of travel means adopted for a single travel
+														\item[R.9.6] User must allow at least a single travel mean 
+														\item[R.9.7] If no travel can be displayed according to user preferences, the system must suggest to show results that has been filtered out														
 																						
 											\end{itemize}
 
@@ -148,9 +152,9 @@ appointment
                         \item [R.12.3] All sharing services have their own API and they must be referenced by our mobile application
                         \item [R.12.4] To find or reserve a vehicle it is required by our system the access to the external API of the required service
                         \item [R.12.5] To find or reserve a vehicle it's required that the user logins into the external corresponding service
-                        \item [R.12.6] The external service can communicate with our mobile application. In case of reservation Travlendar+ checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to Travlendar+
+                        \item [R.12.6] The external service can communicate with our mobile application. In case of reservation \textit{Travlendar+} checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to \textit{Travlendar+}
                         \item [R.12.7] The location of all the vehicles are shown in the same view, merging data from different APIs
-                        \item [R.12.8] When an user decides to rent a car it must be redirected to the corresponding vehicle sharing service, until he's ultimated the rental and gets redirected back to Travlendar+
+                        \item [R.12.8] When an user decides to rent a car it must be redirected to the corresponding vehicle sharing service, until he's ultimated the rental and gets redirected back to \textit{Travlendar+}
                         \end{itemize}
 
 \item \textit{[G13]} The application integrates a map system.
@@ -163,14 +167,6 @@ appointment
                         \item [R.13.5] Position of out the operative zone can't be accepted by the system and won't be displayed
                    \end{itemize}
 
-\item \textit{[G14]} The User can submit additional preferences
-		 \begin{itemize}
-		 	\item[R.14.1] User must be able to forbid travel means within time spans, also periodical ones
-			\item[R.14.2] User must be able to put a constraint on the maximum amount of space and time he can give to each travel mean
-			\item[R.14.2] User must be able to link one or more season passes with his account
-			\item[R.14.3] User must be able to link one or more credit cards to his account
-			\item[R.14.4] Each modification apported to the User and its additional preference is only made effective when synced on Travlendar+ Server 
-				
 
             \end{itemize}
             
