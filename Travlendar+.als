@@ -184,7 +184,15 @@ fact preferenceDependences {
 }
 
 
-//Tutti gli appuntamenti 
+//Tutti gli appuntamenti e i breaks devono dipendere da un Calendar
+
+fact appointmentsDependency {
+	all a : Appointment | some c : Calendar | a in c.appointments
+} 
+
+fact breaksDependency {
+	all b : breaks | some c : Calendar | b in c.breaks
+}
 
 
 
