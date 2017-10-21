@@ -58,10 +58,10 @@ appointment
                   \begin{itemize}
                        \item  [R.5.1] A modified meeting must respect all the constraints imposed during the creation of a new meeting, as the requirements in [G4]
                        \item [R.5.2] A meeting can be modified up until its end time
-                       \item [R.5.3] If the location of the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
+                       \item [R.5.3] If the meeting is modified , the system behaves as if such an event was inserted for the first time, calculating all possibile conflicts with pre-existing event
                        \item [R.5.4] No limit actually exists on the amount of times an event can be modified within the aforementioned constraints 
                        \item [R.5.5] A modification must be correctly saved on the remote Travlendar+ server in order to be succesful and completed              
-                       \item [R.5.6] Deleting an appointments belongs to the set of modifications
+                       \item [R.5.6] Deleting an appointments must belong to the set of modifications
 
                  \end{itemize}
 
@@ -69,19 +69,19 @@ appointment
 
                   \begin{itemize}
                         \item [R.6.1] The application must refer to Travel Logic for the expected travel time 
-                        \item [R.6.2] The application can suggest a combination of various means to reach the desired destination
-                        \item [R.6.3] In case of mixed travel means, distances must be calculated splitting the distances and submitting them to Travel Logic. Same goes with public means stop and shared vehicles positions
+                        \item [R.6.2] The application must be able to suggest a combination of various means to reach the desired destination
+                        \item [R.6.3] In case the trip expects more than one travel mean, the journey must be divided into sub-problems whose expected travel time has to be calculated. Same goes with public means stop and shared vehicles 
                         \item [R.6.4] Starting location for travel can be inserted manually, retrieved by the previous event or calculated through geo-localization
                         \item [R.6.5] The application must rank the suggestions according to their priority, presence of prefered travel means, time required
-                        \item [R.6.6] The registered user can choose to filter out specific travel means
+                        \item [R.6.6] The registered user must be able to choose to filter out specific travel means
                         \item [R.6.7] Favourite travel means associated to an appointment must always show up
                         \item [R.6.8] In case two or more appointments overlap, an appointment with higher priority is considered automatically chosen and all the remaining ones are arranged according to their priority. Warnings must follow as expected
                         \item [R.6.9] The route can include intermediate destinations before the final, target one 
                         \item [R.6.10] When a shared vehicle is suggested the parking zone nearest to the destination must be always inserted among the intermediate destinations 
                         \item [R.6.11] The sytem must grant to know daily scheduled times for public transportation through its APIs
-                        \item [R.6.	12] When an event is only one hour away the system must notify the user with an updated list of travel time so he can choose
+                        \item [R.6.12] When the starting time of a trip associated to an event is only one hour away the system must notify the user with an updated list of travel time so he can choose
                         \item [R.6.13] According to real world data, each travel must have associated to itself the carbon footprints
-                       	\item [R.6.14] Travels that do not satisfy aTll User's contraint must be excluded
+                       	\item [R.6.14] Travels that do not satisfy all User's contraints must be excluded
                         
                         
                   \end{itemize}
@@ -90,11 +90,11 @@ appointment
 
                    \begin{itemize}
                         \item [R.7.1] Selecting a solution that is not a personal vehicle must show both intermediate and final destinations
-                        \item [R.7.2] The application must arrange a navigable view of feasible solutions
+                        \item [R.7.2] The application must arrange a navigable interface of feasible solutions
                         \item [R.7.3] Choosing a solution that includes a public transportation mean must show the user the possibility to buy a ticket 
                         \item [R.7.3] Choosing a solution that includes a shared vehicle must show the user the possibility to locate and rent such a vehicle
                         \item [R.7.4] Choosing a solution must not be definitive
-                        \item [R.7.5] Since an hour from the start of an event every 15 minutes system must notify user in case a new and faster travel solution has appeared in his current location or if his travel mean has delays that shift its speed rank by comparison to other solutions
+                        \item [R.7.5] After the user expressed a choice system must send live notifications to the user in case a new and faster travel solution has appeared in his current location or if his travel mean has delays that shift its speed rank by comparison to other solutions
                         \item [R.7.6] System must recognize by itself through geolocalization that a user reached destination, or he can manually tell the program
                   \end{itemize}
                   
@@ -172,6 +172,8 @@ appointment
 			\item[R.14.4] Each modification apported to the User and its additional preference is only made effective when synced on Travlendar+ Server 
 				
 
-            \end{itemize}
+            	\end{itemize}
+		
+\end{itemize}
             
 \vfill
