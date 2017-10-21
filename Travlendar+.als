@@ -16,16 +16,15 @@ sig DateTime{}
 sig Floats{}
 
 
-
-
-
-
-
 //The Calendar
-sig Calendar {
+one sig Calendar {
 	appointments : seq Appointment,
 	breaks : seq Break,
 	trips : seq Trip
+} {
+	not appointments.hasDups
+	not breaks.hasDups
+	not trips.hasDups
 }
 
 //Break
@@ -51,7 +50,8 @@ sig Appointment {
 sig Trip {
 	departureAddress : one Strings,
 	destinationAddress : one Strings,
-	transportationMean : seq TransportationMean
+	transportationMean : seq TransportationMean,
+	calendar : one Calendar,
 }
 
 
@@ -91,16 +91,16 @@ traffic : one TrafficManager
 abstract sig GeneralUser {}
 sig Guest extends GeneralUser {}
 
-sig User extends GeneralUser {
-	calendar : one Calendar,
+one sig User extends GeneralUser {
 	name : one Strings,
 	surname : one Strings,
 	username : one Strings,
 	password : one Strings,
-	creditcards : seq CreditCard, 
+	calendar : one Calendar,
+	creditCard : set CreditCard,
 	seasonPass : set SeasonPass,
-	preferences : set Preference
-}
+	preference : set Preference
+} 
 
 // Gestione "Possessi dell'utente"
 
@@ -112,7 +112,7 @@ sig CreditCard {
 
 sig SeasonPass {
 	companyName : one Strings,
-	validityTime : one Integer
+	validityTime : one Integer,
 }
 
 //Gestione Preferenze
@@ -128,27 +128,28 @@ sig Preference {
 //Gestione Scheduling dei viaggi
 
 one sig Scheduler {
-	weather : one WeatherForecaster,
-	sharing : one SharingManager,
-	public : one PublicServiceManager,
-	traffic : one TrafficManager,
 	notify : one Notify,
-	trips : set Trip
+	trips : set Trip,
+	weatherForecaster : one WeatherForecaster,
+	sharingManager : one SharingManager,
+	publicServiceManager : one PublicServiceManager,
+	trafficManager : one TrafficManager	
 }
 
-sig WeatherForecaster {}
-sig SharingManager {}
-sig PublicServiceManager {}
-sig TrafficManager {}
+sig WeatherForecaster {
+	scheduler : one Scheduler
+}
+sig SharingManager {
+	scheduler : one Scheduler
+}
+sig PublicServiceManager {
+		scheduler : one Scheduler
+}
+sig TrafficManager {
+		scheduler : one Scheduler
+}
 	
-
-//Sistema di notifica, rivedere
-sig Notify {
-	id : one String,
-	message : one String,
-//	trip : //da fare,
-	user : one User 
-}
+sig Notify {}
 	
 
 //Da collegare a credit card?
@@ -159,7 +160,7 @@ sig Reservation {
 
 sig TicketPurchase {
 	ticketCode : one Strings,
-	company : one String,
+	company : one Strings,
 	price : one Floats,
 	start : one Strings,
 	destination : one Strings,
@@ -167,7 +168,31 @@ sig TicketPurchase {
 }
 
 
+
+//Tutte le preferenze utente devono dipendere da un utente
+
+fact creditCardsDependency {
+	all c : CreditCard | some u : User | c in u.creditCard
+}
+
+fact seasonPassDependency {
+	all s : SeasonPass | some u: User | s in u.seasonPass 
+}
+
+fact preferenceDependences {
+	all p : Preference | some u : User | p in u.preference 
+}
+
+
+//Tutti gli appuntamenti 
+
+
+
+//Requirements rubati dal nostro RASD 
+
 	
+
+
 
 
 // procedura cambio utente?
