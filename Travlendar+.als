@@ -65,7 +65,6 @@ sig SharedVehicle extends TransportationMean {
 	type : one Strings,
 	company : one Strings,
 	sharing : one SharingManager,
-	reservation : some Reservation,
 }
 
 sig Train extends TransportationMean {
@@ -153,7 +152,8 @@ sig Notification {
 //Da collegare a credit card?
 sig Reservation {
 	date : one DateTime,
-	cCard : one CreditCard
+	cCard : one CreditCard,
+	sharedVehicle : one SharedVehicle
 }
 
 sig TicketPurchase {
@@ -215,11 +215,6 @@ fact allTripsAreLinked {
 	all t : Trip, s: Scheduler | t in s.trips
 }
 
-//Tutte le Reservations devono essere collegate ad uno SharedVehicle
-
-fact constrainedReservation {
-	all r : Reservation | some s : SharedVehicle | r in s.reservation
-}
 
 //Non possono esserci più reservations con la stessa data
 
@@ -250,6 +245,7 @@ fact asdasd  {
 
 pred insertAppointment [a : Appointment, c : Calendar, c': Calendar] {
 	//preconditions
+	c != c' and
 	a not in univ.(c.appointments)
 	//postconditions
 	c'.breaks = c.breaks and
@@ -267,8 +263,15 @@ pred excludeTransportationMean [ t : TransportationMean, s : Scheduler] {
 	t in univ.(s.excludedVehicles)
 }
 
-//
 
+//Making a reservation on a shared vehicle that's already been rented by the user?? Nope
+/*
+pred reserving [ s : SharedVehicle, r : Reservation] {
+	//no preconditions
+	//postconditions
+	r.sharedVehicle = s	
+}
+*/
 
 //run excludeTransportationMean {} for 3
 /*
@@ -294,5 +297,9 @@ pred startWarning { }
 */
 
 
-pred show{}
-run show for 2 but exactly 2 Reservation
+run reserving for 2
+
+
+//pred show{}
+//run show for 2 but exactly 2 Reservation, 2 SharedVehicle
+
