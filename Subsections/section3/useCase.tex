@@ -58,8 +58,8 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 		\end{tabular}
 
-%%% CREATE A NEW EVENT %%%	
-	\paragraph{Create a New Event} \label{createEvent_useCase}
+%%% CREATE A NEW APPOINTMENT %%%	
+	\paragraph{Create a New Appointment} \label{createEvent_useCase}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -69,17 +69,17 @@ A global picture of the system interaction with actors is provided here by means
 			Input Condition		&		User is already logged in into \textit{Travlendar+}. \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "\textit{Create Event}".
-												\item User name, sets day, time and position of the Event.
-												\item System checks if the new event overlaps with already existing events or break period.
+												\item User click on "\textit{Create Appointment}".
+												\item User name, sets day, time and position of the Appointment.
+												\item System checks if the new appointment overlaps with already existing appointments or break period.
 												\item	 System calculates, ranks and shows multiple solutions depending on user travelling preferences.
 												\item User selects one solution as preferend one.
 											\end{enumerate} \\
 			\hline
-			Output Condition		&		\textit{Tralvendar+} shows calendar main page with the new event. \\
+			Output Condition		&		\textit{Tralvendar+} shows calendar main page with the new appointment. \\
 			\hline		
 			Exception		&		\begin{itemize}
-											\item[-] Created event overlaps with already existing events.
+											\item[-] Created appointment overlaps with already existing appointments.
 											\item[-] There are no feasible solution.
 											\item[-] Inserted location isn't in the \textit{Operative Zone}.
 										\end{itemize} \\
@@ -88,9 +88,9 @@ A global picture of the system interaction with actors is provided here by means
 		\end{tabular}
 
 
-%%% MODIFY EVENT %%%
+%%% MODIFY APPOINTMENT %%%
 
-	\paragraph{Modify Event}
+	\paragraph{Modify appointment}
 	
 		\begin{tabular}{| l | p{0.8\textwidth} | }
 			\hline
@@ -99,21 +99,21 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 			Input Condition		&		\begin{itemize}
 													\item[-] User is already logged in into \textit{Travlendar+}.
-													\item[-] Event already exists.
+													\item[-] Appointment already exists.
 												\end{itemize} \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "\textit{Event}".
+												\item User click on "\textit{Appointment}".
 												\item User starts modifying process.
-												\item System checks if the new event overlap with already existing events or break period.
+												\item System checks if the new appointment overlap with already existing appointments or break period.
 												\item	 System calculates, ranks and shows multiple solution depending on user travelling preferences.
 												\item User selects one solution as preferend one.
 											\end{enumerate} \\
 			\hline
-			Output Condition		&		\textit{Tralvendar+} shows calendar main page, with the updated event. \\
+			Output Condition		&		\textit{Tralvendar+} shows calendar main page, with the updated appointment. \\
 			\hline		
 			Exception		&		\begin{itemize}
-											\item[-] Modified event overlaps with already existing events.
+											\item[-] Modified appointment overlaps with already existing appointments.
 											\item[-] There are no more feasible solutions.
 											\item[-] Modified location is no more in the \textit{Operative Zone}.
 										\end{itemize} \\
