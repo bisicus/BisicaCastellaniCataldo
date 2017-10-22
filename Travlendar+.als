@@ -53,7 +53,7 @@ sig Trip {
 	destinationAddress : one Strings,
 	transportationMean : some TransportationMean,
 	calendar : one Calendar,
-	carbonFootprint : one Integer
+	carbonFootprints : lone Integer
 }
 
 
@@ -126,7 +126,7 @@ sig Preference {
 	scheduler : one Scheduler
 }
 
-sig CarbonPreference extends Preference {
+lone sig CarbonPreference extends Preference {
 	quantity : one Integer
 }
 
@@ -135,7 +135,7 @@ sig CarbonPreference extends Preference {
 
 one sig Scheduler {
 	notify : one Notify,
-	trips : set Trip,
+	trips : some Trip,
 	weatherForecaster : one WeatherForecaster,
 	sharingManager : one SharingManager,
 	publicServiceManager : one PublicServiceManager,
@@ -196,7 +196,7 @@ fact preferenceDependences {
 }
 
 
-//Tutti gli appuntamenti e i breaks devono dipendere da un Calendar
+//All the breaks and the appointments can't exist without a Calendar to refer to
 
 fact appointmentsDependency {
 	all a : Appointment | some c : Calendar | a in univ.(c.appointments)
@@ -207,6 +207,11 @@ fact breaksDependency {
 }
 
 
+//All transportation means must refer to a trip
+
+fact tripRequired {
+	all t : TransportationMean | some tr : Trip | tr.
+
 
 //L'utente deve almeno lasciare un mezzo sempre disponibile nelle scelte
 fact oneTravelMean {
@@ -215,6 +220,19 @@ fact oneTravelMean {
 
 fact noIdenticalNotify {
 	no disjoint n1,n2 : Notify | n1.id = n2.id
+}
+
+//Non può esserci un trip con veicoli bloccati (il nome va cambiato)
+
+fact noTripForTravel {
+	all s : Scheduler, tmeans : univ.(s.excludedVehicles) | no tr : Trip |
+	tmeans in tr.transportationMean
+}
+
+//Every trip has to show carbon footprints if I expressed a preference regarding carbon footprints
+
+fact asdasd  {
+	all t: Trip | some CarbonPreference implies #t.carbonFootprints > 0 else #t.carbonFootprints = 0
 }
 
 //Insert an appointment into the Calendar
@@ -238,6 +256,9 @@ pred excludeTransportationMean [ t : TransportationMean, s : Scheduler] {
 	t in univ.(s.excludedVehicles)
 }
 
+
+
+
 //run excludeTransportationMean {} for 3
 /*
 fact carbon {
@@ -260,6 +281,9 @@ pred startWarning { }
 	//precondition
 	
 */
+
+
 pred show {}
 run show for 2 but exactly 1 SeasonPass, 1 CreditCard, 1 Reservation, 1 Trip
 	
+
