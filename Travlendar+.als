@@ -60,18 +60,14 @@ sig Trip {
 //Mezzi di trasporto
 
 abstract sig TransportationMean {}
-sig SharedVechicle extends TransportationMean {
-	type : one Strings,
-	company : one Strings
-}
-
-
 
 sig SharedVehicle extends TransportationMean {
+	type : one Strings,
+	company : one Strings,
 	sharing : one SharingManager,
-	reservation : set Reservation,
-	traffic : one TrafficManager	
+	reservation : some Reservation,
 }
+
 sig Train extends TransportationMean {
 	public : one PublicServiceManager
 }
@@ -81,11 +77,9 @@ sig Tram extends TransportationMean {
 sig Bus extends TransportationMean {
 	public : one PublicServiceManager
 }
-sig Car extends TransportationMean {
-	traffic : one TrafficManager	
+sig Car extends TransportationMean {	
 }
 sig Bike extends TransportationMean {
-traffic : one TrafficManager	
 }
 
 //Gestione Utente
@@ -134,30 +128,22 @@ lone sig CarbonPreference extends Preference {
 //Gestione Scheduling dei viaggi
 
 one sig Scheduler {
-	notify : one Notify,
+	notify : one Notification,
 	trips : some Trip,
 	weatherForecaster : one WeatherForecaster,
 	sharingManager : one SharingManager,
 	publicServiceManager : one PublicServiceManager,
-	trafficManager : one TrafficManager,
+	distanceManager: one DistanceManager,
 	excludedVehicles : seq TransportationMean
 }
 	{ not excludedVehicles.hasDups }
 
-sig WeatherForecaster {
-	scheduler : one Scheduler
-}
-sig SharingManager {
-	scheduler : one Scheduler
-}
-sig PublicServiceManager {
-		scheduler : one Scheduler
-}
-sig TrafficManager {
-		scheduler : one Scheduler
-}
-	
-sig Notify {
+one sig WeatherForecaster {}
+one sig SharingManager {}
+one sig PublicServiceManager {}
+one sig DistanceManager {}	
+
+sig Notification {
 	id : one Strings,
 	message : one Strings,
 	journey : one Trip
@@ -181,7 +167,7 @@ sig TicketPurchase {
 
 
 
-//Tutte le preferenze utente devono dipendere da un utente
+//All user's preferences can't exist without the corresponding user
 
 fact creditCardsDependency {
 	all c : CreditCard | some u : User | c in u.creditCard
@@ -210,17 +196,39 @@ fact breaksDependency {
 //All transportation means must refer to a trip
 
 fact tripRequired {
-	all t : TransportationMean | some tr : Trip | tr.
+	all t : TransportationMean | some tr : Trip | t in tr.transportationMean
+}
 
 
-//L'utente deve almeno lasciare un mezzo sempre disponibile nelle scelte
+//User must always allow at least a transportation mean when looking for travel solutions
 fact oneTravelMean {
 	all s : Scheduler | some t : TransportationMean | t not in univ.(s.excludedVehicles)
 }
 
+//Two notifications with the same id can't possibily cohexist
 fact noIdenticalNotify {
-	no disjoint n1,n2 : Notify | n1.id = n2.id
+	no disjoint n1,n2 : Notification | n1.id = n2.id
 }
+
+//Trip non può essere collegato a Scheduler tramite Notify
+fact allTripsAreLinked {
+	all t : Trip, s: Scheduler | t in s.trips
+}
+
+//Tutte le Reservations devono essere collegate ad uno SharedVehicle
+
+fact constrainedReservation {
+	all r : Reservation | some s : SharedVehicle | r in s.reservation
+}
+
+//Non possono esserci più reservations con la stessa data
+
+fact noReservationsOverlapping {
+	all disjoint r1,r2 : Reservation | r1.date != r2.date
+}
+
+//Vorrei fare dei fact sui break ma è praticamente impossibile
+
 
 //Non può esserci un trip con veicoli bloccati (il nome va cambiato)
 
@@ -234,6 +242,9 @@ fact noTripForTravel {
 fact asdasd  {
 	all t: Trip | some CarbonPreference implies #t.carbonFootprints > 0 else #t.carbonFootprints = 0
 }
+
+
+//____________________Predicates______________________
 
 //Insert an appointment into the Calendar
 
@@ -256,7 +267,7 @@ pred excludeTransportationMean [ t : TransportationMean, s : Scheduler] {
 	t in univ.(s.excludedVehicles)
 }
 
-
+//
 
 
 //run excludeTransportationMean {} for 3
@@ -283,7 +294,5 @@ pred startWarning { }
 */
 
 
-pred show {}
-run show for 2 but exactly 1 SeasonPass, 1 CreditCard, 1 Reservation, 1 Trip
-	
-
+pred show{}
+run show for 2 but exactly 2 Reservation
