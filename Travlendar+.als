@@ -29,9 +29,10 @@ one sig Calendar {
 
 //Break
 sig Break {
-	startTime : one DateTime,
-	endTime : one DateTime,
-	minimumDuration : one Integer
+	frameStart : one DateTime,
+	frameEnd : one DateTime,
+	minimumDuration : one Integer,
+	startTime : one DateTime
 }
 
 //Appointment
@@ -50,8 +51,9 @@ sig Appointment {
 sig Trip {
 	departureAddress : one Strings,
 	destinationAddress : one Strings,
-	transportationMean : seq TransportationMean,
+	transportationMean : some TransportationMean,
 	calendar : one Calendar,
+	carbonFootprint : one Integer
 }
 
 
@@ -124,6 +126,10 @@ sig Preference {
 	scheduler : one Scheduler
 }
 
+sig CarbonPreference extends Preference {
+	quantity : one Integer
+}
+
 
 //Gestione Scheduling dei viaggi
 
@@ -133,8 +139,10 @@ one sig Scheduler {
 	weatherForecaster : one WeatherForecaster,
 	sharingManager : one SharingManager,
 	publicServiceManager : one PublicServiceManager,
-	trafficManager : one TrafficManager	
+	trafficManager : one TrafficManager,
+	excludedVehicles : seq TransportationMean
 }
+	{ not excludedVehicles.hasDups }
 
 sig WeatherForecaster {
 	scheduler : one Scheduler
@@ -149,7 +157,11 @@ sig TrafficManager {
 		scheduler : one Scheduler
 }
 	
-sig Notify {}
+sig Notify {
+	id : one Strings,
+	message : one Strings,
+	journey : one Trip
+}
 	
 
 //Da collegare a credit card?
@@ -187,26 +199,67 @@ fact preferenceDependences {
 //Tutti gli appuntamenti e i breaks devono dipendere da un Calendar
 
 fact appointmentsDependency {
-	all a : Appointment | some c : Calendar | a in c.appointments
+	all a : Appointment | some c : Calendar | a in univ.(c.appointments)
 } 
 
 fact breaksDependency {
-	all b : breaks | some c : Calendar | b in c.breaks
+	all b : Break | some c : Calendar | b in univ.(c.breaks)
 }
 
 
 
-//Requirements rubati dal nostro RASD 
+//L'utente deve almeno lasciare un mezzo sempre disponibile nelle scelte
+fact oneTravelMean {
+	all s : Scheduler | some t : TransportationMean | t not in univ.(s.excludedVehicles)
+}
 
+fact noIdenticalNotify {
+	no disjoint n1,n2 : Notify | n1.id = n2.id
+}
+
+//Insert an appointment into the Calendar
+
+pred insertAppointment [a : Appointment, c : Calendar, c': Calendar] {
+	//preconditions
+	a not in univ.(c.appointments)
+	//postconditions
+	c'.breaks = c.breaks and
+	c'.trips = c.trips and
+	univ.(c.appointments) in univ.(c'.appointments) and
+ 	a in univ.(c'.appointments)
+}
+
+//Exclude a Transportation Mean from the Scheduler 
+
+pred excludeTransportationMean [ t : TransportationMean, s : Scheduler] {
+	//preconditions
+	t not in univ.(s.excludedVehicles)
+	//postconditions
+	t in univ.(s.excludedVehicles)
+}
+
+//run excludeTransportationMean {} for 3
+/*
+fact carbon {
+	all c : CarbonPreference, s : Scheduler, t : s.trips | c.quantity >= t.carbonFootprints
+}
+*/
+
+
+// Procedura inserimento evento
+
+
+
+
+
+/*
+pred isTimeEnough [a1 : Appointment, a2 : Appointment]	{
+
+
+pred startWarning { }
+	//precondition
 	
-
-
-
-
-// procedura cambio utente?
-
-
-
-run showWorld {}
-
+*/
+pred show {}
+run show for 2 but exactly 1 SeasonPass, 1 CreditCard, 1 Reservation, 1 Trip
 	
