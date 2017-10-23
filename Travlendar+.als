@@ -1,5 +1,6 @@
 //Alloy Model fo Travlendar+
 
+//Importing DataTypes with Time 
 open util/time
 //Datatype representing alphanumeric strings 
 sig Strings{}
@@ -89,7 +90,7 @@ sig Bike extends TransportationMean {
 abstract sig GeneralUser {}
 sig Guest extends GeneralUser {}
 
-one sig User extends GeneralUser {
+sig User extends GeneralUser {
 	name : one Strings,
 	surname : one Strings,
 	username : one Strings,
@@ -129,7 +130,7 @@ lone sig CarbonPreference extends Preference {
 
 //Gestione Scheduling dei viaggi
 
-one sig Scheduler {
+sig Scheduler {
 	notify : one Notification,
 	trips : some Trip,
 	weatherForecaster : one WeatherForecaster,
@@ -156,7 +157,7 @@ sig Notification {
 sig Reservation {
 	date : one Time,
 	cCard : one CreditCard,
-	sharedVehicle : one SharedVehicle
+	sharedVehicle : lone SharedVehicle
 }
 
 sig TicketPurchase {
@@ -252,68 +253,72 @@ fact showCarbonFootprints  {
 }
 
 
+//____________________________________________________
 //____________________Predicates______________________
-
-//Insert an appointment into the Calendar
-
+//____________________________________________________
 
 
-// The predicate can verify whether an appointment overlaps with the ones already registered in the calendar
+// The predicate shows whether an appointment overlaps with the ones already registered in the calendar, i.e is a duplicate
 
 pred overlaps [ a : Appointment, c : Calendar] {
 	no ac : univ.(c.appointments) | ac.time = a.time and ac.date = a.date
 }
 
-pred insertAppointment [a : Appointment, c : Calendar] {
+
+// Inserting a new appointment into the calendar 
+
+pred insertAppointment [a : Appointment, c : Calendar , c' : Calendar] {
 	//preconditions
 	not overlaps[a,c]
 	//postconditions
-	a in univ.(c.appointments)
+	univ.(c'.appointments) = univ.(c.appointments) +  a
+	c'.breaks = c.breaks
+	c'.trips = c.trips
 }
 
 //run insertAppointment for 2
 
-//Exclude a Transportation Mean from the Scheduler 
 
-/*
+
+// Excluding a transportation mean 
+
 pred excludeTransportationMean [ t : TransportationMean, s,s' : Scheduler] {
-	//preconditions
+	//preconditions	
 	t not in univ.(s.excludedVehicles)
 	//postconditions
-	t in univ.(s.excludedVehicles)
+	univ.(s'.excludedVehicles) = univ.(s.excludedVehicles) + t
+	s'.notify = s.notify
+	s'.trips = s.trips
+	s'.weatherForecaster = s.weatherForecaster
+	s'.sharingManager = s.sharingManager
+	s'.publicServiceManager = s.publicServiceManager
+	s'.distanceManager = s.distanceManager
+
 }
-*/
-pred showWorld{}
-run showWorld for 3
 
+run excludeTransportationMean for 3
 
+// Reserving a Car
 
-//Making a reservation on a shared vehicle that's already been rented by the user?? Nope
-/*
-pred reserving [ s : SharedVehicle, r : Reservation] {
+pred reserving [ s : SharedVehicle, r' : Reservation, r : Reservation] {
 	//no preconditions
+	#r.sharedVehicle = 1
 	//postconditions
-	r.sharedVehicle = s	
+	r'.date = r.date 
+	r'.cCard = r.cCard 
+	r'.sharedVehicle = r.sharedVehicle + s
+
 }
-*/
 
-//run excludeTransportationMean {} for 3
-/*
-fact carbon {
-	all c : CarbonPreference, s : Scheduler, t : s.trips | c.quantity >= t.carbonFootprints
-}
-*/
-
-
-// Procedura inserimento evento
-
-
-
-
-
-
-
+run reserving for 3
 
 pred show{}
-run show for 2 but exactly 2 Reservation, 2 SharedVehicle
+run show for 3 but exactly 2 Reservation, 2 SharedVehicle
+
+// Travel Logic 
+
+
+
+
+
 
