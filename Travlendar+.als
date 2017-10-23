@@ -1,7 +1,13 @@
 //Alloy Model fo Travlendar+
 
+//_____________________________________________________________
+//__________________________DATATYPE___________________________
+//_____________________________________________________________
+
+
 //Importing DataTypes with Time 
 open util/time
+
 //Datatype representing alphanumeric strings 
 sig Strings{}
 
@@ -16,7 +22,12 @@ sig Bool {}
 sig Floats{}
 
 
-//The Calendar
+//___________________________________________________________
+//____________________SIGNATURE______________________________
+//___________________________________________________________
+
+
+//Calendar
  sig Calendar {
 	appointments : seq Appointment,
 	breaks : seq Break,
@@ -61,7 +72,7 @@ sig Trip {
 }
 
 
-//Mezzi di trasporto
+//Transportation Means and its related subclasses
 
 abstract sig TransportationMean {}
 
@@ -80,12 +91,14 @@ sig Tram extends TransportationMean {
 sig Bus extends TransportationMean {
 	public : one PublicServiceManager
 }
-sig Car extends TransportationMean {	
+sig Car extends TransportationMean {
+	distance : one DistanceManager	
 }
 sig Bike extends TransportationMean {
+	distance : one DistanceManager
 }
 
-//Gestione Utente
+//User Management
 
 abstract sig GeneralUser {}
 sig Guest extends GeneralUser {}
@@ -98,10 +111,11 @@ sig User extends GeneralUser {
 	calendar : one Calendar,
 	creditCard : set CreditCard,
 	seasonPass : set SeasonPass,
-	preference : set Preference
+	preference : set Preference,
+	tickets : set Ticket
 } 
 
-// Gestione "Possessi dell'utente"
+//User settings
 
 sig CreditCard {
 	cardNumber : one Integer,
@@ -114,7 +128,15 @@ sig SeasonPass {
 	validityTime : one Integer,
 }
 
-//Gestione Preferenze
+sig Ticket {
+	companyName : one Strings,
+	type : one Strings,
+	date : one Time,
+	name : lone Strings,
+	reservedSeat : lone Strings
+}
+
+//Preference Management
 
 sig Preference {
 	type : one Strings,
@@ -128,23 +150,19 @@ lone sig CarbonPreference extends Preference {
 }
 
 
-//Gestione Scheduling dei viaggi
+//Travel Scheduling and Warning notifications
 
 sig Scheduler {
-	notify : one Notification,
-	trips : some Trip,
+	notify : some Notification,
+	trips : set Trip,
 	weatherForecaster : one WeatherForecaster,
 	sharingManager : one SharingManager,
 	publicServiceManager : one PublicServiceManager,
 	distanceManager: one DistanceManager,
-	excludedVehicles : seq TransportationMean
+	excludedVehicles : set TransportationMean
 }
-	{ not excludedVehicles.hasDups }
 
-sig WeatherForecaster {}
-sig SharingManager {}
-sig PublicServiceManager {}
-sig DistanceManager {}	
+
 
 sig Notification {
 	id : one Strings,
@@ -153,13 +171,22 @@ sig Notification {
 }
 	
 
-//Da collegare a credit card?
+
+//External Modules 
+sig WeatherForecaster {	scheduler : one Scheduler}
+sig SharingManager {scheduler : one Scheduler}
+sig PublicServiceManager {scheduler : one Scheduler}
+sig DistanceManager {scheduler : one Scheduler}	
+
+//Reservation of Shared Vehicles
+
 sig Reservation {
 	date : one Time,
 	cCard : one CreditCard,
 	sharedVehicle : lone SharedVehicle
 }
 
+//Purchase of public transportation tickets
 sig TicketPurchase {
 	ticketCode : one Strings,
 	company : one Strings,
@@ -169,6 +196,12 @@ sig TicketPurchase {
 	cCard : one CreditCard
 }
 
+
+
+
+//______________________________________________________________
+//__________________________FACTS_______________________________
+//______________________________________________________________
 
 
 //All user's preferences can't exist without the corresponding user
@@ -185,6 +218,10 @@ fact preferenceDependences {
 	all p : Preference | some u : User | p in u.preference 
 }
 
+fact ticketDependency {
+	all t : Ticket | some u: User | t in u.tickets
+}
+
 
 //All the breaks and the appointments can't exist without a Calendar to refer to
 
@@ -194,6 +231,13 @@ fact appointmentsDependency {
 
 fact breaksDependency {
 	all b : Break | some c : Calendar | b in univ.(c.breaks)
+}
+
+//All notifications must refer to a Scheduler
+
+fact notificationDependency {
+	all n : Notification | some s : Scheduler |
+		n in s.notify
 }
 
 
@@ -206,7 +250,7 @@ fact tripRequired {
 
 //User must always allow at least a transportation mean when looking for travel solutions
 fact oneTravelMean {
-	all s : Scheduler | some t : TransportationMean | t not in univ.(s.excludedVehicles)
+	all s : Scheduler | some t : TransportationMean | t not in s.excludedVehicles
 }
 
 //Two notifications with the same id can't possibily cohexist
@@ -214,17 +258,17 @@ fact noIdenticalNotify {
 	no disjoint n1,n2 : Notification | n1.id = n2.id
 }
 
-//Trip non può essere collegato a Scheduler tramite Notify
+// Trip's got to be directly related to the Scheduler
 fact allTripsAreLinked {
 	all t : Trip, s: Scheduler | t in s.trips
 }
 
-
-//Non possono esserci più reservations con la stessa data
-
-fact noReservationsOverlapping {
-	all disjoint r1,r2 : Reservation | r1.date != r2.date
+//Non posso avere due veicoli esclusi uguali nello stesso scheduler
+fact noTwoIdenticalTransportationMeans {
+	all s : Scheduler | all disjoint t1,t2 : s.excludedVehicles |
+	 t1 != t2
 }
+
 
 //Vorrei fare dei fact sui break ma è praticamente impossibile
 
@@ -239,12 +283,8 @@ fact withinFrame {
 	no b : Break | lt [b.breakStart, b.frameStart] or gt[b.breakEnd, b.frameEnd]
 }
 
-//Non può esserci un trip con veicoli bloccati (il nome va cambiato)
+//Non può esserci un trip con veicoli bloccati ??
 
-fact noTripForTravel {
-	all s : Scheduler, tmeans : univ.(s.excludedVehicles) | no tr : Trip |
-	tmeans in tr.transportationMean
-}
 
 //Every trip has to show carbon footprints if I expressed a preference regarding carbon footprints
 
@@ -276,7 +316,7 @@ pred insertAppointment [a : Appointment, c : Calendar , c' : Calendar] {
 	c'.trips = c.trips
 }
 
-//run insertAppointment for 2
+// run insertAppointment for 2
 
 
 
@@ -284,9 +324,9 @@ pred insertAppointment [a : Appointment, c : Calendar , c' : Calendar] {
 
 pred excludeTransportationMean [ t : TransportationMean, s,s' : Scheduler] {
 	//preconditions	
-	t not in univ.(s.excludedVehicles)
+	#s.excludedVehicles = 0
 	//postconditions
-	univ.(s'.excludedVehicles) = univ.(s.excludedVehicles) + t
+	s'.excludedVehicles = s.excludedVehicles + t
 	s'.notify = s.notify
 	s'.trips = s.trips
 	s'.weatherForecaster = s.weatherForecaster
@@ -296,13 +336,13 @@ pred excludeTransportationMean [ t : TransportationMean, s,s' : Scheduler] {
 
 }
 
-run excludeTransportationMean for 3
+
 
 // Reserving a Car
 
 pred reserving [ s : SharedVehicle, r' : Reservation, r : Reservation] {
 	//no preconditions
-	#r.sharedVehicle = 1
+	#r.sharedVehicle = 0
 	//postconditions
 	r'.date = r.date 
 	r'.cCard = r.cCard 
@@ -310,15 +350,29 @@ pred reserving [ s : SharedVehicle, r' : Reservation, r : Reservation] {
 
 }
 
-run reserving for 3
-
-pred show{}
-run show for 3 but exactly 2 Reservation, 2 SharedVehicle
-
-// Travel Logic 
 
 
 
 
+// Ticket purchasing
+
+pred	ticketPurchase [ t : Ticket, u1 : User, u2 : User ] {
+	//preconditions
+	not t in u1.tickets
+	//postconditions
+	u2.name = u1.name
+	u2.surname = u1.surname
+	u2.username = u1.username
+	u2.password = u1.password
+	u2.calendar = u1.calendar
+	u2.creditCard = u1.creditCard
+	u2.seasonPass = u1.seasonPass
+	u2.preference = u1.preference
+	u2.tickets = u1.tickets + t
+}
+
+//run reserving for 3
+//run excludeTransportationMean for 3 
+//run ticketPurchase for 3
 
 
