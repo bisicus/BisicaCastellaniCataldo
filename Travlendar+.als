@@ -172,8 +172,7 @@ sig Scheduler {
 
 sig Notification {
 	id : one Strings,
-	message : one Strings,
-	journey : one Trip
+	message : one Strings
 }
 	
 
