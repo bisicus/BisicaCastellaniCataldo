@@ -97,6 +97,9 @@ sig Car extends TransportationMean {
 sig Bike extends TransportationMean {
 	distance : one DistanceManager
 }
+sig Walking extends TransportationMean {
+	distance : one DistanceManager
+}
 
 //User Management
 
@@ -269,8 +272,14 @@ fact noTwoIdenticalTransportationMeans {
 	 t1 != t2
 }
 
+//User must have always "walking" active in his travel mean preferences
+fact walkingActive{
+		no t: Trip| some w: Walking | w not in t.transportationMean
+}
 
-//Vorrei fare dei fact sui break ma è praticamente impossibile
+
+
+//Trips are not allowed during break time
 
 fact noTripDuringBreak {
 	no t : Trip | some b : Break | (gte[t.arrivalTime, b.breakStart] and lte[t.arrivalTime, b.breakStart + b.minimumDuration]) and
@@ -374,5 +383,3 @@ pred	ticketPurchase [ t : Ticket, u1 : User, u2 : User ] {
 //run reserving for 3
 //run excludeTransportationMean for 3 
 //run ticketPurchase for 3
-
-
