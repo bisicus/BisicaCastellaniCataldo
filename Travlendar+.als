@@ -27,7 +27,7 @@ sig Floats{}
 //___________________________________________________________
 
 
-//Calendar
+//Calendar : multiple Calendars are allowed for predicates handling
 
  sig Calendar {
 	appointments : seq Appointment,
@@ -284,7 +284,7 @@ fact noTwoIdenticalTransportationMeans {
 //User must have always "walking" active in his travel mean preferences
 
 fact walkingActive{
-		all t : Trip | all id :  Trip.eventId | some w : Walking | w in t.transportationMean and t.eventId = id
+		all t : Trip, s : Scheduler | all id :  Trip.eventId | some w : Walking | w in t.transportationMean and t.eventId = id and not (w in s.excludedVehicles)
 }
 
 
@@ -365,7 +365,6 @@ pred reserving [ s : SharedVehicle, r' : Reservation, r : Reservation] {
 	r'.sharedVehicle = r.sharedVehicle + s
 
 }
-
 
 
 
