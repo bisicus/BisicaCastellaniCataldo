@@ -274,7 +274,7 @@ fact allTripsAreLinked {
 	all t : Trip | some s : Scheduler | t in s.trips
 }
 
-//Non posso avere due veicoli esclusi uguali nello stesso scheduler
+//There can't be two identical excluded vehicles in the Scheduler
 
 fact noTwoIdenticalTransportationMeans {
 	all s : Scheduler | all disjoint t1,t2 : s.excludedVehicles |
