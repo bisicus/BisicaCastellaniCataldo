@@ -159,7 +159,7 @@ lone sig CarbonPreference extends Preference {
 //Travel Scheduling and Warning notifications
 
 sig Scheduler {
-	notify : some Notification,
+	notify : set Notification,
 	trips : set Trip,
 	weatherForecaster : one WeatherForecaster,
 	sharingManager : one SharingManager,
