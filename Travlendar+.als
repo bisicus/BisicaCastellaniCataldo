@@ -5,7 +5,7 @@
 //_____________________________________________________________
 
 
-//Importing DataTypes with Time 
+//Importing Time-realated DataTypes
 open util/time
 
 //Datatype representing alphanumeric strings 
@@ -28,6 +28,7 @@ sig Floats{}
 
 
 //Calendar
+
  sig Calendar {
 	appointments : seq Appointment,
 	breaks : seq Break,
@@ -39,6 +40,7 @@ sig Floats{}
 }
 
 //Break
+
 sig Break {
 	frameStart : one Time,
 	frameEnd : one Time,
@@ -68,7 +70,8 @@ sig Trip {
 	startTime : one Time,
 	arrivalTime : one Time,
 	calendar : one Calendar,
-	carbonFootprints : lone Integer
+	carbonFootprints : lone Integer,
+	eventId : one Strings
 }
 
 
@@ -176,6 +179,7 @@ sig Notification {
 
 
 //External Modules 
+
 sig WeatherForecaster {	scheduler : one Scheduler}
 sig SharingManager {scheduler : one Scheduler}
 sig PublicServiceManager {scheduler : one Scheduler}
@@ -190,6 +194,7 @@ sig Reservation {
 }
 
 //Purchase of public transportation tickets
+
 sig TicketPurchase {
 	ticketCode : one Strings,
 	company : one Strings,
@@ -251,30 +256,35 @@ fact tripRequired {
 }
 
 
-//User must always allow at least a transportation mean when looking for travel solutions
+//User must allow at least a transportation mean when looking for travel solutions
+
 fact oneTravelMean {
 	all s : Scheduler | some t : TransportationMean | t not in s.excludedVehicles
 }
 
 //Two notifications with the same id can't possibily cohexist
+
 fact noIdenticalNotify {
 	no disjoint n1,n2 : Notification | n1.id = n2.id
 }
 
 // Trip's got to be directly related to the Scheduler
+
 fact allTripsAreLinked {
-	all t : Trip, s: Scheduler | t in s.trips
+	all t : Trip | some s : Scheduler | t in s.trips
 }
 
 //Non posso avere due veicoli esclusi uguali nello stesso scheduler
+
 fact noTwoIdenticalTransportationMeans {
 	all s : Scheduler | all disjoint t1,t2 : s.excludedVehicles |
 	 t1 != t2
 }
 
 //User must have always "walking" active in his travel mean preferences
+
 fact walkingActive{
-		no t: Trip| some w: Walking | w not in t.transportationMean
+		all t : Trip | all id :  Trip.eventId | some w : Walking | w in t.transportationMean and t.eventId = id
 }
 
 
@@ -282,7 +292,7 @@ fact walkingActive{
 //Trips are not allowed during break time
 
 fact noTripDuringBreak {
-	no t : Trip | some b : Break | (gte[t.arrivalTime, b.breakStart] and lte[t.arrivalTime, b.breakStart + b.minimumDuration]) and
+	no t : Trip | some b : Break | (gte[t.arrivalTime, b.breakStart] and lte[t.arrivalTime, b.breakStart + b.minimumDuration]) or
 																 (gte[t.startTime, b.breakStart] and lte[t.startTime, b.breakStart + b.minimumDuration])
 }
 
@@ -291,8 +301,6 @@ fact noTripDuringBreak {
 fact withinFrame {
 	no b : Break | lt [b.breakStart, b.frameStart] or gt[b.breakEnd, b.frameEnd]
 }
-
-//Non può esserci un trip con veicoli bloccati ??
 
 
 //Every trip has to show carbon footprints if I expressed a preference regarding carbon footprints
@@ -325,7 +333,6 @@ pred insertAppointment [a : Appointment, c : Calendar , c' : Calendar] {
 	c'.trips = c.trips
 }
 
-// run insertAppointment for 2
 
 
 
@@ -379,7 +386,3 @@ pred	ticketPurchase [ t : Ticket, u1 : User, u2 : User ] {
 	u2.preference = u1.preference
 	u2.tickets = u1.tickets + t
 }
-
-//run reserving for 3
-//run excludeTransportationMean for 3 
-//run ticketPurchase for 3
