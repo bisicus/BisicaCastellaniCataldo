@@ -1,6 +1,6 @@
 The interface of our System is thought to be used via mobile app, because all the functionality make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection).
 
-We will now list some of the user interfaces thought for \textit{Travlendar+}":
+We will now list some of the user interfaces thought for \textit{Travlendar+}:
 
 % login %
 \begin{figure}[h]
@@ -41,27 +41,29 @@ When the user wants to creates an event, he has to use this interface of the app
 % travel Logic %
 The application computes the possible solutions to reach a certain event based on the starting position. These are displayed on the screen of the user's smartphone as shown in Figure 4a. The user must choose the preferred solution to see the details. It may happen that the solution contains buy tickets (fig 4b) or hire cars (fig 4c). Clicking on the corresponding buttons will open the corresponding application.
 
-\begin{figure}[H]
-	\caption{Samples of the Travel logic module.}
-	
-	\begin{subfigure}{0.5\textwidth}
+\begin{figure}[H]	
+	\begin{subfigure}{0.5\linewidth}
+		\centering		
 		\includegraphics[width=5cm, height=9.5cm]{mockup/solutions} 
-		\centering
 		\caption{Solutions found for an Event view.}
 		\label{fig:solutions}
 	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth}
+	\begin{subfigure}{0.5\linewidth}
 		\includegraphics[width=5cm, height=9.5cm]{mockup/buyATicket} 
 		\centering
 		\caption{Buy a public transportation ticket view.}
 		\label{fig:buyTicket}
-	\end{subfigure} \\
+	\end{subfigure} 
+	\hfill
+	
+	\bigskip	
 	\begin{subfigure}{\linewidth}
+			\centering
 		\includegraphics[width=5cm, height=9.5cm]{mockup/reserveCar} 
-		\centering
 		\caption{Reserve a Sharing service resource view.}
 		\label{fig:reserveCar}
 	\end{subfigure}
 
+	\caption{Samples of the Travel logic module.}
 	\label{fig:travelLogic}
 \end{figure}
