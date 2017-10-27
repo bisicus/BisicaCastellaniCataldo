@@ -158,7 +158,7 @@ lone sig CarbonPreference extends Preference {
 
 //Travel Scheduling and Warning notifications
 
- sig Scheduler {
+one sig Scheduler {
   notify : set Notification,
   trips : set Trip,
   weatherForecaster : one WeatherForecaster,
@@ -180,10 +180,10 @@ sig Notification {
 
 //External Modules 
 
- sig WeatherForecaster {  scheduler : one Scheduler}
- sig SharingManager {scheduler : one Scheduler}
- sig PublicServiceManager {scheduler : one Scheduler}
- sig DistanceManager {scheduler : one Scheduler}  
+one sig WeatherForecaster {  scheduler : one Scheduler}
+one sig SharingManager {scheduler : one Scheduler}
+one sig PublicServiceManager {scheduler : one Scheduler}
+one sig DistanceManager {scheduler : one Scheduler}  
 
 //Reservation of Shared Vehicles
 
@@ -206,7 +206,7 @@ sig Reservation {
 //__________________________________________________________
 
 
-//All user's preferences can't exist without the corresponding user
+//All User's preferences can't exist without the corresponding user
 
 fact creditCardsDependency {
   all c : CreditCard | some u : User | c in u.creditCard
@@ -307,10 +307,6 @@ fact showCarbonFootprints  {
 
 
 
-
-
-
-
 //________________________________________________
 //__________________Predicates____________________
 //________________________________________________
@@ -360,6 +356,7 @@ pred  ticketPurchase [ t : Ticket, u1 : User, u2 : User ] {
   u2.tickets = u1.tickets + t
 }
 
+// Adding SeasonPasses and CreditCards to User's content
 
 pred addSeasonPassAndCreditCard [ s : SeasonPass, c: CreditCard, u1: User, u2: User]{
   //preconditions
