@@ -168,14 +168,11 @@ sig Scheduler {
 	excludedVehicles : set TransportationMean
 }
 
-
-
 sig Notification {
 	id : one Strings,
 	message : one Strings
 }
 	
-
 
 //External Modules 
 
@@ -277,13 +274,14 @@ fact allTripsAreLinked {
 
 fact noTwoIdenticalTransportationMeans {
 	all s : Scheduler | all disjoint t1,t2 : s.excludedVehicles |
-	 t1 != t2
+	 	t1 != t2
 }
 
 //User must have always "walking" active in his travel mean preferences
 
 fact walkingActive{
-		all t : Trip, s : Scheduler | all id :  Trip.eventId | some w : Walking | w in t.transportationMean and t.eventId = id and not (w in s.excludedVehicles)
+	all t : Trip, s : Scheduler | all id :  Trip.eventId | some w : Walking | 
+			w in t.transportationMean and t.eventId = id and not (w in s.excludedVehicles)
 }
 
 
@@ -292,10 +290,10 @@ fact walkingActive{
 
 fact noTripDuringBreak {
 	no t : Trip | some b : Break | (gte[t.arrivalTime, b.breakStart] and lte[t.arrivalTime, b.breakStart + b.minimumDuration]) or
-																 (gte[t.startTime, b.breakStart] and lte[t.startTime, b.breakStart + b.minimumDuration])
+								(gte[t.startTime, b.breakStart] and lte[t.startTime, b.breakStart + b.minimumDuration])
 }
 
-//I trips devono essere inclusi nel frame time
+//Trips must be included in frame time
 
 fact withinFrame {
 	no b : Break | lt [b.breakStart, b.frameStart] or gt[b.breakEnd, b.frameEnd]
@@ -314,7 +312,7 @@ fact showCarbonFootprints  {
 //____________________________________________________
 
 
-// The predicate shows whether an appointment overlaps with the ones already registered in the calendar, i.e is a duplicate
+// Whether an appointment overlaps with the ones already registered in the calendar, i.e is a duplicate
 
 pred overlaps [ a : Appointment, c : Calendar] {
 	no ac : univ.(c.appointments) | ac.time = a.time and ac.date = a.date
@@ -331,8 +329,6 @@ pred insertAppointment [a : Appointment, c : Calendar , c' : Calendar] {
 	c'.breaks = c.breaks
 	c'.trips = c.trips
 }
-
-
 
 
 // Excluding a transportation mean 
@@ -352,7 +348,6 @@ pred excludeTransportationMean [ t : TransportationMean, s,s' : Scheduler] {
 }
 
 
-
 // Reserving a Car
 
 pred reserving [ s : SharedVehicle, r' : Reservation, r : Reservation] {
@@ -364,8 +359,6 @@ pred reserving [ s : SharedVehicle, r' : Reservation, r : Reservation] {
 	r'.sharedVehicle = r.sharedVehicle + s
 
 }
-
-
 
 
 // Ticket purchasing
