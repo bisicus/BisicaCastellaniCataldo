@@ -310,9 +310,9 @@ fact showCarbonFootprints  {
 	all t: Trip | some CarbonPreference implies #t.carbonFootprints > 0 else #t.carbonFootprints = 0
 }
 
-fact excludedVehicleNotInTrips{
-	no s: Scheduler | some t: Trip | s.excludedVehicles in t.transportationMean and s.trips = t
-}	
+
+
+
 
 
 
