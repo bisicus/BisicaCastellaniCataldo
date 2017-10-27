@@ -396,7 +396,7 @@ pred	ticketPurchase [ t : Ticket, u1 : User, u2 : User ] {
 
 
 
-pred addSeasonPassAndCreditCard [ s : SeasonPass, c: CreditCard u1: User, u2: User]{
+pred addSeasonPassAndCreditCard [ s : SeasonPass, c: CreditCard, u1: User, u2: User]{
 	//preconditions
 	not s in u1.seasonPass
 	not c in u1.creditCard
@@ -410,4 +410,4 @@ pred addSeasonPassAndCreditCard [ s : SeasonPass, c: CreditCard u1: User, u2: U
 	u2.seasonPass = u1.seasonPass + s
 	u2.preference = u1.preference
 	u2.tickets = u1.tickets
-}  
+} 
