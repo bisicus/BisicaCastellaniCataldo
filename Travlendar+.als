@@ -206,6 +206,8 @@ sig TicketPurchase {
 
 
 
+
+
 //______________________________________________________________
 //__________________________FACTS_______________________________
 //______________________________________________________________
@@ -313,6 +315,9 @@ fact excludedVehicleNotInTrips{
 }	
 
 
+
+
+
 //____________________________________________________
 //____________________Predicates______________________
 //____________________________________________________
@@ -388,3 +393,21 @@ pred	ticketPurchase [ t : Ticket, u1 : User, u2 : User ] {
 	u2.preference = u1.preference
 	u2.tickets = u1.tickets + t
 }
+
+
+
+pred addSeasonPassAndCreditCard [ s : SeasonPass, c: CreditCard u1: User, u2: User]{
+	//preconditions
+	not s in u1.seasonPass
+	not c in u1.creditCard
+	//postconditions
+	u2.name = u1.name
+	u2.surname = u1.surname
+	u2.username = u1.username
+	u2.password = u1.password
+	u2.calendar = u1.calendar
+	u2.creditCard = u1.creditCard +c
+	u2.seasonPass = u1.seasonPass + s
+	u2.preference = u1.preference
+	u2.tickets = u1.tickets
+}  
