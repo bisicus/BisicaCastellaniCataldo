@@ -193,13 +193,6 @@ sig Reservation {
   sharedVehicle : lone SharedVehicle
 }
 
-//Purchase of public transportation tickets
-
-
-
-
-
-
 
 //__________________________________________________________
 //________________________FACTS_____________________________
