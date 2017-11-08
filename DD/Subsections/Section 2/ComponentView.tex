@@ -1,6 +1,12 @@
-\subsection{Component View}
+\documentclass[12pt, a4paper]{article}
 
-2.1 Overview
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\begin{description}
+
+\item[2.1 Overview]
 As we anticipated, in this section we’re goint to give an array of views of our system, shaping it from many angles at once. We’ll detail both the high-level components and the interfaces interleaved among them, delving then into deployment and runtime view .
 [Check] The architectural style we chose to adopt is a three-layered one.
 The decision to implement an external DB was born because of the need of providing a realiable and safe synchronization tool for our users and to store other kinds of personal information submitted through the app (like preferences and the like).
@@ -18,8 +24,36 @@ Application Aggregator
 This component works, unsuprisingly, as a collector of the different information Travlendar+ manages. It allows easy storage of every piece of information and allows us to avoid an high number of interfaces among the different components. Profile manager specifies the profile setting of the current user, while User choice handler allows us to put constraints on the results provided by the scheduler.
  
 Calendar Manager
-This component is divided into Appointments&Breaks, which tracks the appointments inserted by the User together with his breaks, and Trips, which is the list of trips arranged by the scheduler for every appointment.
+This component is divided into Appointments and Breaks sub-components, which track the appointments inserted by the User together with his breaks, and Trips, which is the list of trips arranged by the scheduler for every appointment.
+
+Notification Manager
+This component allow the notification system to warn users in the cases events partially or completely overlap according to the scheduler.
+
+Preference Manager
+This component serves the purpose of keeping track of the preferences expressed by the User. Season pass handler takes care of storing season passes; Excluded Vehicls List cuts off from the scheduler results involving a selection of banned transportation means, Preference list covers the remaining and wider spectrum of User's choices.
+Preference Modifier is the sub-component that manages the other ones and that communicates outside Preference Manager.
+
+Travlendar+ Server
+
+This component represents the Travlendar+ Server whose  purpose is to store User's preferences, access data and personal information. It is modeled by its DBMS component
+
+Travel Logic Manager
+
+This component is split into two sub-components : Scheduler is the fundamental block that aims at scheduling and arranging User appointments and breaks via the the corresponding trips, DistanceManager is the block whose purpose is to organize and present travel times to the scheduler in order to have them sorted out and well-managed.
+
+Travlendar Logic Dependencies
 
 
+
+
+
+
+
+\end{description}
  
 
+
+
+
+
+\end{document}
