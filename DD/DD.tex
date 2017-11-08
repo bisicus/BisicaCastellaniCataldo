@@ -1,0 +1,126 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% images %
+\usepackage{graphicx} % to embed images
+\graphicspath{ {img/} } % images are all in the same folder
+\usepackage{subcaption} % for creating composite images
+\usepackage[export]{adjustbox}
+\usepackage{float}
+% -- %
+
+\usepackage{hyperref} % to link the table of contents
+\usepackage{placeins} %floating
+\usepackage{pdflscape} % to allow single pages in landscape mode
+\usepackage[top=1.2in, bottom=1.2in, left=1in, right=1in]{geometry}
+
+% include hyperlinks %
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+}
+% -- %
+
+
+\title{Design Document}
+\date{2017-10-26}
+\author{
+	Leonardo Bisica
+	\and
+	Alessandro Castellani
+	\and
+	Michele Cataldo
+}
+
+\begin{document}
+	%%% titlepage %%%
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo}
+		\vfill
+		{\bfseries\Large
+			Travlendar+\\
+			Design Document\\
+			Version 1.0\\
+			\vskip4cm
+			Leonardo Bisica\\
+			Alessandro Castellani\\
+			Michele Cataldo\\
+		}
+		\vfill
+		\vfill
+	\end{titlepage}
+
+%%% TABLE OF CONTENTS %%%
+	\tableofcontents
+	
+	
+	
+%%% 1 - INTRODUCTION %%%
+	\newpage
+	\section{Introduction}
+		\subsection{Purpose}
+		
+		\subsection{Scope}
+		
+		\subsection{Glossary}
+		
+		\subsection{Revision History}
+			
+		\subsection{Reference Document}
+			
+		\subsection{Document Structure}	
+		
+		
+
+%%% 2 - ARCHITECTURAL DESIGN  %%%
+	\newpage
+	\section{Architectural Design}
+
+
+%%% 3 -ALGORITHM DESIGN  %%%
+	\newpage
+	\section{Algorithm Design}
+
+%%% 4 - USER INTERFACE DESIGN %%%
+	\newpage
+	\section{Iser Interface Design}
+		
+		
+%%% 5 - REQUIREMENTS TRACEABILITY %%%
+	\newpage
+	\section{Requirement Traceability}
+
+%%% 6 - IMPLEMENTATION, INTEGRATION AND TEST PLAN %%%
+	\newpage
+	\section{Implementation, Integration and Test Plan}
+
+%%% 7 - APPENDIX %%%
+	\newpage	
+	\section{Appendix}
+		\listoffigures
+		\listoftables
+		
+		\subsection{Used tools}
+		For this assignment, we used the following tools:
+		
+		\begin{description}
+			\item [LaTeX] The group used LaTeX to structure the final document and to help with versioning.
+			\item [Github] We leaned on Github for versioning and coordinating synchronized work.
+			\item[StarUML] We used StarUML  to make Use Case, Class and Sequence Diagrams. \href{http://staruml.io/}{StarUML}.
+			\item[Balsamiq Mockups] We used Balsamiq Mockups to create mockups of our mobile application interface. \href{https://balsamiq.com/products/mockups/}{Balsamiq Mockups}
+			
+		\end{description}
+		
+		\subsection{Hours of work}
+			\begin{description}
+				\item[Bisica, Leonardo] around xx hours of work;
+				\item[Castellani, Alessandro] around xxhours of work;
+				\item[Cataldo, Michele] around xx hours of work.
+			\end{description}
+			
+\end{document}
