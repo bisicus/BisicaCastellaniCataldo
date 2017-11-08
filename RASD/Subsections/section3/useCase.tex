@@ -2,6 +2,7 @@ A global picture of the system interaction with actors is provided here by means
 
 	\includegraphics[width=\textwidth]{uml/useCase}
 
+
 %%% REGISTER %%%	
 	\paragraph{Guest registers to \textit{Travlendar+}} \label{register_useCase}
 	
@@ -35,6 +36,7 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 		\end{tabular}
 
+
 %%% LOGIN %%%	
 	\paragraph{Guest logins into \textit{Travlendar+}} \label{login_useCase}
 	
@@ -46,7 +48,7 @@ A global picture of the system interaction with actors is provided here by means
 			Input Condition		&		Guest is registered to  \textit{Travlendar+}. \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item Guest fill login mandatory fields.
+												\item Guest fills login mandatory fields.
 												\item Guest clicks on "Log In" button.
 												\item System verifies login credentials.
 											\end{enumerate} \\
@@ -57,6 +59,7 @@ A global picture of the system interaction with actors is provided here by means
 			\hline
 			\hline
 		\end{tabular}
+
 
 %%% CREATE A NEW APPOINTMENT %%%	
 	\paragraph{Create a New Appointment} \label{createEvent_useCase}
@@ -69,11 +72,11 @@ A global picture of the system interaction with actors is provided here by means
 			Input Condition		&		User is already logged in into \textit{Travlendar+}. \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "Create Appointment".
-												\item User name, sets day, time and position of the Appointment.
+												\item User clicks on "Create Appointment".
+												\item User sets name, day, time and position of the Appointment.
 												\item System checks if the new appointment overlaps with already existing appointments or break period.
 												\item	 System calculates, ranks and shows multiple solutions depending on user travelling preferences.
-												\item User selects one solution as preferend one.
+												\item User selects one of the proposed solutions as preferend one.
 											\end{enumerate} \\
 			\hline
 			Output Condition		&		\textit{Tralvendar+} shows calendar main page with the new appointment. \\
@@ -103,11 +106,11 @@ A global picture of the system interaction with actors is provided here by means
 												\end{itemize} \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "Appointment".
+												\item User clicks on "Appointment".
 												\item User starts modifying process.
 												\item System checks if the new appointment overlap with already existing appointments or break period.
 												\item	 System calculates, ranks and shows multiple solution depending on user travelling preferences.
-												\item User selects one solution as preferend one.
+												\item User selects one of the proposed solutions as preferend one.
 											\end{enumerate} \\
 			\hline
 			Output Condition		&		\textit{Tralvendar+} shows calendar main page, with the updated appointment. \\
@@ -137,12 +140,12 @@ A global picture of the system interaction with actors is provided here by means
 												\end{itemize} \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "Preferences/Payment Methods".
+												\item User clicks on "Preferences/Payment Methods".
 												\item User sets all the credit cards info.
 												\item System checks and validate provided informations.
 											\end{enumerate} \\
 			\hline
-			Output Condition		&		\textit{Tralvendar+} returns to \textit{Payment Methods} page showing added card as a valid payment method. \\
+			Output Condition		&		\textit{Tralvendar+} returns to "Payment Methods" page showing added card as a valid payment method. \\
 			\hline		
 			Exception		&		Credit card given informations are invalid. \\
 			\hline
@@ -164,7 +167,7 @@ A global picture of the system interaction with actors is provided here by means
 												\end{itemize} \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User clicks on desired solution.
+												\item User clicks on "desired solution".
 												\item User clicks on "Buy Ticket" button.
 												\item System shows available public trasportation tickets.
 												\item User selects a ticket.
@@ -202,9 +205,9 @@ A global picture of the system interaction with actors is provided here by means
 												\item	 System reconnects to selected \textit{Sharing Service}, and starts the reserving procedure.
 											\end{enumerate} \\
 			\hline
-			Output Condition		&		User redirected to the "Reservation Service" app. \\
+			Output Condition		&		User redirected to the \textit{Reservation Service} app. \\
 			\hline		
-			Exception		&		Reservation Service" doesn't worked as expected. \\
+			Exception		&		\textit{Reservation Service} doesn't worked as expected. \\
 			\hline
 			\hline
 		\end{tabular}
@@ -233,7 +236,7 @@ A global picture of the system interaction with actors is provided here by means
 													\item[-] User is informed of particular problem
 												\end{itemize} \\
 			\hline
-			Exception		&		User unpins all the possible preferences. \\
+			Exception		&		User unpins all the possible travel means. \\
 			
 			\hline
 			\hline
@@ -252,8 +255,8 @@ A global picture of the system interaction with actors is provided here by means
 			Input Condition		&		User is already logged in into \textit{Travlendar+}. \\
 			\hline
 			Event Flow		&		\begin{enumerate}
-												\item User click on "Preferences/Breaks".
-												\item User select an interval and a minimum lenght for his break.
+												\item User clicks on "Preferences/Breaks".
+												\item User selects an interval and a minimum lenght for his break.
 											\end{enumerate} \\
 			\hline
 			Output Condition		&		System adds those hours as a special meeting every day in the calendar. \\
