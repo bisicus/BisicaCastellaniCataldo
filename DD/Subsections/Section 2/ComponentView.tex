@@ -43,9 +43,18 @@ This component is split into two sub-components : Scheduler is the fundamental b
 
 Travlendar Logic Dependencies
 
+This component covers a range of factors that must be taken into account for a good translation of our Functional Requirements and goals. WeatherForecaster 
+TicketAcquirer deals with the purchase of tickets for public transportation means : it enables inter-app communication among the corresponding mobile applications.
+Sharing Service Reserver : this sub-component links the Travlendar+ mobile application with the application corresponding to the desired service. It allows inter-app communication among the corresponding mobile applications. 
 
+Payment Manager
 
+This component deals with the procedures of ticket purchase
 
+API Manager
+
+This component is critical in order to provide a functioning Travel Logic : it gathers the interactions with all external APIs. Here are listed the APIs the mobile application project starts with : Google Maps API, Google Transport API, Open Weather Map API, Car2Go and BikeMi API. The last couple is for reference only, as already pointed in the RASD. Naturally, the list of external services can be expanded.
+The API Requestes Dispatcher handles all the incoming requests from Travel Logic, while Listener receives and shapes the received data.
 
 
 
