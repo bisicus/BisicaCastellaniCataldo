@@ -70,6 +70,7 @@ appointment.
 			\item [R.5.12] When the starting time of a trip associated to an event is only one hour away the system must notify the user with an updated list of travel time so he can choose.
 			\item [R.5.13] According to real world data, each travel must have associated to itself the carbon footprints.
 			\item [R.5.14] Travels that do not satisfy all User's contraints must be excluded.
+			
 		\end{itemize}
                   
                   
@@ -108,8 +109,10 @@ appointment.
 			\item [R.9.1] Each Break is characterized by a duration, the time of the day they start in and by the time frame within are allowed.
 			\item[R.9.2] Breaks can be periodic.
 			\item[R.9.3] System reserves a minimum quantity of time which is not shorter than the break duration.
-			\item[R.9.4] Breaks must be completely encapsulated within the time frames the break is allowed in	.
+			\item[R.9.4] Breaks must be completely encapsulated within the time frames the break is allowed in.
+			\item[R.9.5] Within the time frame of a break the scheduler must always grant a free time span whose duration must be at least equal to the corresponding break duration.
 		\end{itemize}
+			
 
 
 	\item \textit{[G10]} The application allows to buy tickets for public services.
