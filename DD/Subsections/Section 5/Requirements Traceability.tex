@@ -217,11 +217,13 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 			
 			\textbf{This requirement is mapped into Mobile Application, Basic Application Aggregator and Calendar Manager components}
 
-			\item [R.6.3] Choosing a solution that includes a public transportation mean must show the user the possibility to buy a ticket.
+			\item [R.6.3] Choosing a solution that includes a public transportation mean must show the user the possibility to buy a ticket. In case of ticket purchase \textit{Travlendar+} checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to \textit{Travlendar+}.
+
+			\textbf{This requirement is mapped into API Manager and Travel Logic Manager components}
 
 			\item [R.6.4] Choosing a solution that includes a shared vehicle must show the user the possibility to locate and rent such a vehicle.
 			
-			\textbf{These requirements are mapped into API Manager component}
+			\textbf{This requirement is mapped into API Manager components}
 
 			\item [R.6.5] Choosing a solution must not be definitive.
 			
@@ -281,6 +283,8 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 			\item[R.8.4] User must allow at least a single travel mean.
 
 			\item[R.9.5] User cannot remove "walking" from travel mean preferences.
+			
+			\textbf{All these requirements are mapped into Travel Logic Manager and Preference Manager components}
 
 		\end{itemize}
 
@@ -288,17 +292,23 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 
 
 
-	\item \textit{[G10]} The application features additional User’s breaks.
+	\item \textit{[G9]} The application features additional User’s breaks.
 
 		\begin{itemize}
 
-			\item [R.10.1] Each Break is characterized by a duration, the time of the day they start in and by the time frame within are allowed.
+			\item [R.9.1] Each Break is characterized by a duration, the time of the day they start in and by the time frame within are allowed.
 
-			\item[R.10.2] Breaks can be periodic.
+			\item[R.9.2] Breaks can be periodic.
 
-			\item[R.10.2] System reserves a minimum quantity of time which is not shorter than the break duration.
+			\item[R.9.3] System reserves a minimum quantity of time which is not shorter than the break duration.
 
-			\item[R.10.4] Breaks must be completely encapsulated within the time frames the break is allowed in	.
+			\item[R.9.4] Breaks must be completely encapsulated within the time frames the break is allowed in	.
+			
+			\textbf{These requirements are mapped into Calendar Manager component}
+			
+			\item[R.9.5] Within the time frame of a break the scheduler must always grant a free time span whose duration must be at least equal to the corresponding break duration
+			
+			\textbf{This requirement is mapped into Calendar Manager and Travel Logic Manager components}
 
 		\end{itemize}
 
@@ -306,13 +316,15 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 
 
 
-	\item \textit{[G11]} The application allows to buy tickets for public services.
+	\item \textit{[G10]} The application allows to buy tickets for public services.
 
 		\begin{itemize}
 
-			\item[R.11.1] Buying a ticket must reroute the user to the corresponding payment service.
+			\item[R.10.1] Buying a ticket must reroute the user to the corresponding payment service.
 
-			\item[R.11.2] User must be able to choose among the different purchase options offered by the public transportation service provider.
+			\item[R.10.2] User must be able to choose among the different purchase options offered by the public transportation service provider.
+			
+			\textbf{This requirement is mapped into API Manager component}
 
 		\end{itemize}
 
@@ -320,23 +332,29 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 
 
 
-	\item \textit{[G12]} The application allows the nearest shared vehicle to be found and reserved.
+	\item \textit{[G11]} The application allows the nearest shared vehicle to be found and reserved.
 
 		\begin{itemize}
 
-			\item [R.12.1] A shared vehicle must necessarily belong to a bike-sharing service or a car-sharing service.
+			\item [R.11.1] A shared vehicle must necessarily belong to a bike-sharing service or a car-sharing service.
 
-			\item [R.12.2] All services linked to shared vehicles must be automatically disabled if the location of an appointment out of the boundaries of the influence zone.
+			\item [R.11.2] All services linked to shared vehicles must be automatically disabled if the location of an appointment out of the boundaries of the influence zone.
 
-			\item [R.12.3] All sharing services have their own API which is used by the system to locate and reserve the vehicles.
+			\item [R.11.3] All sharing services have their own API which is used by the system to locate and reserve the vehicles.
 
-			\item [R.12.4] To find or reserve a vehicle it's required that the user logins into the external corresponding service.
+			\item [R.11.4] To find or reserve a vehicle it's required that the user logins into the external corresponding service.
+			
+			\textbf{These requirements are mapped into API Manager component}
 
-			\item [R.12.5] The external service can communicate with our mobile application. In case of reservation \textit{Travlendar+} checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to \textit{Travlendar+}.
+			\item [R.11.5] The external service can communicate with our mobile application. In case of reservation \textit{Travlendar+} checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to \textit{Travlendar+}.
+			
+			\textbf{This requirement is mapped into Travel Logic Manager and Api Manager components}
 
-			\item [R.12.6] The location of all the vehicles must be shown in the same interface, merging data from different APIs.
+			\item [R.11.6] The location of all the vehicles must be shown in the same interface, merging data from different APIs.
 
-			\item[R.12.7] Only shared vehicles that are free and available must be displayed and possibly reserved.
+			\item[R.11.7] Only shared vehicles that are free and available must be displayed and possibly reserved.
+			
+			\textbf{These requirements are mapped into API Manager component}
 
 		\end{itemize}
 
@@ -344,19 +362,25 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 
 
 
-	\item \textit{[G13]} The application allows the user to oversee his position in real-time as well as the route of his travel.
+	\item \textit{[G12]} The application allows the user to oversee his position in real-time as well as the route of his travel.
 
 		\begin{itemize}
 
-			\item [R.13.1] Application integrates a map system submitted by Gmaps API.
+			\item [R.12.1] Application integrates a map system submitted by Gmaps API.
 
-			\item [R.13.2] User must be able navigate through the map indipendently from its current location.
+			\item [R.12.2] User must be able navigate through the map indipendently from its current location.
 
-			\item [R.13.3] User must be able search for a specific location.
+			\item [R.12.3] User must be able search for a specific location.
 
-			\item [R.13.4] The mobile device must be able to track its current position through geo-localization.
+			\textbf{These requirements are mapped into API Manager component}
 
-			\item [R.13.5] Positions of out the operative zone can't be accepted by the system and won't be displayed.
+			\item [R.12.4] The mobile device must be able to track its current position through geo-localization.
+			
+			\textbf{These requirements are mapped into API Manager and Localization Manager components}
+
+			\item [R.12.5] Positions of out the operative zone can't be accepted by the system and won't be displayed.
+			
+			\textbf{This requirement is mapped into API Manager component}
 
 		\end{itemize}
 
@@ -364,18 +388,26 @@ The Design Document at hand was thought and developed in the scope of fulfilling
 
 
 
-	\item \textit{[G14]} The User can submit additional preferences
+	\item \textit{[G13]} The User can submit additional preferences
 
 		\begin{itemize}
 
-			\item[R.14.1] User must be able to forbid travel means within time spans, also periodical ones.
+			\item[R.13.1] User must be able to forbid travel means within time spans, also periodical ones.
 
-			\item[R.14.2] User must be able to put a constraint on the maximum amount of space and time he can give to each travel mean.
+			\item[R.13.2] User must be able to put a constraint on the maximum amount of space and time he can give to each travel mean.
+			
+			\textbf{These requirements are mapped into Preference Manager component}
 
-			\item[R.14.2] User must be able to link one or more season passes with his account.
+			\item[R.13.3] User must be able to link one or more season passes to his account.
 
-			\item[R.14.3] User must be able to link one or more credit cards to his account.
+			\textbf{This requirement is mapped into Preference Manager component}
+			
+			\item[R.13.4] User must be able to link one or more credit cards to his account.
+			
+			\textbf{This requirement is mapped into Payment Manager component}
 
-			\item[R.14.4] Each modification apported by the User to its additional preferences is only made effective when synced on \textit{Travlendar+} Server.
+			\item[R.13.5] Each modification apported by the User to its additional preferences is only made effective when synced on \textit{Travlendar+} Server.
+			
+			\textbf{This requirement is mapped into Preference Manager and Travlendar Server Manager components}
 
 		\end{itemize}
