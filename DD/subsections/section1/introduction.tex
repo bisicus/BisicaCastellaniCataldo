@@ -1,0 +1,35 @@
+\subsection{Purpose}
+The purpose of this Design Document is to explain the architecture of the Travlendar+ mobile application as well as the logic underlying its development. Our approach will be analyzed in detail section by section, keeping, above all, coherence with the path our RASD layed down.
+
+\subsection{Scope}
+\textit{Travlendar+} is a mobile application that encompasses many different functionalities. 
+It is first of all an event scheduler that keeps track of a user’s appointments so that it can display the fastest routes available indexed by transportation means thanks to external APIs.
+\textit{Travlendar+} heavily relies on "\textit{Google Maps APIs}" for tracking distances and travel times, but also uses the necessary APIs to locate and rent vehicles of sharing services and to buy public transportation tickets. Thanks to its ability to gather external info about weather, strikes and traffic, as well as average travel time, \textit{Travlendar+} can warn its users before creating an appointment (and during travel itself) if any overlap happens or if an event location can’t be reached in the expected time.
+
+\subsection{Definitions, Acronyms, abbreviations}
+We assume our Glossary already cover all the terms we introduced and specified in the RASD. In addition to that, we can add some additional word to our vocabulary :
+
+Abbreviations :
+\begin{itemize}
+	\item [RWn] : The n^(th) runtime view.
+\end{itemize}
+
+\susection{Reference Documents}
+\begin{itemize}
+		\item[-] \textsf{Specification Document: Mandatory Project Assignments}, available in the BeeP page of the course.
+		\item[-] (qualcosa potenzialmente sulla struttura di un DD, ma non c’è niente IEEE-related)
+\end{itemize} 
+
+\susection{Document Structure}
+The document is organized into 7 sections:
+
+\begin{itemize}
+	\item Section 1  (Introduction): the section at hand. It provides the scope of our project and frames our DD.
+	\item Section 2 (Architectural Design): this section details the architecture of Travlendar+. It contains component, deployment and runtime view
+	\item Section 3 (Algorithm Design): this section displays the most important algorithms used by the mobile application
+	\item Section 4 (User Interface Design): this section  builds upon the user interface built in the RASD of our project, detailing minor expansions to the interface which was already presented
+	\item Section 5 (Requirements Traceability): this section tracks the requirements detailed in the RASD into their corresponding design elements
+	\item Section 6 (Implementation, integration and test plan): this section identifies the order in which we implement the various subcomponents of the system as well as the order we want to implement and test them in
+	\item Section  7 (Reference): this section accounts for the references of our project
+	\item Section 8 (Used Tools): this section accounts for the tools we adopted in order to write down and deliver the DD
+\end{itemize}
