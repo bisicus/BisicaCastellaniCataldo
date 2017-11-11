@@ -10,43 +10,42 @@ An high-level perspective on our system : it details all the components.
 
 
 Mobile Application
-This component represents the view of the User over its system. It’s split in two sub-components, guest-view and User-view, which represents the two different ways an human interaction can be instaurated with the system.
+This component represents the view of the User over its system. It’s split in two sub-components, Guest-view and User-view, which represents the two different ways an human interaction can be instaurated with the system.
 
 Application Aggregator
-This component works, unsuprisingly, as a collector of the different information Travlendar+ manages. It allows easy storage of every piece of information and allows us to avoid an high number of interfaces among the different components. Profile manager specifies the profile setting of the current user, while User choice handler allows us to put constraints on the results provided by the scheduler.
+This component works, unsuprisingly, as a collector of the different information Travlendar+ manages. It allows an easy management of every piece of information and allows us to avoid an high number of interfaces among the different components. Profile Manager specifies the profile setting of the current user, while User Action Handler allows us to register User's input.
  
 Calendar Manager
-This component is divided into Appointments and Breaks sub-components, which track the appointments inserted by the User together with his breaks, and Trips, which is the list of trips arranged by the scheduler for every appointment.
+This component is divided into Appointments and Breaks sub-components, which track the appointments inserted by the User together with his breaks, and Trips, which is the list of trips arranged by the scheduler for every appointment. The sub-component Appointment Aggregator serves the purpose of listing and presenting the content of the other two sub-components.
 
 Notification Manager
-This component allow the notification system to warn users in the cases events partially or completely overlap according to the scheduler.
+This component allows the notification system to warn users in the cases events partially or completely overlap according to the scheduler.
+
+Localization Manager
+This component represents the localization functionalities of the mobile application.  
 
 Preference Manager
-This component serves the purpose of keeping track of the preferences expressed by the User. Season pass handler takes care of storing season passes; Excluded Vehicls List cuts off from the scheduler results involving a selection of banned transportation means, Preference list covers the remaining and wider spectrum of User's choices.
-Preference Modifier is the sub-component that manages the other ones and that communicates outside Preference Manager.
+This component serves the purpose of keeping track of the preferences expressed by the User. Season pass handler takes care of storing season passes; Excluded Vehicles List cuts off from the scheduler results involving a selection of banned transportation means, Preferences List covers the remaining and wider spectrum of User's choices.
+Preference Handler is the sub-component that manages the other ones and that communicates outside Preference Manager.
 
-Travlendar+ Server
+Travlendar Server
 
-This component represents the Travlendar+ Server whose  purpose is to store User's preferences, access data and personal information. It is modeled by its DBMS component
+This component represents the Travlendar Server whose  purpose is to store User's preferences, access data and personal information. It is modeled by its DBMS component, which stores Timetables and Preferences and the API Request Dispatcher, which forwards requests to external agents.
 
 Travel Logic Manager
 
 This component is split into two sub-components : Scheduler is the fundamental block that aims at scheduling and arranging User appointments and breaks via the the corresponding trips, DistanceManager is the block whose purpose is to organize and present travel times to the scheduler in order to have them sorted out and well-managed.
 
-Travlendar Logic Dependencies
-
-This component covers a range of factors that must be taken into account for a good translation of our Functional Requirements and goals. WeatherForecaster 
-TicketAcquirer deals with the purchase of tickets for public transportation means : it enables inter-app communication among the corresponding mobile applications.
-Sharing Service Reserver : this sub-component links the Travlendar+ mobile application with the application corresponding to the desired service. It allows inter-app communication among the corresponding mobile applications. 
 
 Payment Manager
 
-This component deals with the procedures of ticket purchase
+This component deals with the recording of purchases and their associated credit cards.
+The sub-component Payment Handler tracks purchase records and interacts with the required apps installed on the mobile device, while Credit Card List is an exploitable and rational organizations of the credit cards used by the user.
 
 API Manager
 
 This component is critical in order to provide a functioning Travel Logic : it gathers the interactions with all external APIs. Here are listed the APIs the mobile application project starts with : Google Maps API, Google Transport API, Open Weather Map API, Car2Go and BikeMi API. The last couple is for reference only, as already pointed in the RASD. Naturally, the list of external services can be expanded.
-The API Requestes Dispatcher handles all the incoming requests from Travel Logic, while Listener receives and shapes the received data.
+The Listener component serves the purpose of forwarding requests and receives the desired inputs.
 
 
 
