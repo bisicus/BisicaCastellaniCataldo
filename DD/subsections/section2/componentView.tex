@@ -5,7 +5,7 @@ The Component Diagram shown below describes the logical components of the system
 	\begin{figure}[H]
 			\centering
 			\includegraphics[width = \textwidth]{UML/componentDiagrams/highLevel}
-			\caption{High level view}
+			\caption{High level view.}
 			\label{componentHighLevel}
 		\end{figure}
 
@@ -17,16 +17,32 @@ The Component Diagram shown below describes the logical components of the system
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/mobileApplication}
+			\caption{Mobile Application detail.}
+			\label{mobileApplicationDetail}
 		\end{figure}
 
-
+	\paragraph{Access Manager}
+	%TODO 
+	BISOGNA SCRIVERE QUALCOSA QUI
+	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale = 0.2]{UML/componentDiagrams/accessManager}
+			\caption{Access Manager detail.}
+			\label{accessManagerDetail}
+		\end{figure}
+		
+		
 	\paragraph{Application Aggregator}
 		This component works, unsuprisingly, as a collector of the different information \textit{Travlendar+} manages. It allows an easy management of every piece of information and allows us to avoid an high number of interfaces among the different components. 'Profile Manager' specifies the profile setting of the current user, while 'User Action Handler' allows us to register User's input.
 	
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/applicationAggregator}
+			\caption{Application Aggregator detail.}
+			\label{applicationAggregatorDetail}
 		\end{figure}
+ 
  
 	\paragraph{Calendar Manager}
 		This component is divided into 'Appointments' and 'Breaks' sub-components, which track the appointments inserted by the User together with his breaks, and 'Trips', which is the list of trips arranged by the scheduler for every appointment. The sub-component 'Appointment Aggregator' serves the purpose of listing and presenting the content of the other two sub-components.
@@ -34,6 +50,8 @@ The Component Diagram shown below describes the logical components of the system
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/calendarManager}
+			\caption{Calendar Manager detail.}
+			\label{calendarManagerDetail}
 		\end{figure}
  
 
@@ -43,17 +61,10 @@ The Component Diagram shown below describes the logical components of the system
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/preferenceManager}
+			\caption{Preference Manager detail.}
+			\label{preferenceManagerDetail}
 		\end{figure}
-	
 
-	\paragraph{Travlendar Server} 
-		This component represents the \textit{Travlendar Server} whose purpose is to store User's preferences, access data and personal information. It is modeled by its 'DBMS' component, which stores Timetables and Preferences and the 'API Request Dispatcher', which forwards requests to external agents.
-
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale = 0.2]{UML/componentDiagrams/travlendarServer}
-		\end{figure}
-	
 
 	\paragraph{Travel Logic Manager}
 		This component is split into two sub-components: 'Scheduler' is the fundamental block that aims at scheduling and arranging User appointments and breaks via the the corresponding trips, 'DistanceManager' is the block whose purpose is to organize and present travel times to the scheduler in order to have them sorted out and well-managed.
@@ -61,6 +72,8 @@ The Component Diagram shown below describes the logical components of the system
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/travelLogic}
+			\caption{Travel Logic detail.}
+			\label{travelLogicDetail}
 		\end{figure}
 	
 
@@ -71,8 +84,21 @@ The Component Diagram shown below describes the logical components of the system
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/paymentManager}
+			\caption{Payment Manager detail.}
+			\label{paymentManagerDetail}
 		\end{figure}
-	
+		
+		
+	\paragraph{Travlendar Server} 
+		This component represents the \textit{Travlendar Server} whose purpose is to store User's preferences, access data and personal information. It is modeled by its 'DBMS' component, which stores Timetables and Preferences and the 'API Request Dispatcher', which forwards requests to external agents.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale = 0.2]{UML/componentDiagrams/travlendarServer}
+			\caption{\textit{Travlendar Server} detail.}
+			\label{serverDetail}
+		\end{figure}
+
 
 	\paragraph{API Manager} 
 		This component is critical in order to provide a functioning Travel Logic: it gathers the interactions with all external APIs.
@@ -83,6 +109,8 @@ The Component Diagram shown below describes the logical components of the system
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/APIManager}
+			\caption{API Manager detail.}
+			\label{APIManagerDetail}
 		\end{figure}
 	
 	
@@ -97,9 +125,9 @@ The Component Diagram shown below describes the logical components of the system
 
 	\begin{landscape}
 		\begin{figure}
+			\includegraphics[height= 0.85\textheight]{UML/componentDiagrams/detailedLevel}
 			\centering
-			\includegraphics[height= 0.9\textheight]{UML/componentDiagrams/detailedLevel}
-			\caption{Detailed level view}
+			\caption{Detailed level view.}
 			\label{detailedHighLevel}
 		\end{figure}
 	\end{landscape}
