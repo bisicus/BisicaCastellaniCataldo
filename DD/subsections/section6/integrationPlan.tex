@@ -9,13 +9,13 @@ Component : API Manager
 \textit{Internal integration strategy} : Bottom - Up
 \textit{Integration order :}
 	\begin{itemize}
-		\item Listener
-		\item OpenWeatherMap
 		\item Google Maps API
+		\item OpenWeatherMap
 		\item Google Transit API
 		\item Car2Go API
 		\item BikeMi API
 		\item Other API-Based System
+		\item Listener
 	\end{itemize}
 
 
@@ -48,10 +48,10 @@ Component : Preference Manager
 \textit{Integration order :}
 	\begin{itemize}
 	
-		\item Preference Handler
-		\item Season Pass Handler
 		\item Excluded Vehicles List
+		\item Season Pass Handler
 		\item Preferences List
+		\item Preference Handler
 		
 	\end{itemize}
 	
@@ -59,12 +59,29 @@ Component : Travel Logic
 
 \textit{Internal integration strategy} : Bottom - Up
 \textit{Integration order :}
-	\begin{itemize}
-		\item Scheduler
+	\begin{itemize}	
 		\item Trip Handler
-		
+		\item Scheduler
 	\end{itemize}
 	
+Component : Mobile Application
+
+\textit{Internal integration strategy} : Critical - First
+\textit{Integration order :}
+	\begin{itemize}
+		\item User View
+		\item Guest View
+	\end{itemize}
+	
+Component : Calendar Manager
+
+\textit{Internal integration strategy} : Bottom - Up
+\textit{Integration order :}
+	\begin{itemize}
+		\item Trip List
+		\item Break List
+		\item Appointment Aggregator
+	\end{itemize}
 
 Component : Access Manager
 
@@ -78,22 +95,14 @@ Component : Access Manager
 		
 Component : Application Aggregator
 
-\textit{Internal integration strategy} : Bottom - Up
+\textit{Internal integration strategy} : Critical-First
 \textit{Integration order :}
 	\begin{itemize}
 		\item Profile Manager
 		\item User Actions Handler
 \end{itemize}
 	
-Component : Calendar Manager
 
-\textit{Internal integration strategy} : Bottom - Up
-\textit{Integration order :}
-	\begin{itemize}
-		\item Trip List
-		\item Break List
-		\item Appointment Aggregator
-	\end{itemize}
 	
 
 	
@@ -101,12 +110,5 @@ Component : Calendar Manager
 
 
 
-Component : Mobile Application
 
-\textit{Internal integration strategy} : Critical - First
-\textit{Integration order :}
-	\begin{itemize}
-		\item User View
-		\item Guest View
-	\end{itemize}
 	
