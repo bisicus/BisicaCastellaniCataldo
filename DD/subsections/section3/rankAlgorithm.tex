@@ -44,17 +44,17 @@
 		\ElseIf{$ \delta_{Advantage} \geq 0 $ }{
 			$ Valid\_Alternatives\_List.add(Trip)$\;
 		}
+		\ElseIf{$ \delta_{Advantage} < 0$ }{
+			$ Unconvenient\_List.add(Trip)$\;
+		}
 	}
 \end{algorithm}
 \vfill
 \begin{algorithm}[H]
 %reprise of the algorithm %
 \setcounter{AlgoLine}{20}
-\SetKwBlock{Begin}{end}
+\SetKwBlock{Begin}{}{end}
 \Begin{
-	\ElseIf{$ \delta_{Advantage} < 0$ }{
-		$ Unconvenient\_List.add(Trip)$\;
-	}
 	\Else{
 			$ Filtered\_List.remove(Trip)$\;
 	}
@@ -70,8 +70,8 @@
 				$ cost \leftarrow SeasonPass.Promotion$\;
 			}
 		}
-		$ Category\_List.partialOrdering(cost) $ \;
 	}
+	$ Category\_List.partialOrdering(cost) $ \;
 		
 	\bigskip
 	\tcp{Searching for Advantageous Lower Solutions}
@@ -101,11 +101,11 @@
 		$ Solution\_List.remove(bikeSolution)$\;
 		\ForAll{Solution in $Solution\_List$}{
 			$ outdoorTime \leftarrow 0$\;
-			ForEach{SubTrip in Solution that is 'outdoor'}{
+			\ForEach{SubTrip in Solution that is 'outdoor'}{
 				$ outdoorTime \leftarrow outdoorTime + SubTrip.Time$\;
 			}
-			If{ $outdoorTime \geq 3$ minutes}{
-				$ Solution\_List.remove(Solution)$\;
+			\If{ $outdoorTime \geq 3$ minutes}{
+				$ Solution\_List.rankDown(Solution)$\;
 			}
 		}
 	}
