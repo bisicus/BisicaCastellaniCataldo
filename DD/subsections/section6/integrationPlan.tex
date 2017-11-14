@@ -1,7 +1,34 @@
+%Questo va grosso
+Integration Strategy
+
+6.1.1 Entry Criteria
+
+In order to start a correct integration test we must ensure the following conditions are granted :
+
+\begin{itemize}
+
+	\item Requirements Analysis and Specification Document as well as the Design Document must be complete in each section and up to date, reflecting the current state of the project
+	\item All sub-components must be already unit tested and bug free
+	\item Risk Assessment has been layed out since it'll serve us in critical-first module integration
+
+\end{itemize}
+
+In addition to this we assume that all algorithms that interface external agents and make use of APIs will be already tested and that they will work as intended in receiving external data when proceeding with integration (we're talking about all sub-components that contain the word 'API' in API Manager component).
+
+
+6.1.2 Elements to be integrated
+
+All components we created and delimited in components diagram are going to be integrated. All components that give the chance to do so, will also be tested regarding the integration of the single subcomponents.
+
+6.1.3 Integration Testing Strategy
+
+From a component perspective we can safely say we adopted a bottom-up policy for the integration plan, while we also used a critical-first approach in sub-components integration (requiring, therefore, stubs in such cases). 
+Our choice has mainly been driven by its ease and by the relatively small scale of our system.
+
 Sequence of component/function integration
 
-It's time for us to detail the integration order of our components, detailing what we just anticipated with our dependency diagarms.
-We'll procede in a bottom-up fashiong : first of all we'll detail the integration plan of the sub-components closely followed by the one of the components.
+It's time for us to detail the integration order of our components, delving in what we simply anticipated with our dependency diagrams.
+
 
 
 Component : API Manager
@@ -101,7 +128,15 @@ Component : Application Aggregator
 		\item Profile Manager
 		\item User Actions Handler
 \end{itemize}
-	
+
+
+6.2 Individual Steps and Test Description
+ 
+The components will be tested following the interfaces they share and that we previously described, testing core methods also in case of sub-components integration.
+Our main goal is to spot any kind of faults and failures, focusing in particular on input domains, covering the restricted spectrum of system reactions.
+Because of this, we'll detail the tests in easy-to-consult tables, each introduced by the components and subcomponents that are required.
+Each table represents an interface method, and on two columns we'll detail each input and its expected result.
+
 
 	
 
