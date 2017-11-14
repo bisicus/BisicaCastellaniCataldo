@@ -25,6 +25,11 @@
 }
 % -- %
 
+% algorithms %
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e} % algorithms
+\usepackage{eurosym}
+\usepackage{amssymb}
+% -- %
 
 \title{Design Document}
 \date{2017-10-26}
@@ -63,32 +68,22 @@
 %%% 1 - INTRODUCTION %%%
 	\newpage
 	\section{Introduction}
-		\subsection{Purpose}
-		
-		\subsection{Scope}
-		
-		\subsection{Glossary}
-		
-		\subsection{Revision History}
-			
-		\subsection{Reference Document}
-			
-		\subsection{Document Structure}	
-		
+		\input{subsections/section1/introduction.tex}
 		
 
 %%% 2 - ARCHITECTURAL DESIGN  %%%
 	\newpage
 	\section{Architectural Design}
-
-
+		\input{subsections/section2/architecturalDesign.tex}
+		
 %%% 3 -ALGORITHM DESIGN  %%%
 	\newpage
 	\section{Algorithm Design}
+		\input{subsections/section3/algorithmDesign.tex}
 
 %%% 4 - USER INTERFACE DESIGN %%%
 	\newpage
-	\section{Iser Interface Design}
+	\section{User Interface Design}
 		
 		
 %%% 5 - REQUIREMENTS TRACEABILITY %%%
