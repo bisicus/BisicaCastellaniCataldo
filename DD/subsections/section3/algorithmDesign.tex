@@ -1,0 +1,46 @@
+% RANK SOLUTIONS %
+\paragraph{solution Ranking}
+This algorithm shows how System ranks all the feasible solution based provided by the external sources, like Public Transportation, via Car, Bike or Foot, depending on:
+	\begin{itemize}
+		\item[•] time needed for completing the trip.
+		\item[•] number of subtrips (only for Public Tranportation).
+		\item[•] if the Car have to be used in other trips on that day.
+		\item[•] money needed for the Tranportation Mean, calculated as:
+			\begin{itemize}
+				\item[-] public ticket cost for Public Services.
+				\item[-] average fuel cost for Car.
+				\item[-] tariff \euro /time for Sharing services.
+			\end{itemize}
+		\item[•] User preferences.
+		\item[•] Weather forecast for the Appointment day (if and only if the Appointment is no longer than 15 days).
+	\end{itemize}
+	
+	Since solutions have been already calculated individually, is supposed that every element in the input list has been already divided in subtrips either by the External API Manager or by Scheduler (see figure \ref{travelLogicDetail} and figure \ref{APIManagerDetail}) in a previous Step.
+	Is also assumed that 'Public Service Manager' (see RASD Class Diagram) provides a list of different tranportation means, and all the consistent possible combinations of them.
+	
+	First of all Every element in the input list is filtered by the 'Excluded Vehicles List' (see figure \ref{preferenceManagerDetail})
+	For remaining elements, every inner SubTrip time is compared with the average reference time that the User have to spend by going with owned Car or bike, or, if is a short distance, by going with foot, in order to categorize solutions in \textit{suitables}, \textit{valid alternatives}, and \textit{unconvenient}.
+	
+	
+	
+	Then for every category solutions:
+	\begin{itemize}
+		\item[-] items are orderd by \textit{time needed} and \textit{number of SubTrip}
+		\item[-] if User has a Season Pass of a public transportation company, relative solutions are put on the highest rank.
+		\item[-] solution cost are calculated, as aforementioned.
+	\end{itemize}		
+		
+	If a solutions from lower category are advantageous with respect to 'higher' solutions, those are put again in the upper category.
+	A solution is advantageous if \textit{time needed}s difference between the two category, defined as 
+	\\ \quad $\Delta =  timeNeeded(bestUpperSolution) - timeNeeded(lowerSolution)$, \\
+	is less than 15 minutes, and either is a cheaper solution or User has a Season Pass that doesn't belong to any other company of Upper-category solutions.
+		
+	If the Appointment is scheduled in less than 15 days, and weather forecast is predicted al \textit{non consistent for outdoor tripping}, solutions that expect a $total\_Outdoor\_Time$ defined as the sum of the time spent by walking and biking, greater than 3 minutes are downgraded in the respective category.
+
+	If in the other Appointments of that day a proprietary Car solution is already scheduled, 'Only by Using Car' solution will be encouraged, but if and only if:
+
+	In the end all the category \textit{suitables} and \textit{valid alternatives} are merged into an unique list made so that User can choose one.
+	The algorithm return also the $bestSolution$ got by 'Poping' of the first element of the list, and the solution obtained by 'Only Walking' and 'Only by Using Car'.
+		
+\bigskip
+	\input{subsections/section3/rankAlgorithm.tex}

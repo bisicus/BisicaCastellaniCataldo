@@ -1,0 +1,90 @@
+\begin{algorithm}[H]
+	\caption{Rank Solution}
+		\KwData{Trip, List of Calculated Solutions, Preferences, Calendar}
+		\KwResult{List of Ranked Solutions, Best Calculated Solution, Only Car Time, Only Walking Time}
+		
+		\bigskip
+		\tcp{Calculate 'Only Car' and 'Only Walking' Solutions}
+		$ carTime \leftarrow \textbf{Scheduler}.carTime$\;
+		$ bikeTime \leftarrow \textbf{Scheduler}.walkingTime$\;
+		
+		\bigskip
+		\tcp{Filtering Solutions based on $Preferences$}	
+		\ForAll{Trip in Input\_List}{
+			\If{Trip.AssignedTransportationMean() is in Excluded\_Vehicles\_List}{
+				$ InputList.remove(Trip) $\;
+			}
+		}
+		$ FilteredList \leftarrow InputList $\;
+
+		\bigskip
+		\tcp{Assign a category}	
+		\ForAll{Trip in Filtered\_List}{
+			$ \delta_{Advantage} \leftarrow 0$\;
+			\ForEach{SubTrip in Trip}{
+				\Switch{SubTrip}{
+					\Case{Long\_Distance}{
+						$ AVG\_Ref \leftarrow 
+							\quad \arg\min
+								\Big( \textbf{Scheduler}.AVG\_Time(Car), \textbf{Scheduler}.AVG\_Time(Bike) \Big)$\;
+					}
+					\Case{Short\_Distance}{
+						$ AVG\_Ref = \textbf{Scheduler}.AVG\_Time(Foot)$\;
+					}
+				}
+				$ comparison \leftarrow AVG\_Ref - SubTrip.Time$\;
+				$ \delta_{Advantage} \leftarrow \delta_{Advantage} + comparison$\;
+			}
+			
+			\bigskip
+			\If{$ \delta_{Advantage} \gg 0 $ }{ 
+				$ Suitable\_List.add(Trip)$\;
+			}
+			\ElseIf{$ \delta_{Advantage} \geq 0 $ }{
+				$ Valid\_Alternatives\_List.add(Trip)$\;
+			}
+			\ElseIf{$ \delta_{Advantage} < 0$ }{
+				$ Unconvenient\_List.add(Trip)$\;
+			}
+			\Else{
+				$ Filtered\_List.remove(Trip)$\;
+			}
+		}
+		\bigskip
+	\end{algorithm}
+	
+	%TODO trova il modo di spezzarli%
+	
+	\begin{algorithm}
+			
+		\tcp{Category Ranking}
+		\ForEach{Category\_List}{
+			$ Category\_List.sortBy(TimeNeeded, SubTripsNumber, ascending)$\;
+			\ForAll{Trip in $Category\_List$}{
+				$ cost \leftarrow calculateCost(Trip)$\;
+				\If{User has Season Pass for that Trip}{
+					$ cost \leftarrow SeasonPass.Promotion$\;
+				}
+			}
+			$ Category\_List.partialOrdering(cost) $ \;
+		}
+		
+		\bigskip
+		\tcp{Searching for Advantageous Lower Solutions}
+		$ bestSolution \leftarrow Suitable\_List.takeFirst()$\;
+		\ForEach{lowerTrip in Lower\_Categories\_List}{
+			$\Delta \leftarrow  timeNeeded(bestSolution) - timeNeeded(LowerTrip)$\;
+			\If{$\Delta \leq 15$ minutes}{
+				\If{ \Big($ isCheaper(bestSolution) $
+					or $ \exists SeasonPass(Trip) $ 
+					and $ \nexists SeasonPass(UpperCategoryTrip) $\Big) }{
+						$ categoryPromotion(Trip)$\;
+				}
+			}
+		}
+		\bigskip
+		\tcp{Car is used during the Day}
+		
+		\bigskip
+		\tcp{Weather Accounting}
+	\end{algorithm}
