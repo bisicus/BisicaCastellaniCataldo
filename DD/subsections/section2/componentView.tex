@@ -12,7 +12,7 @@ The Component Diagram shown below describes the logical components of the system
 	We will now describe in detail all the components.
 
 	\paragraph{Mobile Application}
-		This component represents the view of the User over its system. It’s split in two sub-components, Guest-view and User-view, which represents the two different ways an human interaction can be instaurated with the system.
+		This component represents the view of the User over its system. It’s split in two sub-components, Guest-view and User-view, which represent the two different ways a human interaction can be instaurated with the system.
 
 		\begin{figure}[H]
 			\centering
@@ -21,10 +21,8 @@ The Component Diagram shown below describes the logical components of the system
 			\label{mobileApplicationDetail}
 		\end{figure}
 
-	\paragraph{Access Manager}
-	%TODO 
-	BISOGNA SCRIVERE QUALCOSA QUI
-	
+	\paragraph{+}
+	This component deals with the matter of signing-up and authenticating to Travlendar+ Server. SignUp Handler serves the purpose of isolating the logic which serves the purpose to initiate a new User registration, while Saved Login Data records User data and smooths authentication procedures without contacting the external server. Authentication Manager oversees every access procedure.
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale = 0.2]{UML/componentDiagrams/accessManager}
