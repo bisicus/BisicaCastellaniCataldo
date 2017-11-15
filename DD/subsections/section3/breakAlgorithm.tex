@@ -1,0 +1,58 @@
+\begin{algorithm}[H]
+	\caption{Ensure Break Time}
+	\KwData{Daily Calendar, New Appointmend}
+	\KwResult{Daily Calendar consistent with breaks}
+	
+	\bigskip
+	\tcp{Adding Extra Travel Time to New Appointment}
+	
+	\bigskip
+	\tcp{Previous Appointmen before New Appointment}
+	\If{$Calendar$ contains an Appointment $Event$ such that $Event.EndTime - NewAppointment.StartTime \leq 1 hour$}{
+		$ timeSpan \leftarrow \textbf{Scheduler}.AVGTime(Event.Location, NewAppointment.Location)$\;
+		$ NewAppointment.StartTime \leftarrow NewAppointment.StartTime - timeSpan$\;
+	}
+	\tcp{Next Appointmen is right after New Appointment}
+	\If{$Calendar$ contains an Appointment $Event$ after $NewAppointment$}{
+		$ timeSpan \leftarrow \textbf{Scheduler}.AVGTime(NewAppointment.Location, Event.Location)$\;
+		\If{$NewAppointment.EndTime - Event.StartTime \leq 1 hour$}{
+			$ NewAppointment.EndTime \leftarrow NewAppointment.EndTime + timeSpan$\;
+		}
+		\Else{
+			$ Event.StartTime \leftarrow Event.Start - timeSpan$\;	
+		}
+	}
+	
+	\bigskip
+	\tcp{Check Break Consistency}
+	\ForAll{Breaks}{
+		\If{Appointment's $StartTime$ or $EndTime$ are near Break's $StartTime$ or $EndTime$}{
+			$ okFlag \leftarrow False$\;
+		}
+	}
+	\If{okFlag}{
+		\If{Added $timeSpan$}{
+				removeTimeSpans()\;
+			}
+			$ \textbf{Calendar}.addAppointment(newAppointment)$\;		
+			return $Calendar$\;
+	}
+	
+	\bigskip
+	\tcp{Check for New Breaks}
+	
+	\ForAll{EndTime, StartTime in Break.TimeSpan}{
+		$\delta t = EndTime -StartTime $\;
+		\If{$\delta t \geq Break.miminumDuration$}{
+			$Possible\_Break\_List.add(EndTime, StartTime, \delta t )$\;
+		}
+	}
+	
+	\bigskip
+	\If{$Possible\_Break\_List.isNotEmpty()$}{
+		$ return \arg\max(Possible\_Break\_List)$\;
+	}
+	\Else{
+		$\textbf{NotificationManager}.notify$ (Appointment doesn't permit Breaks)\;
+	}
+\end{algorithm}
