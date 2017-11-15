@@ -1,5 +1,8 @@
+In this section we will describe the most interesting algorithms, from a computational point of view; we have decided not to include algorithms for the more mechanical and common part of the system (such as login operations or interactions with the DBMS). In addition, some sequence of actions have already been described in a more general way with some Sequence Diagrams in previous parts of this document, and in the \textit{Use Cases} section of the RASD.
+
 % RANK SOLUTIONS %
-\paragraph{solution Ranking}
+\subsection{Ranking}
+
 This algorithm shows how System ranks all the feasible solution based provided by the external sources, like Public Transportation, via Car, Bike or Foot, depending on:
 	\begin{itemize}
 		\item[•] time needed for completing the trip.
@@ -17,11 +20,8 @@ This algorithm shows how System ranks all the feasible solution based provided b
 	
 	Since solutions have been already calculated individually, is supposed that every element in the input list has been already divided in subtrips either by the External API Manager or by Scheduler (see figure \ref{travelLogicDetail} and figure \ref{APIManagerDetail}) in a previous Step.
 	Is also assumed that 'Public Service Manager' (see RASD Class Diagram) provides a list of different tranportation means, and all the consistent possible combinations of them.
-	
-	First of all Every element in the input list is filtered by the 'Excluded Vehicles List' (see figure \ref{preferenceManagerDetail})
+	Every element in the input list is filtered by the 'Excluded Vehicles List' (see figure \ref{preferenceManagerDetail})
 	For remaining elements, every inner SubTrip time is compared with the average reference time that the User have to spend by going with owned Car or bike, or, if is a short distance, by going with foot, in order to categorize solutions in \textit{suitables}, \textit{valid alternatives}, and \textit{unconvenient}.
-	
-	
 	
 	Then for every category solutions:
 	\begin{itemize}
@@ -45,3 +45,37 @@ This algorithm shows how System ranks all the feasible solution based provided b
 	\vfill
 	\input{subsections/section3/rankAlgorithm.tex}
 	\vfill
+
+	
+	
+%ENSURE BREAKS %	
+\subsection{Ensure Break Time}
+	This Algorithm show how to ensure that, when a new Appointment is inserted, that it all the Specified Break Time are ensured (See RASD for more Details).
+	In order to apply this algorithm, the Appointment is supposed to be inserted during the \textit{Time Span} of a Break
+	
+	Given the actual Calendar, including Appointment, Trips and Breaks of a particular Day (see figure \ref{calendarManagerDetail}), the insertion of a new Appointment is \textbf{supposed not to be overlapped with other Appointments}.
+	
+	With respect to the new Appointment, 
+	\begin{itemize}
+		\item[-] If a previous Appointment exists, the estimated time to reach the Location from the event is added before the $newAppointment.StartHour$.
+		\item[-] If the next Appointment is right after the 'End Hour', the estimated time to reach the new Location is added after the $newAppointment.EndHour$.
+		\item[-] In the Other case this time is added before the 'Start Hour' of the next Event.
+	\end{itemize}
+	
+	Then, the new Appointment is added, to the Timeline of the Day and a new Break is calculated in order to be consistent:
+	\begin{itemize}
+		\item[-] if the new Appoiment $StartHour$  and $EndHour$ are far from the $Break\_Start$ and $Break\_End$ the Break is left alone and the Algorithm returns previously computed Break.
+		\item[-] A time interval $\delta t$ is determined, where the left extremity is the $Time\_Span\_Init$ or the $Appointment.EndTime$, while the right extremity is the $newAppointment.StartTripTime$.
+		If $\delta t$ is greater or equal than Break's $Minimum\_Duration$, is added to a $Possible\_Break\_List$.
+		
+		\item[-] whether a possible Break is found or not, the process is reiterated with a new $\delta t$ where where the left extremity is the $newAppointment.StartTripTime$ or the $nextAppointment.EndTime$, until the right extremity is the $lastAppointment.StartTripTime$ or the $Time\_Span\_End$
+ 	\end{itemize}
+ 	
+ 	At the end, the maximum interval is took from $Possible\_Break\_List$ and it's set as $Default\_Break$
+ 	If $Possible\_Break\_List$ is empty the User is Notified that the new Appointment can't add that appointment because it doesn't let him have a Break.
+ 	
+ 	\vfill
+	%\input{subsections/section3/breakAlgorithm.tex}
+	%\vfill
+
+% REDUCE CO2 %
