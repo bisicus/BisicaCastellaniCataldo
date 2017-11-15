@@ -1,6 +1,5 @@
 \begin{algorithm}[H]
 \caption{Rank Solution}
-	\SetKwBlock{Begin}{Begin}{}
 	\KwData{Trip, List of Calculated Solutions, Preferences, Calendar}
 	\KwResult{List of Ranked Solutions, Best Calculated Solution, Only Car Time, Only Walking Time}
 		
@@ -47,19 +46,15 @@
 		\ElseIf{$ \delta_{Advantage} < 0$ }{
 			$ Unconvenient\_List.add(Trip)$\;
 		}
+		\Else{
+			$ Filtered\_List.remove(Trip)$\;
+		}
 	}
 \end{algorithm}
 \vfill
 \begin{algorithm}[H]
 %reprise of the algorithm %
-\setcounter{AlgoLine}{20}
-\SetKwBlock{Begin}{}{end}
-\Begin{
-	\Else{
-			$ Filtered\_List.remove(Trip)$\;
-	}
-}
-
+\setcounter{AlgoLine}{24}
 	\bigskip
 	\tcp{Category Ranking}
 	\ForEach{Category\_List}{
