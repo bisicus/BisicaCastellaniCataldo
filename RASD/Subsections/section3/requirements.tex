@@ -127,8 +127,8 @@ appointment.
 	\item \textit{[G11]} The application allows the nearest shared vehicle to be found and reserved.
 		\begin{itemize}
 			\item [R.11.1] A shared vehicle must necessarily belong to a bike-sharing service or a car-sharing service.
-			\item [R.11.2] All services linked to shared vehicles must be automatically disabled if the location of an appointment out of the boundaries of the influence zone.
-			\item [R.11.3] All sharing services have their own API which is used by the system to locate and reserve the vehicles.
+			\item [R.11.2] All services linked to shared vehicles must be automatically disabled if the location of an appointment is out of the boundaries of the influence zone.
+			\item [R.11.3] All sharing services have their own API which is used by the system to locate the vehicles and retrieve confirmation of reservation.
 			\item [R.11.4] The external service can communicate with our mobile application. In case of reservation \textit{Travlendar+} checks if the mobile app corresponding to the desired services is installed on the system. All the following steps take place within such an environment, until control is returned to \textit{Travlendar+}.
 			\item [R.11.5] The location of all the vehicles must be shown in the same interface, merging data from different APIs.
 			\item[R.11.6] Only shared vehicles that are free and available must be displayed and possibly reserved.
@@ -138,10 +138,9 @@ appointment.
 	\item \textit{[G12]} The application allows the user to oversee his position in real-time as well as the route of his travel.
 		\begin{itemize}
 			\item [R.12.1] Application integrates a map system submitted by Gmaps API.
-			\item [R.12.2] User must be able navigate through the map indipendently from its current location.
-			\item [R.12.3] User must be able search for a specific location.
-			\item [R.12.4] The mobile device must be able to track its current position through geo-localization.
-			\item [R.12.5] Positions of out the operative zone can't be accepted by the system and won't be displayed.
+			\item [R.12.2] User must be able search for a specific location.
+			\item [R.12.3] The mobile device must be able to track its current position through geo-localization.
+			\item [R.12.4] Positions out of the operative zone can't be accepted by the system and won't be displayed.
 		\end{itemize}
 
 
