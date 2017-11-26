@@ -1,0 +1,933 @@
+The components will be tested following the interfaces they share and that we previously described, testing core methods also in case of sub-components integration.
+Our main goal is to spot any kind of faults and failures, focusing in particular on input domains, covering the restricted spectrum of system reactions.
+Because of this, we'll detail the tests in easy-to-consult tables, each introduced by the components and subcomponents that are required.
+Each table represents an interface method, and on two columns we'll detail each input and its expected result.
+We'll follow a bottom-up approach that requires the creation of drivers from time to time.
+
+\subsubsection{API Communication Service}
+	
+	\textbf{OpenWeatherMap API,Listener}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {getWeatherInfo() }\\
+			\hline
+			
+			\textbf{Input} & \textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			Invalid Location	.	&		OpenWeather services return the information cannot be retrieved and the Listener signals the location is wrong.\\
+			\hline		
+			
+			Valid Location.		&		Listener retrieves the required data structure from OpenWeatherMap and formats it.\\
+			\hline
+			\hline
+		\end{tabular}
+	
+	\vskip1cm
+	
+	\noindent	
+	\textbf{GoogleMapsAPI, Listener}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {getTravelTime() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.	&		NullArgumentException is raised.\\
+			\hline
+			
+			Invalid Start Location/Destination Location.		&		GMAPS APIs signals one (or both) the locations are wrong and the Listener echoes this back.\\
+			\hline		
+			
+			Valid Start Location and Destination Location.	&	 Listener retrieves the required data structure from GMAPS API.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Car2Go API, Listener}\\
+	\textbf{BikeMi, Listener}\\
+	\textbf{ Other API-Based Systems, Listener}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {findNearestVehicle() }\\
+			\hline
+	
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.	&		NullArgumentException is raised.\\
+			\hline
+	
+			Invalid Location or Location out of the boundaries.		&		The external signals the location is out of its service boundaries.\\
+			\hline		
+		
+			Valid Location.		&		Listener retrieves the required data structure from the external API and formats it in order for it to be navigable within the mobile application.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Car2Go API, Listener}\\
+	\textbf{BikeMi, Listener}\\
+	\textbf{Other API-Based Systems, Listener}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {getReservationConfirmation() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			Invalid Reservation Code.		&		The external service can’t provide reservation data, and it sends only a message error, that Listener echoes back.\\
+			\hline
+			
+			Valid Reservation Code.	&		Listener retrieves the required data structure from the external API and formats it in order for it to be navigable within the mobile application.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Google Transit API, Listener}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {getTrafficInfo() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+	
+			NullArgument.	&		NullArgumentException is raised.\\
+			\hline
+
+			Invalid Path.		&		GMAPS APIs can’t find the route and send back a message to document the impossibility of monitoring the traffic. Listener echoes this back.\\
+			\hline
+
+			Valid Path & Google Transit API provides the required information about traffic and Listener sends them back.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Listener, API Request Dispatcher}\\
+	\begin{flushleft} %two tables are alligned to the left
+
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {provideMap() }\\
+			\hline
+
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+
+			Start Location and End Location.		&		Path from Start Location until End Location is raised.\\
+			\hline
+
+			Location and Firm’s name.			&		Path from Location until nearest vehicle is raised.\\
+			\hline
+
+			Location and Day.		&		Weather information is shown.\\
+			\hline
+			\hline
+		\end{tabular}	
+		\\
+		\vskip0.25cm		
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {retrievePaymentInfo() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			Valid parameters.		&		A request of payment is sent.\\
+			\hline
+			
+			Invalid parametert.		&		InvalidArgumentException is raised.\\
+			\hline
+			\hline
+		\end{tabular}
+	\end{flushleft}				
+
+
+\vfill		
+\subsubsection{Travlendar Server}
+	\textbf{API Request Dispatcher, Payment Handler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+		\hline
+		\hline
+		
+		\multicolumn{2}{|c|} {APIRequest() }\\
+		\hline
+		
+		\textbf{Input}.		&		\textbf{Effect}.\\
+		\hline
+		\hline
+		
+		NullArgument.		&		NullArgumentException is raised.\\
+		\hline
+		
+		Valid Argument.		&		A payment request is sent to the Server.\\
+		\hline
+		
+		Invalid Argument.		&		InvalidArgumentException is raised.\\
+		\hline
+	\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{API Request Dispatcher, Scheduler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+
+			\multicolumn{2}{|c|} {APIRequest() }\\
+			\hline
+
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+		
+			Valid Combination of Location, Data and Vehicle’s Firm is allowed.		&		A request is sent to the respective dispatcher.\\
+			\hline
+			
+			Invalid Argument.		&		InvalidArgumentException is raised.\\
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{DBMS, Authentication Manager}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+	
+			\multicolumn{2}{|c|} {requestUserCalendar() }\\
+			\hline
+
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+		
+			Invalid Argument.		&		InvalidArgumentException is raised.\\
+			\hline
+	
+			User Credentials.		&		An access request is sent to DBMS.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{DBMS, Autentication Manager}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {requestUserPreferences() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+		
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+		
+			Invalid Argument.		&		InvalidArgumentException is raised.\\
+			\hline
+			
+			User Credentials.		&		An access request of user preferences is sent to DBMS.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{DBMS, Autentication Manager}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+		
+			\multicolumn{2}{|c|} {updateUserCalendar() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+		
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+	
+			Invalid Argument.		&		InvalidArgumentException is raised.\\
+			\hline
+		
+			User Credentials and New DataCalendar.		&		User Calendar is update.\\
+			\hline
+			\hline
+		\end{tabular}
+		
+	\vskip1cm
+
+	\noindent
+	\textbf{DBMS, Autentication Manager}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+		
+			\multicolumn{2}{|c|} {updateUserPreferences() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+		
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+
+			Invalid Argument.		&		InvalidArgumentException is raised.\\
+			\hline
+
+			User Credentials and New DataPreferences.		&		User Preferences is update.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{DBMS, Autentication Manager}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {registerUser() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+
+			Invalid Argument.		&		InvalidArgumentException is raised.\\
+			\hline
+
+			Valid Combination of User Credential and User Information.		&		New User Profile is created.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{DBMS, Autentication Manager}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+		
+			\multicolumn{2}{|c|} {checkCredentialUser() }\\
+			\hline
+		
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+
+			Invalid Argument.		 &			False.\\
+			\hline	
+	
+			User Credentials insert		&		True.\\
+			\hline		
+			\hline
+		\end{tabular}
+		
+		
+\vfill
+\subsubsection{Payment Manager}
+	
+	\textbf{Payment Handler, Purchase History}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {addPaymentMethod() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			Credit Card Data and linked Transaction information.		&		Data is stored in Purchase History.\\
+			\hline
+			
+			Invalid Data.		&		Nothing changes and the input is rejected.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Payment Handler, Purchase History}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {deletePaymentMethod() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			Credit Card Data.		&		Credit Card Data and the linked transactions stored in Purchase History are deleted.\\
+			\hline
+			
+			Invalid Input.		&		Everything is unchanged in Purchase History.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Payment Handler, Purchase History}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {showPaymentRecord() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+	
+			NullArgument.		&		The payment record is returned in the correct data structure.\\
+			\hline
+			
+			Any Parameter.		&		InvalidArgumentException is raised.\\
+			\hline
+			
+			Invalid Input.		&		InvalidArgumentException is thrown and everything is unchanged in Purchase History.\\
+			\hline
+			\hline
+		\end{tabular}
+	
+	\vskip1cm
+
+	\noindent
+	\textbf{Payment Handler, Scheduler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {addPayment() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			Valid Ticket.		&		A payment request is shown.\\
+			\hline 
+			
+			Invalid Input.		&		invalidArgumentException is thrown and everything is unchanged in Purchase History.\\
+			\hline
+			\hline
+		\end{tabular}
+
+
+\vfill
+\subsubsection{Preference Manager}
+
+	\textbf{Preference Handler, Excluded Vehicle List}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {setExcludedVehicles() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument not corresponding to a collection of vehicle objects.		&		InvalidArgumentException is thrown.\\
+			\hline
+
+			Valid collection of vehicle objects.		&		The list of excluded vehicles is updated to become as the input.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Preference Handler, SeasonPass Handler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {setSeasonPass() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument not corresponding to a collection of seasonPasses.		&		InvalidArgumentException is thrown.\\
+			\hline
+			
+			Valid collection of seasonPasses.		&		The list of seasonPasses is updated to become the same as the input.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Preference Handler, Preferences List}\\
+	\begin{flushleft}
+
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {setVehicleTimeSpan() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a collection of pairs of vehicles and time spans.		&		InvalidArgumentException is thrown.\\
+			\hline
+
+			Argument is a valid collection of pairs of vehicles and time spans.		&		The list of pairs of vehicles and time spans is updated to become the same as the input.\\
+			\hline
+			\hline
+		\end{tabular}		
+		\\
+		\vskip0.25cm
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {setCarbonFootprints() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		Carbon footprints are not set.\\
+			\hline
+			
+			Invalid non-integer argument.		&		InvalidArgumentException is thrown.\\
+			\hline
+			
+			Valid integer input.		&		Carbon footprints are set as the input commands.\\
+			\hline
+			\hline
+		\end{tabular}
+		\\
+		\vskip0.25cm
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {setMaxDistancePerVehicle() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a collection of pairs of vehicles and integers.		&		InvalidArgumentException is raised.\\
+			\hline
+
+			Argument is a valid collection of pairs of vehicles and integers.		&		For each specified vehicle it is set the maximum allowed distance that it can travel.\\
+			\hline
+			\hline
+		\end{tabular}
+	
+	\end{flushleft}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{PreferenceHandler, Scheduler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {applyConstraints() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Invalid Argoument.		&		InvalidArgumentException is thrown.\\
+			\hline
+			
+			Valide combination of User Credentials and Type of constraint.		&		The list of trips is filtered according to existing preferences.\\
+			\hline
+			\hline
+		\end{tabular}
+	
+	
+\vfill
+\subsubsection{Travel Logic}
+
+	\textbf{Scheduler, Trip Handler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {scheduleEvent() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a valid event paired with a location and a date.		&		InvalidArgumentException is thrown.\\
+			\hline
+		
+			Argument is a valid event paired with a location and a date.		&		The event is added and scheduled by the logic of the mobile application.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Scheduler, Appointment Aggregator}\\
+	\begin{flushleft}
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {checkIntegrity() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a valid event paired with a location and a date.		&		False.\\
+			\hline
+		
+			Argument is a valid event paired with a location and a date.		&		True.\\
+			\hline
+			\hline
+		\end{tabular}		
+		\\
+		\vskip0.25cm		
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {getTrips() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			Invalid Argument.		&		InvalidArgumentException is thrown.\\
+			\hline
+		
+			Nothing.		&		All information about the trip.\\
+			\hline
+			\hline
+		\end{tabular}
+		\\
+		\vskip0.25cm	
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+		
+			\multicolumn{2}{|c|} {calculateAverageTime() }\\
+			\hline
+	
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Invalid Argument.		&		InvalidArgumentException is thrown.\\
+			\hline
+			
+			Valid combination of Data, Start Location and End Location.		&		Average Time of trip from Start Location to End Location.\\
+			\hline
+			\hline
+		\end{tabular}
+		
+	\end{flushleft}
+
+	
+\vfill
+\subsubsection{Calendar Manager}
+
+	\textbf{Appointment Aggregator, Trip List}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+
+			\multicolumn{2}{|c|} {addEvent() }\\
+			\hline
+
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+	
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a valid event paired with a location and a date.		&		InvalidArgumentException is thrown.\\
+			\hline
+		
+			Argument is a valid event paired with a location and a date.		&		The event is added to the events list, yet they miss trips, that must be added through Scheduler and Travel Logic.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Appointment Aggregator, Trip List}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {modifyEvent() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a valid field or set of fields of a valid event.		&		InvalidArgumentException is thrown.\\
+			\hline
+		
+			Argument is a valid field or set of fields of a valid event.		&		The event is updated as requested.\\
+			\hline
+			\hline
+	\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Appointment Aggregator, Break List}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {setBreaks() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument.		&		NullArgumentException is thrown.\\
+			\hline
+			
+			Argument is not a valid break object.		&		InvalidArgumentException is thrown.\\
+			\hline
+
+			Argument is a valid collection of break objects.		&		The Break lists encompasses only the breaks listed in the input.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\vskip1cm
+
+	\noindent
+	\textbf{Appointment Aggregator, User Actions Handler}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {showAppointments() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			Invalid Argument.		&		InvalidArgumentException is thrown.\\
+			\hline
+		
+			Nothing.		&		List of appointments.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	
+\vfill
+\subsubsection{Access Manager}
+
+	\textbf{Authentication Manager, Saved Login Data}\\
+	\begin{flushleft}
+
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {checkLocalAccount() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			\hline
+			
+			NullArgument and no login data stored.		&		The standard login procedures that interleave with the Travlendar Server begin.\\
+			\hline
+
+			NullArgument and no login data stored.		&		The standard login procedure is bypassed and the user automatically acesses the mobile application.\\
+			\hline
+			\hline
+		\end{tabular}
+		\\
+		\vskip0.25cm
+			\textbf{Authentication Manager, SignUp Handler, Profile Manager,DBMS}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {signUp() }\\
+			\hline
+
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			InvalidArgument Exception.		&		InvalidArgumentException.\\
+			\hline
+			
+			Valid combination of User Credentials and User Information.		&		User is signed up.\\
+			\hline
+			\hline
+		\end{tabular}
+		\\
+		\vskip0.25cm
+					\textbf{Authentication Manager, Profile Manager, DBMS}\\
+		\begin{tabular}{| p{0.3\textwidth} |p{0.6\textwidth}|}
+			\hline
+			\hline
+			
+			\multicolumn{2}{|c|} {login() }\\
+			\hline
+			
+			\textbf{Input}.		&		\textbf{Effect}.\\
+			\hline
+			
+			NullArgument.		&		NullArgumentException is raised.\\
+			\hline
+			
+			InvalidArgument Exception.		&		InvalidArgumentException.\\
+			\hline
+		
+			Valid combination of User Credentials.		&		User is logged in.\\
+			\hline
+			\hline
+		\end{tabular}
+
+	\end{flushleft}
