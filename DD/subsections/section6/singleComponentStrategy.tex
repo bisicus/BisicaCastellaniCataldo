@@ -1,0 +1,152 @@
+\begin{description}
+	\item[Component]: API Manager.\\
+		\textit{Internal integration strategy}: Bottom - Up.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] Google Maps API.
+			\item[-] OpenWeatherMap.
+			\item[-] Google Transit API.
+			\item[-] Car2Go API.
+			\item[-] BikeMi API.
+			\item[-] Other API-Based System.
+			\item[-] Listener.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/APIManager}
+		\end{figure}
+		
+		
+	\vskip1.5cm
+	\item[Component]: Travlendar Server.\\
+		\textit{Internal integration strategy}: Critical - First.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] DBMS.
+			\item[-] API Request Dispatcher.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/travlendarServer}
+		\end{figure}
+	
+	
+	\vskip1.5cm
+	\item[Component]: Localization Manager doesn't need sub-components integration plan.
+
+	\vskip1.5cm
+	\item[Component]: Notification Manager doesn't need sub-components integration plan.
+	
+	\vskip1.5cm
+	\item[Component]: Payment Manager.\\
+		\textit{Internal integration strategy}: Bottom - Up.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] Payment Handler.
+			\item[-] Purchase History.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/paymentManager}
+		\end{figure}
+	
+	
+	\vskip1.5cm
+	\item[Component]: Preference Manager.\\
+		\textit{Internal integration strategy}: Bottom - Up\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] Excluded Vehicles List.
+			\item[-] Season Pass Handler.
+			\item[-] Preferences List.
+			\item[-] Preference Handler.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/preferenceManager}
+		\end{figure}
+		
+		
+	\vskip1.5cm
+	\item[Component]: Travel Logic.\\
+		\textit{Internal integration strategy}: Bottom - Up.\\
+		\textit{Integration order}:
+		\begin{itemize}	
+			\item[-] Trip Handler.
+			\item[-] Scheduler.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/travelLogic}
+		\end{figure}
+		
+		
+	
+	\vskip1.5cm
+	\item[Component]: Mobile Application.\\
+		\textit{Internal integration strategy}: Critical - First.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] User View.
+			\item[-] Guest View.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/mobileApplication}
+		\end{figure}
+	
+	
+	
+	\vskip1.5cm
+	\item[Component]: Calendar Manager.\\
+		\textit{Internal integration strategy}: Bottom - Up.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] Trip List.
+			\item[-] Break List.
+			\item[-] Appointment Aggregator.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/calendarManager}
+		\end{figure}
+
+
+	\vskip1.5cm
+	\item[Component]: Access Manager.\\
+		\textit{Internal integration strategy}: Critical - first.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] Authentication Manager.
+			\item[-] SignUp Handler.
+			\item[-] Saved Login Data.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/accessManager}
+		\end{figure}
+		
+		
+	\vskip1.5cm
+	\item[Component]: Application Aggregator.\\
+		\textit{Internal integration strategy}: Critical-First.\\
+		\textit{Integration order}:
+		\begin{itemize}
+			\item[-] Profile Manager.
+			\item[-] User Actions Handler.
+		\end{itemize}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{IntegrationPlan/applicationAggregator}
+		\end{figure}
+		
+\end{description}
