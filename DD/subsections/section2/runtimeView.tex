@@ -35,19 +35,19 @@ This section shows how the components run and interact in the system, by using S
 
 \subsubsection{Event Solutions Refreshing}
 	
-	This Sequence Diagram shows the reletaion between component when User tries to refresh or re-calculate already scheduled solutions for an Appointment.
+	This Sequence Diagram shows the relation between components when User tries to refresh or re-calculate already scheduled solutions for an Appointment.
 	'User Action Handler' component  -contained in 'Application Aggregator' (see figure \ref{applicationAggregatorDetail})- receives the User's comand, and tells the 'Appoinemnt Aggregator' component -contained in 'Calendar Manager' component (see figure \ref{calendarManagerDetail})- to start the \textsl{Refreshing} procedure:
 	All the Trip scheduled for the Appointment are taken from the 'Trip List' component, and are passed to the 'Scheduler' component  -contained in 'Travel Logic' component (see figure \ref{travelLogicDetail})-  in order to be confirmed o rescheduled.
 	
-	'Scheduler' has to consult, Excluded Vehicles, Maximum Time per Vehicle, Carbon Footprint and any other possibile preference defined by the User
+	'Scheduler' has to consult Excluded Vehicles, Maximum Time per Vehicle, Carbon Footprint and any other possibile preference defined by the User.
 	
-	On the same time, 'Scheduler' contacts the 'API Request Distpatcher' of the '\textit{Travlendar} Server' component (see figure \ref{serverDetail}) in order to get all the external information about the Trip, like Public Transportation Timetable, Sharing Mean Position, Weather, and any other usefull detail.
-	'API Request Distpatcher' sends a request 'API Manager' (see figure \ref{APIManagerDetail}) that, through his 'Listener' contacts all the necessary external APIs, and returns the 'Scheduler' requested information.
-	All the Trip detail are passed to the 'Trip Handler' that is encharged of creating the new trip; the possible sequence of actions is shown in the RASD.
+	On the same time, 'Scheduler' contacts the 'API Request Distpatcher' of the '\textit{Travlendar} Server' component (see figure \ref{serverDetail}) in order to get all the external information about the Trip, like Public Transportation Timetable, Sharing Mean Position, Weather, and any other useful detail.
+	'API Request Distpatcher' sends a request to 'API Manager' (see figure \ref{APIManagerDetail}) that, through his 'Listener' contacts all the necessary external APIs, and returns the 'Scheduler' requested information.
+	All the Trip details are passed to the 'Trip Handler' that is encharged of creating the new trip; the possible sequence of actions is shown in the RASD.
 	
 	If Purchasing is required 'Trip Handler' calls the 'Payment Handler' component  -contained in 'Payment Manager' (see figure \ref{paymentManagerDetail})-; this component is encharged to open the external Application and passing all the necessary informations in order to make User purchase requested service.
 	After procedure is completed, the external Application returns to 'Payment Handler' that store the result in 'Purchase History' component, whatever the outcome is.
-	Indeed that if the Purchase Procedure fails, is assumed that it will be re-tried in a second time, or a new Transportation Mean will be found, with the same sequence of actions shown in the RASD.
+	Indeed that if the Purchase Procedure fails, it is assumed that it will be re-tried in a second time, or a new Transportation Mean will be found, with the same sequence of actions shown in the RASD.
 	
 	The just created Trip is then passed to 'Calendar Manager', that notifies the User of the calendar updates via 'User Action Handler' and 'User View', and contacts the 'DMBS' of '\textit{Travlendar} Server' in order to store the new Trip.
 	

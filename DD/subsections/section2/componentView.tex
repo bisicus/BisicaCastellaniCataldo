@@ -1,4 +1,4 @@
-The Component Diagram shown below describes the logical components of the system we are to develop, from a very high-level description on to a more detailed one. This diagram does not take into account the deployment phase, hence it doesn’t describe the logical layer of the system in terms of the physical tiers where it is deployed.
+The Component Diagram shown below describes the logical components of the system we are to develop, from a very high-level description to a more detailed one. The diagram also shows a net of depencies, in accordance to UML 2.0.
 
 \subsubsection{High Level Component View}
 
@@ -12,7 +12,7 @@ The Component Diagram shown below describes the logical components of the system
 	We will now describe in detail all the components.
 
 	\paragraph{Mobile Application}
-		This component represents the view of the User over its system. It’s split in two sub-components, Guest-view and User-view, which represent the two different ways a human interaction can be instaurated with the system.
+		This component represents the view of the user over its system. It’s split in two sub-components, Guest-view and User-view, which represent the two different ways a human interaction can be instaurated with the system.
 
 		\begin{figure}[H]
 			\centering
@@ -21,7 +21,7 @@ The Component Diagram shown below describes the logical components of the system
 			\label{mobileApplicationDetail}
 		\end{figure}
 
-	\paragraph{+}
+	\paragraph{Access Manager}
 	This component deals with the matter of signing-up and authenticating to Travlendar+ Server. SignUp Handler serves the purpose of isolating the logic which serves the purpose to initiate a new User registration, while Saved Login Data records User data and smooths authentication procedures without contacting the external server. Authentication Manager oversees every access procedure.
 		\begin{figure}[H]
 			\centering
@@ -32,7 +32,7 @@ The Component Diagram shown below describes the logical components of the system
 		
 		
 	\paragraph{Application Aggregator}
-		This component works, unsuprisingly, as a collector of the different information \textit{Travlendar+} manages. It allows an easy management of every piece of information and allows us to avoid an high number of interfaces among the different components. 'Profile Manager' specifies the profile setting of the current user, while 'User Action Handler' allows us to register User's input.
+		This component works, unsuprisingly, as a collector of the different information \textit{Travlendar+} manages. It allows an easy management of every piece of information and allows us to avoid an high number of interfaces among the different components. 'Profile Manager' specifies the profile setting of the current user, while 'User Actions Handler' allows us to register user's input.
 	
 		\begin{figure}[H]
 			\centering
@@ -43,7 +43,10 @@ The Component Diagram shown below describes the logical components of the system
  
  
 	\paragraph{Calendar Manager}
-		This component is divided into 'Appointments' and 'Breaks' sub-components, which track the appointments inserted by the User together with his breaks, and 'Trips', which is the list of trips arranged by the scheduler for every appointment. The sub-component 'Appointment Aggregator' serves the purpose of listing and presenting the content of the other two sub-components.
+	
+		This component contains the Appointment Aggregator subcomponent , a sub-component that manages the appointments inserted by the user together with their properties (like date and location).
+		The component also contains 'Trip List' and 'Break List' sub-components : they deal with the storage and presentation of trips linked to appointments and break frames.
+
 	
 		\begin{figure}[H]
 			\centering
@@ -54,7 +57,7 @@ The Component Diagram shown below describes the logical components of the system
  
 
 	\paragraph{Preference Manager}
-		This component serves the purpose of keeping track of the preferences expressed by the User. 'Season Pass Handler' takes care of storing season passes; 'Excluded Vehicles List' cuts off from the scheduler results involving a selection of banned transportation means, 'Preferences List' covers the remaining and wider spectrum of User's choices. 'Preference Handler' is the sub-component that manages the other ones and that communicates outside Preference Manager.
+		This component serves the purpose of keeping track of the preferences expressed by the user. 'Season Pass Handler' takes care of storing season passes; 'Excluded Vehicles List' serves the purpose of cutting off from the scheduler results involving a selection of banned transportation means, 'Preferences List' covers the remaining and wider spectrum of User's choices. 'Preference Handler' is the sub-component that manages the other ones and that communicates outside Preference Manager.
 
 		\begin{figure}[H]
 			\centering
@@ -65,7 +68,7 @@ The Component Diagram shown below describes the logical components of the system
 
 
 	\paragraph{Travel Logic Manager}
-		This component is split into two sub-components: 'Scheduler' is the fundamental block that aims at scheduling and arranging User appointments and breaks via the the corresponding trips, 'DistanceManager' is the block whose purpose is to organize and present travel times to the scheduler in order to have them sorted out and well-managed.
+		This component is split into two sub-components: 'Scheduler' is the fundamental block that aims at scheduling and arranging user appointments and breaks via the the corresponding trips, 'Trip Handler' is the block whose purpose is to organize and present travel times to the scheduler in order to have them sorted out and well-managed.
 
 		\begin{figure}[H]
 			\centering
@@ -77,7 +80,7 @@ The Component Diagram shown below describes the logical components of the system
 
 	\paragraph{Payment Manager}
 		This component deals with the recording of purchases and their associated credit cards.
-		The sub-component 'Payment Handler' tracks purchase records and interacts with the required apps installed on the mobile device, while 'Purchase History' is an exploitable and rational organizations of the credit cards used by the user.
+		The sub-component 'Payment Handler' tracks purchase records and interacts with the required apps installed on the mobile device, while 'Purchase History' is an exploitable and rational organizations of saved purchases and credit cards used by the user.
 
 		\begin{figure}[H]
 			\centering
@@ -88,7 +91,7 @@ The Component Diagram shown below describes the logical components of the system
 		
 		
 	\paragraph{Travlendar Server} 
-		This component represents the \textit{Travlendar Server} whose purpose is to store User's preferences, access data and personal information. It is modeled by its 'DBMS' component, which stores Timetables and Preferences and the 'API Request Dispatcher', which forwards requests to external agents.
+		This component represents the \textit{Travlendar Server} whose purpose is to store user's preferences, access data and personal information. It is modeled by its 'DBMS'sub-component, which stores Timetables and Preferences and the 'API Request Dispatcher', which forwards requests to external agents.
 
 		\begin{figure}[H]
 			\centering
@@ -100,9 +103,9 @@ The Component Diagram shown below describes the logical components of the system
 
 	\paragraph{API Manager} 
 		This component is critical in order to provide a functioning Travel Logic: it gathers the interactions with all external APIs.
-		Here are listed the APIs the mobile application project starts with : Google Maps API, Google Transit API, Open Weather Map API, Car2Go and BikeMi API.
-		The last couple is for reference only, as already pointed in the RASD. Naturally, the list of external services can be expanded.
-		The 'Listener' component serves the purpose of forwarding requests : it receives the desired inputs and standardized the formatting in order for our application to be easily read.
+		Here are listed the APIs sub-components the mobile application project starts with : Google Maps API, Google Transit API, Open Weather Map API, Car2Go and BikeMi API.
+		'Other API-Based System' sub-component is here inserted for reference only, as previoulsy pointed out in the RASD. Naturally, the list of external services can be expanded.
+		The 'Listener' component serves the purpose of forwarding requests : it receives the desired inputs and standardizes the formats and file types.
 	
 		\begin{figure}[H]
 			\centering
@@ -113,7 +116,7 @@ The Component Diagram shown below describes the logical components of the system
 	
 	
 	\paragraph{Notification Manager}
-		This component allows the notification system to warn users in the cases events partially or completely overlap according to the scheduler.
+		This component allows the notification system to warn users in case events partially or completely overlap according to the scheduler.
 
 	\paragraph{Localization Manager}
 		This component represents the localization functionalities of the mobile application.
